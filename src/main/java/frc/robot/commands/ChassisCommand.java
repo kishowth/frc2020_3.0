@@ -22,9 +22,6 @@ public class ChassisCommand extends Command {
   protected void initialize() {
   }
 
-   int red = Robot.chassisSubsystem.colorSensor.getRed();
-   int blue = Robot.chassisSubsystem.colorSensor.getBlue();
-   int green = Robot.chassisSubsystem.colorSensor.getGreen();
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
@@ -41,21 +38,6 @@ public class ChassisCommand extends Command {
      Robot.chassisSubsystem.leftside.set(rightDriveSpeed);
      Robot.chassisSubsystem.rightside.set(-leftDriveSpeed);
 
-
-    Robot.chassisSubsystem.colorValues();
-
-    if (red >= 1){
-      redDetected = true;
-    }
-    else if (blue >=1){
-      blueDetected = true;
-    }
-    else if(green >= 1){
-      greenDetected = true;
-    }
-    else{
-      yellowDetected = true;
-    }
 
     SmartDashboard.putBoolean("Red Detected", redDetected);
     SmartDashboard.putBoolean("Blue Detected", blueDetected);

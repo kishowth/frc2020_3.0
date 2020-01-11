@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -53,6 +54,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    Robot.chassisSubsystem.colorSensor.getColor();
+
+    Robot.chassisSubsystem.colorValues();
   }
 
   /**

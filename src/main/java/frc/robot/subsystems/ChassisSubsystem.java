@@ -12,7 +12,9 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ChassisCommand;
@@ -35,20 +37,17 @@ public class ChassisSubsystem extends Subsystem {
 
 
 
-
+  //colour sensor
 
   public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
-  public int red = colorSensor.getRed();
-  public int blue = colorSensor.getBlue();
-  public int green = colorSensor.getGreen();
+
+  Color detectedColor = colorSensor.getColor();
 
   public void colorValues(){
-
-    SmartDashboard.putNumber("red", red);
-    SmartDashboard.putNumber("green", green);
-    SmartDashboard.putNumber("blue", blue);
-  
+    SmartDashboard.putNumber("red", detectedColor.red);
+    SmartDashboard.putNumber("green", detectedColor.green);
+    SmartDashboard.putNumber("blue", detectedColor.blue);
   }
 
 
