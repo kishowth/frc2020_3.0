@@ -33,7 +33,7 @@ public class Pixy2Example {
             int positionX = block.getX();
             int positionY = block.getY();
             int width = block.getWidth();
-
+            
             System.out.print("Got block at " + positionX + ", " + positionY + ". Width = " + width);
         }
     }
