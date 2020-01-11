@@ -18,7 +18,9 @@ public class RobotMap {
   public static int rightBackMotor = 2;
   public static int rightFrontMotor = 3;
 
-  public static I2C.Port i2cPort = I2C.Port.kOnboard; 
+  public static I2C.Port i2cPort = I2C.Port.kOnboard;  
+
+  public static int seeifthisworks = 7;
 
  
   
