@@ -22,17 +22,18 @@ public class ChassisCommand extends Command {
   protected void initialize() {
   }
 
-  boolean redDetected = false;
-  boolean blueDetected = false;
-  boolean greenDetected = false;
-  boolean yellowDetected = false;
-
    int red = Robot.chassisSubsystem.colorSensor.getRed();
    int blue = Robot.chassisSubsystem.colorSensor.getBlue();
    int green = Robot.chassisSubsystem.colorSensor.getGreen();
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    boolean redDetected = false;
+    boolean blueDetected = false;
+    boolean greenDetected = false;
+    boolean yellowDetected = false;
+
 
      double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
      double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();

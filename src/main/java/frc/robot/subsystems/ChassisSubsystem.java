@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ChassisCommand;
@@ -34,9 +33,11 @@ public class ChassisSubsystem extends Subsystem {
     rightside.set(speed);
   }
 
+
+
+
+
   public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
-
-
 
   public int red = colorSensor.getRed();
   public int blue = colorSensor.getBlue();
@@ -49,10 +50,6 @@ public class ChassisSubsystem extends Subsystem {
     SmartDashboard.putNumber("blue", blue);
   
   }
-
-  
-
-
 
 
   @Override
