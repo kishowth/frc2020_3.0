@@ -7,8 +7,11 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC;
 import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
@@ -26,23 +29,42 @@ public class Pixy2Example {
 
     public void init()
     {
-        Pixy2 p2 = Pixy2.createInstance(LinkType.SPI);
+        System.out.println("Initializing pixy2");
+
+        p2 = Pixy2.createInstance(LinkType.SPI);
         p2.init();
     }
 
     public void step()
     {
-        for(Block block : p2.getCCC().getBlocks())
+        Pixy2CCC ccc = p2.getCCC();
+        if (ccc == null)
         {
+            System.out.println("Pixy2 CCC is null!");
+            return;
+        }
+
+        ArrayList<Block> blocks = ccc.getBlocks();
+        if (blocks == null)
+        {
+            System.out.println("Pixy2 CCC blocks are null!");
+            return;
+        }
+
+        for (int i = 1; i < 10; i++)
+        {
+            System.out.println(i);
+        }
+
+        for(Block block : blocks)
+        {
+            int index = block.getIndex();
             int positionX = block.getX();
             int positionY = block.getY();
             int width = block.getWidth();
  
-            
-            System.out.print("Got block at " + positionX + ", " + positionY + ". Width = " + width);
-
+            System.out.print("Got block at " + positionX + ", " + positionY + ". Width = " + width + ". Index = " + index);
             SmartDashboard.putString("Debug Information", "Got block at " + positionX + ", " + positionY + ". Width = " + width);
-     
         }
     }
 

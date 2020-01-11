@@ -28,8 +28,9 @@ public class Robot extends TimedRobot {
   public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static ChassisSubsystem chassisSubsystem = new ChassisSubsystem();
-  public static Pixy2Example pixySubsystem = new Pixy2Example();
   public static OI m_oi;
+
+  Pixy2Example pixy2 = new Pixy2Example();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -40,11 +41,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    Robot.pixySubsystem.init();
+    System.out.println("Initializing Robot...");
+
+    pixy2.init();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    System.out.println("Robot Initialized!");
   }
 
   /**
@@ -58,7 +63,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     
-    Robot.pixySubsystem.step();
+    pixy2.step();
 
 
     Robot.chassisSubsystem.colorSensor.getColor();
