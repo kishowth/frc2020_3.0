@@ -7,6 +7,7 @@
 
 package frc.sample;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
@@ -17,8 +18,6 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 public class Pixy2Example {
 
     private Pixy2 p2;
-
-    private static final double BALL_SIZE_AT_1_METER = 1;
 
     public Pixy2Example()
     {
@@ -33,8 +32,12 @@ public class Pixy2Example {
             int positionX = block.getX();
             int positionY = block.getY();
             int width = block.getWidth();
+ 
             
             System.out.print("Got block at " + positionX + ", " + positionY + ". Width = " + width);
+
+            SmartDashboard.putString("Debug Information", "Got block at " + positionX + ", " + positionY + ". Width = " + width);
+     
         }
     }
 }
