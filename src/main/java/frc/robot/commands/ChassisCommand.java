@@ -29,8 +29,8 @@ public class ChassisCommand extends Command {
      double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
      double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();
 
-     Robot.chassisSubsystem.leftside.set(leftDriveSpeed);
-     Robot.chassisSubsystem.rightside.set(rightDriveSpeed);
+     Robot.chassisSubsystem.leftside.set(rightDriveSpeed);
+     Robot.chassisSubsystem.rightside.set(-leftDriveSpeed);
 
 
     //Robot.chassisSubsystem.colorValues();
