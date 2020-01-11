@@ -12,10 +12,9 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ChassisCommand;
 
@@ -35,16 +34,25 @@ public class ChassisSubsystem extends Subsystem {
     rightside.set(speed);
   }
 
+  public DifferentialDrive m_Drive = new DifferentialDrive(leftside, rightside);
+
 
 
   //colour sensor
 
   public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
-
   Color detectedColor = colorSensor.getColor();
 
+  public int red = colorSensor.getRed();
+  public int blue = colorSensor.getBlue();
+  public int green = colorSensor.getGreen();
+
+
+
   public void colorValues(){
+
+    Color detectedColor = colorSensor.getColor();
     SmartDashboard.putNumber("red", detectedColor.red);
     SmartDashboard.putNumber("green", detectedColor.green);
     SmartDashboard.putNumber("blue", detectedColor.blue);

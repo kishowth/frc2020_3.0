@@ -45,6 +45,19 @@ public double getRightDriveSpeed(){
   return RIGHT_JOY_Y();
 }
 
+
+public double getsteer(){
+  return driverController.getX();
+}
+
+public double getDrive(){
+  return driverController.getY();
+}
+
+public boolean getAuto(){
+  return driverController.getRawButton(1);
+}
+
 //sensors
 
 

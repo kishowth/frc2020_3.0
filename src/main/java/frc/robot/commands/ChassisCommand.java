@@ -19,8 +19,7 @@ public class ChassisCommand extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-  }
+  protected void initialize() {}
 
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -35,6 +34,10 @@ public class ChassisCommand extends Command {
      double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
      double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();
 
+     double redValue = Robot.chassisSubsystem.red;
+     double blueValue = Robot.chassisSubsystem.blue;
+     double greenValue = Robot.chassisSubsystem.green;
+
      Robot.chassisSubsystem.leftside.set(rightDriveSpeed);
      Robot.chassisSubsystem.rightside.set(-leftDriveSpeed);
 
@@ -44,7 +47,19 @@ public class ChassisCommand extends Command {
     SmartDashboard.putBoolean("Green Detected", greenDetected);
     SmartDashboard.putBoolean("Yellow Detected", yellowDetected);
 
-
+    if ((redValue > blueValue) && (redValue > greenValue)){
+      redDetected = true;
+    }
+    else if( (blueValue > redValue) && (blueValue > greenValue)){
+      blueDetected = true;
+    }
+    else if ((greenValue > redValue) && (greenValue > blueValue)){
+      greenDetected = true;
+    }
+    else {
+      yellowDetected = true;
+    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
