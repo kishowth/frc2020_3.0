@@ -7,13 +7,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class VisionCommand extends Command {
@@ -39,6 +33,10 @@ public class VisionCommand extends Command {
     double drive = Robot.m_oi.getDrive();
     boolean auto = Robot.m_oi.getAuto();
 
+    boolean lightsOn = Robot.m_oi.LimelightON();
+    boolean lightsOff = Robot.m_oi.LimelightOFF();
+
+
     steer *= 0.70;
     drive *= 0.70;
 
@@ -55,6 +53,8 @@ public class VisionCommand extends Command {
      else {
       Robot.chassisSubsystem.m_Drive.arcadeDrive(drive, steer);
     }
+
+
   }
 
 

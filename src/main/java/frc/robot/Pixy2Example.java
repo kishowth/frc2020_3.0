@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.sample;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import io.github.pseudoresonance.pixy2api.Pixy2;
@@ -23,7 +23,8 @@ public class Pixy2Example {
     public static final float CAMERA_FOV_HORIZONTAL_DEG = 60f;
     public static final float CAMERA_FOV_VERTICAL_DEG = 40f;
 
-    public Pixy2Example()
+
+    public void init()
     {
         Pixy2 p2 = Pixy2.createInstance(LinkType.SPI);
         p2.init();

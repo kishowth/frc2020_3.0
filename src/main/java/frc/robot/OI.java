@@ -28,6 +28,17 @@ public double RIGHT_JOY_Y(){
   return driverController.getRawAxis(5);
 }
 
+public boolean ButtonA(){
+  return driverController.getRawButton(1);
+}
+public boolean ButtonB(){
+  return driverController.getRawButton(2);
+}
+
+public boolean ButtonY(){
+  return driverController.getRawButton(3);
+}
+
 
 //GAME CONTROLLERS
 public Joystick getdriverController(){
@@ -55,8 +66,19 @@ public double getDrive(){
 }
 
 public boolean getAuto(){
-  return driverController.getRawButton(1);
+  return ButtonA();
 }
+
+public boolean LimelightON()
+{
+  return ButtonB();
+}
+
+public boolean LimelightOFF(){
+  return ButtonY();
+}
+
+
 
 //sensors
 
