@@ -37,7 +37,6 @@ public class ChassisSubsystem extends Subsystem {
   public DifferentialDrive m_Drive = new DifferentialDrive(leftside, rightside);
 
 
-
   //colour sensor
 
   public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);

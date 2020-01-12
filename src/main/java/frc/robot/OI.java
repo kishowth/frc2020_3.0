@@ -7,12 +7,8 @@
 
 package frc.robot;
 
-import com.revrobotics.ColorSensorV3;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.util.Color;
 
 public class OI {
 
