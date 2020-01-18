@@ -29,8 +29,6 @@ public class Pixy2Example {
 
     public void init()
     {
-        System.out.println("Initializing pixy2");
-
         p2 = Pixy2.createInstance(LinkType.SPI);
         p2.init();
     }
@@ -55,9 +53,7 @@ public class Pixy2Example {
             System.out.println(x);
         }
         else{
-            System.out.println("It works!");
             System.out.println(x);
-
         }
 
 
