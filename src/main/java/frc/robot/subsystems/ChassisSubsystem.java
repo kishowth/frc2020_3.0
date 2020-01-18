@@ -38,7 +38,6 @@ public class ChassisSubsystem extends Subsystem {
 
 
   //colour sensor
-
   public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
 
@@ -59,7 +58,6 @@ public class ChassisSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     setDefaultCommand(new ChassisCommand());
   }
 }
