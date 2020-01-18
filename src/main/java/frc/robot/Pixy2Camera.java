@@ -45,7 +45,7 @@ public class Pixy2Camera {
 
     
     private Pixy2 p2;
-    private ArrayList<Block> blocks;
+    private ArrayList<Block> blocks = new ArrayList<Block>();
 
     public static final float BALL_DIAMETER_M = 0.1778f;
     public static final float CAMERA_FOV_HORIZONTAL_DEG = 60f;
@@ -87,7 +87,7 @@ public class Pixy2Camera {
 
 
         blocks = ccc.getBlocks();
-        
+
         for(Block block : blocks)
         {
             int index = block.getIndex();
