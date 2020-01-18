@@ -62,8 +62,6 @@ public class ChassisCommand extends Command {
     Block ball = Pixy2Camera.get().getTheBall(); 
     if (ball != null)
     {
-        System.out.println("I see the ball");
-
         boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
         boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
     
@@ -83,6 +81,10 @@ public class ChassisCommand extends Command {
           Robot.chassisSubsystem.rightside.set(0.0);
           System.out.println("Not turning");
         }
+    }
+    else
+    {
+      System.out.println("No ball to track!");
     }
     
   }
