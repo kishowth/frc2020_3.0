@@ -16,6 +16,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -59,6 +60,37 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     
     Pixy2Camera.get().step();
+
+    Block ball = Pixy2Camera.get().getTheBall(); 
+    if (ball != null)
+    {
+        boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
+        boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+    
+        if (ballIsLeftOfPixy)
+        {
+          Robot.chassisSubsystem.leftside.set(-0.25);
+          Robot.chassisSubsystem.rightside.set(-0.25);
+          System.out.println("Turning left");
+        }
+        else if (ballIsRightOfPixy)
+        {
+          Robot.chassisSubsystem.leftside.set(0.25);
+          Robot.chassisSubsystem.rightside.set(0.25);
+          System.out.println("Turning right");
+        }
+        else
+        {
+          Robot.chassisSubsystem.leftside.set(0.0);
+          Robot.chassisSubsystem.rightside.set(0.0);
+          System.out.println("Not turning");
+        }
+    }
+    else
+    {
+      System.out.println("No ball to track!");
+    }
+    
 
 
     Robot.chassisSubsystem.colorSensor.getColor();
