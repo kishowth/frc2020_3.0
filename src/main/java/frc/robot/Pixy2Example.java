@@ -73,20 +73,19 @@ public class Pixy2Example {
         }
     }
 
+    /**  ___________________________________________
+     *  |                                           |
+     *  |          _                                |
+     *  |        /   \                              |
+     *  |       |  x  |                             |
+     *  |        \ _ / <- fully inside frame       _|
+     *  |                                        /  |
+     *  |                                       |  x|   <- Not fully inside frame
+     *  |                                        \ _|
+     *  |___________________________________________|
+     */
     public boolean isBlockWidthCompletelyInsideFrame(Block block)
     {
-        /**  ___________________________________________
-         *  |                                           |
-         *  |          _                                |
-         *  |        /   \                              |
-         *  |       |  x  |                             |
-         *  |        \ _ / <- fully inside frame       _|
-         *  |                                        /  |
-         *  |                                       |  x|   <- Not fully inside frame
-         *  |                                        \ _|
-         *  |___________________________________________|
-         */
-
         int blockWidth = block.getWidth();
         int blockPosition = block.getX();
 
@@ -146,7 +145,8 @@ public class Pixy2Example {
         
         // Once we know how big it is in the frame (say 50%), we can figure out how wide the camera
         // frame is at that distance! (We can do this because we know how wide the ball is)
-        float frameWidthAtBlockInMeters = (1.0f / blockWidthAsPercentOfFrame) * BALL_DIAMETER_M;
+        float numberOfBallsThatCanFitInFrameAtThatDistance = (1.0f / blockWidthAsPercentOfFrame);
+        float frameWidthAtBlockInMeters = numberOfBallsThatCanFitInFrameAtThatDistance * BALL_DIAMETER_M;
 
         // Now that we know how wide the frame is, we use trig to work out how far away
         // that frame point is from the camera
