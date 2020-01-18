@@ -76,18 +76,14 @@ public class Pixy2Camera {
         int yellowBall = 1;
 
         int x = ccc.getBlocks(wait, yellowBall, 255);
-
-        if (x < 0){
-            System.out.println("Doesn't work");
-            System.out.println(x);
+        if (x < 0)
+        {
+            System.out.println("Failed to refresh block data from pixy2, error code = " + x);
         }
-        else{
-            System.out.println(x);
+        else
+        {
+            blocks = ccc.getBlocks();
         }
-
-
-        blocks = ccc.getBlocks();
-
         //printBlockState();
     }
 
