@@ -79,9 +79,7 @@ public class Pixy2Example {
             System.out.println(x);
         }
         else{
-            System.out.println("It works!");
             System.out.println(x);
-
         }
 
 
