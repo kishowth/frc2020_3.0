@@ -17,10 +17,10 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 /**
  * Add your docs here.
  */
-public class Pixy2Example {
+public class Pixy2Camera {
 
-    private static Pixy2Example instance;
-    public static Pixy2Example get()
+    private static Pixy2Camera instance;
+    public static Pixy2Camera get()
     {
         if (instance == null)
         {
@@ -40,7 +40,7 @@ public class Pixy2Example {
         }
 
         System.out.println("Initializing pixy2");
-        instance = new Pixy2Example();
+        instance = new Pixy2Camera();
     }
 
     
@@ -53,7 +53,7 @@ public class Pixy2Example {
     public static final float METERS_TO_INCHES = 39.3701f;
 
     
-    private Pixy2Example()
+    private Pixy2Camera()
     {
         p2 = Pixy2.createInstance(LinkType.SPI);
         p2.init();

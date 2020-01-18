@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    Pixy2Example.init();
+    Pixy2Camera.init();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     
-    Pixy2Example.get().step();
+    Pixy2Camera.get().step();
 
 
     Robot.chassisSubsystem.colorSensor.getColor();
