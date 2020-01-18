@@ -19,6 +19,31 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
  */
 public class Pixy2Example {
 
+    private static Pixy2Example instance;
+    public static Pixy2Example get()
+    {
+        if (instance == null)
+        {
+            System.out.println("Failed to get the pixy 2 camera logic, not initialized yet!");
+            return null;
+        }
+
+        return instance;
+    }
+
+    public static void init()
+    {
+        if (instance != null)
+        {
+            System.out.println("Already initialized!");
+            return;
+        }
+
+        System.out.println("Initializing pixy2");
+        instance = new Pixy2Example();
+    }
+
+    
     private Pixy2 p2;
 
     public static final float BALL_DIAMETER_M = 0.1778f;
@@ -27,10 +52,9 @@ public class Pixy2Example {
 
     public static final float METERS_TO_INCHES = 39.3701f;
 
-    public void init()
+    
+    private Pixy2Example()
     {
-        System.out.println("Initializing pixy2");
-
         p2 = Pixy2.createInstance(LinkType.SPI);
         p2.init();
     }
