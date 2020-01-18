@@ -40,7 +40,6 @@ public class ChassisSubsystem extends Subsystem {
   //colour sensor
   public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
-  Color detectedColor = colorSensor.getColor();
 
   public int red = colorSensor.getRed();
   public int blue = colorSensor.getBlue();

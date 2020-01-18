@@ -31,15 +31,10 @@ public class ChassisCommand extends Command {
     boolean yellowDetected = false;
 
 
-     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
-     double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();
+    double redValue = Robot.chassisSubsystem.red;
+    double blueValue = Robot.chassisSubsystem.blue;
+    double greenValue = Robot.chassisSubsystem.green;
 
-     double redValue = Robot.chassisSubsystem.red;
-     double blueValue = Robot.chassisSubsystem.blue;
-     double greenValue = Robot.chassisSubsystem.green;
-
-     Robot.chassisSubsystem.leftside.set(rightDriveSpeed);
-     Robot.chassisSubsystem.rightside.set(-leftDriveSpeed);
 
 
     SmartDashboard.putBoolean("Red Detected", redDetected);

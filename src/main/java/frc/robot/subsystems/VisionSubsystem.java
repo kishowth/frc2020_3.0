@@ -86,22 +86,22 @@ public class VisionSubsystem extends Subsystem {
     private static final int FORCE_BLINK = 2;
     private static final int FORCE_ON = 3;
 
-    public static boolean resetToDefault()
+    public  boolean resetToDefault()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(PIPELINE_DEFAULT);
     }
 
-    public static boolean forceOff()
+    public  boolean forceOff()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_OFF);
     }
 
-    public static boolean forceBlink()
+    public  boolean forceBlink()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_BLINK);
     }
 
-    public static boolean forceOn()
+    public  boolean forceOn()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_ON);
     }
