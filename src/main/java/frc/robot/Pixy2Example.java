@@ -25,6 +25,7 @@ public class Pixy2Example {
     public static final float CAMERA_FOV_HORIZONTAL_DEG = 60f;
     public static final float CAMERA_FOV_VERTICAL_DEG = 40f;
 
+    public static final float METERS_TO_INCHES = 39.3701f;
 
     public void init()
     {
@@ -44,21 +45,20 @@ public class Pixy2Example {
         }
 
 
-    boolean wait = true;
-    int yellowBall = 1;
+        boolean wait = true;
+        int yellowBall = 1;
 
-    int x = ccc.getBlocks(wait, yellowBall, 255);
+        int x = ccc.getBlocks(wait, yellowBall, 255);
 
-    if (x < 0){
-        System.out.println("Doesn't work");
-        System.out.println(x);
-    }
-    else{
-        System.out.println("It works!");
-        System.out.println(x);
+        if (x < 0){
+            System.out.println("Doesn't work");
+            System.out.println(x);
+        }
+        else{
+            System.out.println("It works!");
+            System.out.println(x);
 
-    }
-
+        }
 
 
         ArrayList<Block> blocks = ccc.getBlocks();
@@ -67,11 +67,6 @@ public class Pixy2Example {
             System.out.println("Pixy2 CCC blocks are null!");
             return;
         }
-
-        // for (int i = 1; i < 10; i++)
-        // {
-        //     System.out.println(i);
-        // }
 
         for(Block block : blocks)
         {
@@ -85,7 +80,11 @@ public class Pixy2Example {
             if (isBlockWidthCompletelyInsideFrame(block))
             {
                 float fromCameraMeters = calculateDistanceToBlockInMeters(block);
-                System.out.print("> and it's " + fromCameraMeters + " meters from the camera!");
+                float fromCameraInches = METERS_TO_INCHES * fromCameraMeters;
+
+                float fromCameraMetersShort = ((int)Math.round(fromCameraMeters * 100)) / 100.0f;
+                float fromCameraInchesShort = ((int)Math.round(fromCameraInches * 100)) / 100.0f;
+                System.out.print("> and it's " + fromCameraMetersShort + " meters " + "(" + fromCameraInchesShort + " inches) from the camera!");
             }
         }
     }
