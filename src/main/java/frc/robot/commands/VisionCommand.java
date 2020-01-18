@@ -28,32 +28,40 @@ public class VisionCommand extends Command {
 
     Robot.VisionSubsystem.Update_Limelight_Tracking();
 
-
     double steer = Robot.m_oi.getsteer();
     double drive = Robot.m_oi.getDrive();
-    boolean auto = Robot.m_oi.getAuto();
+    boolean autoAlign = Robot.m_oi.getAuto();
 
     boolean lightsOn = Robot.m_oi.LimelightON();
     boolean lightsOff = Robot.m_oi.LimelightOFF();
 
+    double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
+    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();
 
     steer *= 0.70;
     drive *= 0.70;
 
-    if (auto) {
+    if (autoAlign) {
 
       if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
-        Robot.chassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand, Robot.VisionSubsystem.m_LimelightSteerCommand);
-      } 
-      else {
+        Robot.chassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
+            Robot.VisionSubsystem.m_LimelightSteerCommand);
+      } else {
         Robot.chassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
-        }
+      }
     }
 
-     else {
-      Robot.chassisSubsystem.m_Drive.arcadeDrive(drive, steer);
+    else {
+      Robot.chassisSubsystem.m_Drive.tankDrive(rightDriveSpeed, leftDriveSpeed);
+      //Robot.chassisSubsystem.m_Drive.arcadeDrive(drive, steer);
     }
 
+    if (lightsOn) {
+      Robot.VisionSubsystem.forceOn();
+    }
+    else{
+      Robot.VisionSubsystem.forceOff();
+    }
   }
 
   

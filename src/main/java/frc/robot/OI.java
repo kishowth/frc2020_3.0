@@ -36,7 +36,17 @@ public boolean ButtonY(){
 }
 
 
-//GAME CONTROLLERS
+
+
+
+
+
+
+
+
+
+
+//GAME Controls
 public Joystick getdriverController(){
    return driverController;
 }
@@ -53,15 +63,18 @@ public double getRightDriveSpeed(){
 }
 
 
-public double getsteer(){
+public double getsteer()
+{
   return driverController.getX();
 }
 
-public double getDrive(){
+public double getDrive()
+{
   return driverController.getY();
 }
 
-public boolean getAuto(){
+public boolean getAuto()
+{
   return ButtonA();
 }
 
@@ -70,7 +83,8 @@ public boolean LimelightON()
   return ButtonB();
 }
 
-public boolean LimelightOFF(){
+public boolean LimelightOFF()
+{
   return ButtonY();
 }
 
