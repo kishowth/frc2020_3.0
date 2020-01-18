@@ -191,4 +191,38 @@ public class Pixy2Camera {
 
         return distanceToBlockInMeters;
     }
+
+	public Block getTheBall() {
+		if(blocks.isEmpty()){
+            return null;
+        }
+        
+        else if(blocks.isEmpty() == false){
+            return blocks.get(0);
+        }
+        else{
+            return null;
+        }
+    }
+
+
+	public boolean isLeft(Block ball) {
+		if (ball.getX() < p2.getFrameWidth()/2){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isRight(Block ball){
+        if (ball.getX() > p2.getFrameWidth()/2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    
 }
