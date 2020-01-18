@@ -45,12 +45,15 @@ public class Pixy2Camera {
 
     
     private Pixy2 p2;
+    private ArrayList<Block> blocks;
 
     public static final float BALL_DIAMETER_M = 0.1778f;
     public static final float CAMERA_FOV_HORIZONTAL_DEG = 60f;
     public static final float CAMERA_FOV_VERTICAL_DEG = 40f;
 
     public static final float METERS_TO_INCHES = 39.3701f;
+
+
 
     
     private Pixy2Camera()
@@ -83,13 +86,8 @@ public class Pixy2Camera {
         }
 
 
-        ArrayList<Block> blocks = ccc.getBlocks();
-        if (blocks == null)
-        {
-            System.out.println("Pixy2 CCC blocks are null!");
-            return;
-        }
-
+        blocks = ccc.getBlocks();
+        
         for(Block block : blocks)
         {
             int index = block.getIndex();
