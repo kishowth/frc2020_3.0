@@ -9,7 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Pixy2Camera;
 import frc.robot.Robot;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class ChassisCommand extends Command {
   public ChassisCommand() {
@@ -54,7 +58,25 @@ public class ChassisCommand extends Command {
     else {
       yellowDetected = true;
     }
-    
+
+    Block ball = Pixy2Camera.get().getTheBall(); 
+    boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
+    boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+
+    if (ballIsLeftOfPixy)
+    {
+      Robot.chassisSubsystem.rightside.set(0.1);
+    }
+    else if (ballIsRightOfPixy)
+    {
+      Robot.chassisSubsystem.leftside.set(0.1);
+    }
+    else
+    {
+      Robot.chassisSubsystem.leftside.set(0.0);
+      Robot.chassisSubsystem.rightside.set(0.0);
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
