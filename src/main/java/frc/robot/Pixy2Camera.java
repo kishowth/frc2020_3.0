@@ -84,7 +84,7 @@ public class Pixy2Camera {
         {
             blocks = ccc.getBlocks();
         }
-        //printBlockState();
+      //  printBlockState();
     }
 
     private void printBlockState() {
