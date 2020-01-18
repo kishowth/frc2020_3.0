@@ -88,15 +88,17 @@ public class Pixy2Camera {
 
         blocks = ccc.getBlocks();
 
+        //printBlockState();
+    }
+
+    private void printBlockState() {
         for(Block block : blocks)
         {
-            int index = block.getIndex();
-            int positionX = block.getX();
-            int positionY = block.getY();
-            int width = block.getWidth();
+            // int index = block.getIndex();
+            // int positionX = block.getX();
+            // int positionY = block.getY();
+            // int width = block.getWidth();
  
-            System.out.print("Got block at " + positionX + ", " + positionY + ". Width = " + width + ". Index = " + index);
-
             if (isBlockWidthCompletelyInsideFrame(block))
             {
                 float fromCameraMeters = calculateDistanceToBlockInMeters(block);
@@ -109,16 +111,10 @@ public class Pixy2Camera {
         }
     }
 
-    /**  ___________________________________________
-     *  |                                           |
-     *  |          _                                |
-     *  |        /   \                              |
-     *  |       |  x  |                             |
-     *  |        \ _ / <- fully inside frame       _|
-     *  |                                        /  |
-     *  |                                       |  x|   <- Not fully inside frame
-     *  |                                        \ _|
-     *  |___________________________________________|
+    /**
+     * ___________________________________________ | | | _ | | / \ | | | x | | | \ _
+     * / <- fully inside frame _| | / | | | x| <- Not fully inside frame | \ _|
+     * |___________________________________________|
      */
     public boolean isBlockWidthCompletelyInsideFrame(Block block)
     {

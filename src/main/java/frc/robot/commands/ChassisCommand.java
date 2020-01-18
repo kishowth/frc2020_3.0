@@ -60,23 +60,31 @@ public class ChassisCommand extends Command {
     }
 
     Block ball = Pixy2Camera.get().getTheBall(); 
-    boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
-    boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+    if (ball != null)
+    {
+        System.out.println("I see the ball");
 
-    if (ballIsLeftOfPixy)
-    {
-      Robot.chassisSubsystem.rightside.set(0.1);
+        boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
+        boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+    
+        if (ballIsLeftOfPixy)
+        {
+          Robot.chassisSubsystem.rightside.set(0.1);
+          System.out.println("Turning left");
+        }
+        else if (ballIsRightOfPixy)
+        {
+          Robot.chassisSubsystem.leftside.set(0.1);
+          System.out.println("Turning right");
+        }
+        else
+        {
+          Robot.chassisSubsystem.leftside.set(0.0);
+          Robot.chassisSubsystem.rightside.set(0.0);
+          System.out.println("Not turning");
+        }
     }
-    else if (ballIsRightOfPixy)
-    {
-      Robot.chassisSubsystem.leftside.set(0.1);
-    }
-    else
-    {
-      Robot.chassisSubsystem.leftside.set(0.0);
-      Robot.chassisSubsystem.rightside.set(0.0);
-    }
-
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
