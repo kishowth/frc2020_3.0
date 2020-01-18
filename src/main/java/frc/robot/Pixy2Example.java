@@ -9,7 +9,6 @@ package frc.robot;
 
 import java.util.ArrayList;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC;
 import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
@@ -44,6 +43,24 @@ public class Pixy2Example {
             return;
         }
 
+
+    boolean wait = true;
+    int yellowBall = 1;
+
+    int x = ccc.getBlocks(wait, yellowBall, 255);
+
+    if (x < 0){
+        System.out.println("Doesn't work");
+        System.out.println(x);
+    }
+    else{
+        System.out.println("It works!");
+        System.out.println(x);
+
+    }
+
+
+
         ArrayList<Block> blocks = ccc.getBlocks();
         if (blocks == null)
         {
@@ -51,10 +68,10 @@ public class Pixy2Example {
             return;
         }
 
-        for (int i = 1; i < 10; i++)
-        {
-            System.out.println(i);
-        }
+        // for (int i = 1; i < 10; i++)
+        // {
+        //     System.out.println(i);
+        // }
 
         for(Block block : blocks)
         {
