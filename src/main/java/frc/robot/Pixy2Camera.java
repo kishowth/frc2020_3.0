@@ -72,13 +72,13 @@ public class Pixy2Camera {
         }
 
 
-        boolean wait = true;
+        boolean wait = false;
         int yellowBall = 1;
 
         int x = ccc.getBlocks(wait, yellowBall, 255);
-        if (x < 0)
+        if (x < 0 && x != Pixy2.PIXY_RESULT_BUSY)
         {
-            System.out.println("Failed to refresh block data from pixy2, error code = " + x);
+            System.out.println("Failed to refresh block data from pixy2, unhandled response Pixy2 Results code = " + x);
         }
         else
         {
@@ -108,9 +108,16 @@ public class Pixy2Camera {
     }
 
     /**
-     * ___________________________________________ | | | _ | | / \ | | | x | | | \ _
-     * / <- fully inside frame _| | / | | | x| <- Not fully inside frame | \ _|
-     * |___________________________________________|
+     * ___________________________________________
+     * |                                          | 
+     * |        _                                 | 
+     * |      /   \                               | 
+     * |     |  x  |                              | 
+     * |      \ _ / <- fully inside frame        _| 
+     * |                                       /  | 
+     * |                                      |  x| <- Not fully inside frame 
+     * |                                       \ _|
+     * |__________________________________________|
      */
     public boolean isBlockWidthCompletelyInsideFrame(Block block)
     {
