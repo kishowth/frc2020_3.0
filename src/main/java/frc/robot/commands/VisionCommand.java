@@ -15,7 +15,6 @@ public class VisionCommand extends Command {
   public VisionCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.VisionSubsystem);
-    requires(Robot.chassisSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -29,8 +28,6 @@ public class VisionCommand extends Command {
 
     Robot.VisionSubsystem.Update_Limelight_Tracking();
 
-    double steer = Robot.m_oi.getsteer();
-    double drive = Robot.m_oi.getDrive();
     boolean autoAlign = Robot.m_oi.getAuto();
 
     boolean lightsOn = Robot.m_oi.LimelightON();
@@ -38,26 +35,23 @@ public class VisionCommand extends Command {
     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
     double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
 
-    boolean limelightMode = Robot.m_oi.getLimeLightMode();
-    boolean VISION_ACTIVE = true;
 
-    steer *= 0.70;
-    drive *= 0.70;
+   
 
     if (autoAlign) {
 
       if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
-        Robot.chassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
+        Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
             Robot.VisionSubsystem.m_LimelightSteerCommand);
             Robot.VisionSubsystem.forceOn();
       } else {
-        Robot.chassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
+        Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
       }
     }
 
     
     else {
-      Robot.chassisSubsystem.m_Drive.tankDrive(rightDriveSpeed, leftDriveSpeed);
+      Robot.ChassisSubsystem.m_Drive.tankDrive(rightDriveSpeed, leftDriveSpeed);
     }
 
 
@@ -68,18 +62,9 @@ public class VisionCommand extends Command {
     else{
       Robot.VisionSubsystem.forceOff();
     }
-
-    //LIMELIGHT DRIVE/VISION MODE
-    if (limelightMode){
-      Robot.VisionSubsystem.DriverMode();
-      VISION_ACTIVE = false;
-    }
-    else {
-      Robot.VisionSubsystem.VisionMode();
-      VISION_ACTIVE = true;
-    }
-    SmartDashboard.putBoolean("LIMELIGHT CAMERA", VISION_ACTIVE);
   }
+
+   
 
 
   

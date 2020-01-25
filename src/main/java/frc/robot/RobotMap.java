@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.hal.sim.mockdata.AnalogInDataJNI;
+import edu.wpi.first.wpilibj.AnalogAccelerometer;
 import edu.wpi.first.wpilibj.I2C;
 
 public class RobotMap {
@@ -21,6 +23,6 @@ public class RobotMap {
 
   public static int seeifthisworks = 7;
 
- 
+  public static int ultrasonicSensor = 0;
   
 }

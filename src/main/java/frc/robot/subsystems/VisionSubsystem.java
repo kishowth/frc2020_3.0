@@ -26,7 +26,7 @@ public class VisionSubsystem extends Subsystem {
   public void Update_Limelight_Tracking()
   {
       
-    //These numbers must be tuned for your Robot!  Be careful!
+    //These numbers must be tuned!!!!
     //steer is between 0.01-0.02
     //steerK is final
     //0.04 driveK
@@ -46,9 +46,7 @@ public class VisionSubsystem extends Subsystem {
         SmartDashboard.putNumber("limelightv", tv);   
         SmartDashboard.putNumber("limelightArea", ta);   
 
-      
-
-        
+    
 
         if (tv < 1.0)
         {

@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-
-import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.GameControllerConstants;;
 
 public class OI {
@@ -27,23 +25,13 @@ public boolean getAuto()
 {
   return GameControllerConstants.ButtonA();
 }
-
+//LED control
 public boolean LimelightON()
 {
   return GameControllerConstants.ButtonB();
 }
 
-
-public boolean getLimeLightMode()
-{
-  return GameControllerConstants.ButtonB();
-}
-
-
-
-
-
-
+//vision algorithm methods
 public double getsteer()
 {
   return GameControllerConstants.functionOfX();
@@ -54,9 +42,6 @@ public double getDrive()
   return GameControllerConstants.functionOfY();
 }
 
-
-
-//sensors
 
 
 

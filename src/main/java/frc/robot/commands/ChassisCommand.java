@@ -13,21 +13,68 @@ import frc.robot.Pixy2Camera;
 import frc.robot.Robot;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
-
 public class ChassisCommand extends Command {
   public ChassisCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.chassisSubsystem);
+    requires(Robot.ChassisSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+  }
 
   // Called repeatedly when this Command is scheduled to run
+  boolean desiredValue = false;
+
   @Override
   protected void execute() {
-  
+
+    double ultValues = Robot.ChassisSubsystem.ultValues();
+
+    SmartDashboard.putNumber("UltraSonic", ultValues);
+
+
+    if (ultValues == 4.0){
+      desiredValue = true;
+    }
+    else {
+      desiredValue = false;
+    }
+
+    SmartDashboard.putBoolean("desired", desiredValue);
+
+    Pixy2Camera.get().step();
+
+    Block ball = Pixy2Camera.get().getTheBall(); 
+    if (ball != null)
+    {
+        boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
+        boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+    
+        if (ballIsLeftOfPixy)
+        {
+          Robot.ChassisSubsystem.leftside.set(0); //-.25
+          Robot.ChassisSubsystem.rightside.set(0);
+          System.out.println("Turning left");
+        }
+        else if (ballIsRightOfPixy)
+        {
+          Robot.ChassisSubsystem.leftside.set(0); //.25
+          Robot.ChassisSubsystem.rightside.set(0);
+          System.out.println("Turning right");
+        }
+        else
+        {
+          Robot.ChassisSubsystem.leftside.set(0.0);
+          Robot.ChassisSubsystem.rightside.set(0.0);
+          System.out.println("Not turning");
+        }
+    }
+    else
+    {
+    System.out.println("No ball to track!");
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

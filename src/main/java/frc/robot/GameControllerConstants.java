@@ -33,6 +33,7 @@ public class GameControllerConstants {
 
 
     static Joystick driverController = new Joystick(0);
+    static Joystick operatorController = new Joystick(1);
 
     /*------------AXIS METHODS---------------------- */
     public static double LEFT_JOYSTICK_Y()
@@ -62,8 +63,7 @@ public class GameControllerConstants {
     }
 
 
-    /*------------BUTTON METHODS---------------------- */
-
+    /*------------BUTTON METHODS--------------- */
 
     public static boolean ButtonA()
     {
