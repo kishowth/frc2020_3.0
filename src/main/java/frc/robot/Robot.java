@@ -69,14 +69,14 @@ public class Robot extends TimedRobot {
     
         if (ballIsLeftOfPixy)
         {
-          Robot.chassisSubsystem.leftside.set(-0.25);
-          Robot.chassisSubsystem.rightside.set(-0.25);
+          Robot.chassisSubsystem.leftside.set(0); //-.25
+          Robot.chassisSubsystem.rightside.set(0);
           System.out.println("Turning left");
         }
         else if (ballIsRightOfPixy)
         {
-          Robot.chassisSubsystem.leftside.set(0.25);
-          Robot.chassisSubsystem.rightside.set(0.25);
+          Robot.chassisSubsystem.leftside.set(0); //.25
+          Robot.chassisSubsystem.rightside.set(0);
           System.out.println("Turning right");
         }
         else

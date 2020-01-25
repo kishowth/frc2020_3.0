@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class VisionCommand extends Command {
@@ -33,10 +34,12 @@ public class VisionCommand extends Command {
     boolean autoAlign = Robot.m_oi.getAuto();
 
     boolean lightsOn = Robot.m_oi.LimelightON();
-    boolean lightsOff = Robot.m_oi.LimelightOFF();
 
     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
-    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();
+    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
+
+    boolean limelightMode = Robot.m_oi.getLimeLightMode();
+    boolean VISION_ACTIVE = true;
 
     steer *= 0.70;
     drive *= 0.70;
@@ -46,23 +49,42 @@ public class VisionCommand extends Command {
       if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
         Robot.chassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
             Robot.VisionSubsystem.m_LimelightSteerCommand);
+            Robot.VisionSubsystem.forceOn();
       } else {
         Robot.chassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
       }
     }
 
+    
     else {
       Robot.chassisSubsystem.m_Drive.tankDrive(rightDriveSpeed, leftDriveSpeed);
-      //Robot.chassisSubsystem.m_Drive.arcadeDrive(drive, steer);
     }
 
+
+    //LIMELIGHT LED CONTROL
     if (lightsOn) {
       Robot.VisionSubsystem.forceOn();
     }
     else{
       Robot.VisionSubsystem.forceOff();
     }
+
+    //LIMELIGHT DRIVE/VISION MODE
+    if (limelightMode){
+      Robot.VisionSubsystem.DriverMode();
+      VISION_ACTIVE = false;
+    }
+    else {
+      Robot.VisionSubsystem.VisionMode();
+      VISION_ACTIVE = true;
+    }
+    SmartDashboard.putBoolean("LIMELIGHT CAMERA", VISION_ACTIVE);
   }
+
+
+  
+
+
 
   
 
