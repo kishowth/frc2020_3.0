@@ -7,76 +7,41 @@
 
 package frc.robot;
 
-
-import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.GameControllerConstants;;
 
 public class OI {
 
-Joystick driverController = new Joystick(0);
-Joystick operatorController = new Joystick(1); 
-
-//controller variables
-public double LEFT_JOY_Y(){
-  return driverController.getRawAxis(1);
+//chassis bindings
+public double getLeftDriveSpeed()
+{
+  return GameControllerConstants.LEFT_JOYSTICK_Y();
 }
-
-public double RIGHT_JOY_Y(){
-  return driverController.getRawAxis(5);
+public double getRightDriveSpeed()
+{
+  return GameControllerConstants.RIGHT_JOYSTICK_Y();
 }
-
-public boolean ButtonA(){
-  return driverController.getRawButton(1);
+//vision auto Alignment Binding
+public boolean getAuto()
+{
+  return GameControllerConstants.ButtonA();
 }
-public boolean ButtonB(){
-  return driverController.getRawButton(2);
-}
-
-public boolean ButtonY(){
-  return driverController.getRawButton(3);
-}
-
-
-//GAME CONTROLLERS
-public Joystick getdriverController(){
-   return driverController;
-}
-
-public Joystick getOperatorController(){
-  return operatorController;
-}
-
-public double getLeftDriveSpeed(){
-  return LEFT_JOY_Y();
-}
-public double getRightDriveSpeed(){
-  return RIGHT_JOY_Y();
-}
-
-
-public double getsteer(){
-  return driverController.getX();
-}
-
-public double getDrive(){
-  return driverController.getY();
-}
-
-public boolean getAuto(){
-  return ButtonA();
-}
-
+//LED control
 public boolean LimelightON()
 {
-  return ButtonB();
+  return GameControllerConstants.ButtonB();
 }
 
-public boolean LimelightOFF(){
-  return ButtonY();
+//vision algorithm methods
+public double getsteer()
+{
+  return GameControllerConstants.functionOfX();
 }
 
+public double getDrive()
+{
+  return GameControllerConstants.functionOfY();
+}
 
-
-//sensors
 
 
 

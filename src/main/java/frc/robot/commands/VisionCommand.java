@@ -8,13 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class VisionCommand extends Command {
   public VisionCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.VisionSubsystem);
-    requires(Robot.chassisSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -28,33 +28,48 @@ public class VisionCommand extends Command {
 
     Robot.VisionSubsystem.Update_Limelight_Tracking();
 
-
-    double steer = Robot.m_oi.getsteer();
-    double drive = Robot.m_oi.getDrive();
-    boolean auto = Robot.m_oi.getAuto();
+    boolean autoAlign = Robot.m_oi.getAuto();
 
     boolean lightsOn = Robot.m_oi.LimelightON();
-    boolean lightsOff = Robot.m_oi.LimelightOFF();
+
+    double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
+    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
 
 
-    steer *= 0.70;
-    drive *= 0.70;
+   
 
-    if (auto) {
+    if (autoAlign) {
 
       if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
-        Robot.chassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand, Robot.VisionSubsystem.m_LimelightSteerCommand);
-      } 
-      else {
-        Robot.chassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
-        }
+        Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
+            Robot.VisionSubsystem.m_LimelightSteerCommand);
+            Robot.VisionSubsystem.forceOn();
+      } else {
+        Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
+      }
     }
 
-     else {
-      Robot.chassisSubsystem.m_Drive.arcadeDrive(drive, steer);
+    
+    else {
+      Robot.ChassisSubsystem.m_Drive.tankDrive(rightDriveSpeed, leftDriveSpeed);
     }
 
+
+    //LIMELIGHT LED CONTROL
+    if (lightsOn) {
+      Robot.VisionSubsystem.forceOn();
+    }
+    else{
+      Robot.VisionSubsystem.forceOff();
+    }
   }
+
+   
+
+
+  
+
+
 
   
 

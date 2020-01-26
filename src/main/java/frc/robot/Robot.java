@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.ChassisCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,10 +29,8 @@ import frc.robot.subsystems.VisionSubsystem;
 public class Robot extends TimedRobot {
   public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static ChassisSubsystem chassisSubsystem = new ChassisSubsystem();
+  public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
   public static OI m_oi;
-
-  Pixy2Example pixy2 = new Pixy2Example();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -41,15 +41,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    System.out.println("Initializing Robot...");
 
-    pixy2.init();
+    Pixy2Camera.init();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
-    System.out.println("Robot Initialized!");
   }
 
   /**
@@ -63,12 +60,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     
-    pixy2.step();
 
-
-    Robot.chassisSubsystem.colorSensor.getColor();
-
-    Robot.chassisSubsystem.colorValues();
+    // double ultrasonicValues = Robot.ChassisSubsystem.ultValues();
+    // SmartDashboard.putNumber("Ultrasonic Sensor", ultrasonicValues);
   }
 
   /**
