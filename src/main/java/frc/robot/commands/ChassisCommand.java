@@ -15,37 +15,23 @@ import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
 
 public class ChassisCommand extends Command {
   public ChassisCommand() {
-    // Use requires() here to declare subsystem dependencies
     requires(Robot.ChassisSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-  }
+  protected void initialize() {}
 
-  // Called repeatedly when this Command is scheduled to run
   boolean desiredValue = false;
 
+  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    double ultValues = Robot.ChassisSubsystem.ultValues();
-
-    SmartDashboard.putNumber("UltraSonic", ultValues);
-
-
-    if (ultValues == 4.0){
-      desiredValue = true;
-    }
-    else {
-      desiredValue = false;
-    }
-
-    SmartDashboard.putBoolean("desired", desiredValue);
-
+    //print all the dashboard values from chassis Subsystem
+    Robot.ChassisSubsystem.ChassisDashboardValues();
+   /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
-
     Block ball = Pixy2Camera.get().getTheBall(); 
     if (ball != null)
     {
@@ -71,10 +57,21 @@ public class ChassisCommand extends Command {
           System.out.println("Not turning");
         }
     }
-    else
-    {
-    System.out.println("No ball to track!");
+    /*-----------------------------------------------------------------------------------------------------*/
+
+
+     if (Robot.ChassisSubsystem.ultValues() == 4.0) {
+      desiredValue = true;
     }
+    else {
+      desiredValue = false;
+    }
+    SmartDashboard.putBoolean("desired", desiredValue);
+
+    /*-----------------------------------------------------------------------------------------------------*/
+
+
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

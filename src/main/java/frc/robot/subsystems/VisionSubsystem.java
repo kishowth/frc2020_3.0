@@ -31,89 +31,92 @@ public class VisionSubsystem extends Subsystem {
     //steerK is final
     //0.04 driveK
     //0.025
-        final double STEER_K = 0.025;                     // how hard to turn toward the target
-        final double DRIVE_K = 0.05; //0.02     //between 0.2-0.3    // how hard to drive fwd toward the target
-        final double DESIRED_TARGET_AREA = -13.0;  //13        // Area of the target when the robot reaches the wall
-        final double MAX_DRIVE = 0.1;    //0.1               // Simple speed limit so we don't drive too fast
+    final double STEER_K = 0.025;                     // how hard to turn toward the target
+    final double DRIVE_K = 0.05; //0.02     //between 0.2-0.3    // how hard to drive fwd toward the target
+    final double DESIRED_TARGET_AREA = -13.0;  //13        // Area of the target when the robot reaches the wall
+    final double MAX_DRIVE = 0.1;    //0.1               // Simple speed limit so we don't drive too fast
 
-        final double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
-        final double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
-        final double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
-        final double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+    final double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    final double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+    final double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+    final double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
 
-        SmartDashboard.putNumber("limelightX", tx);   
-        SmartDashboard.putNumber("limelightY", ty);   
-        SmartDashboard.putNumber("limelightv", tv);   
-        SmartDashboard.putNumber("limelightArea", ta);   
+    SmartDashboard.putNumber("limelightX", tx);   
+    SmartDashboard.putNumber("limelightY", ty);   
+    SmartDashboard.putNumber("limelightv", tv);   
+    SmartDashboard.putNumber("limelightArea", ta);   
 
     
 
-        if (tv < 1.0)
-        {
-          m_LimelightHasValidTarget = false;
-          m_LimelightDriveCommand = 0.0;
-          m_LimelightSteerCommand = 0.0;
-          return;
-        }
+    if (tv < 1.0)
+    {
+      m_LimelightHasValidTarget = false;
+      m_LimelightDriveCommand = 0.0;
+      m_LimelightSteerCommand = 0.0;
+      return;
+    }
 
-        m_LimelightHasValidTarget = true;
+    m_LimelightHasValidTarget = true;
 
         
 
-        // Start with proportional steering
-        final double steer_cmd = tx * STEER_K;
-        m_LimelightSteerCommand = steer_cmd;
+    // Start with proportional steering
+    final double steer_cmd = tx * STEER_K;
+    m_LimelightSteerCommand = steer_cmd;
 
-        // try to drive forward until the target area reaches our desired area
-        double drive_cmd = (DESIRED_TARGET_AREA + ta) * DRIVE_K;
+    // try to drive forward until the target area reaches our desired area
+    double drive_cmd = (DESIRED_TARGET_AREA + ta) * DRIVE_K;
         
       
-        // don't let the robot drive too fast into the goal
-        if (drive_cmd > MAX_DRIVE)
-        {
-          drive_cmd = MAX_DRIVE;
-        }
-        m_LimelightDriveCommand = drive_cmd;
+    // set a max speed
+    if (drive_cmd > MAX_DRIVE)
+    {
+      drive_cmd = MAX_DRIVE;
+    }
+    m_LimelightDriveCommand = drive_cmd;
   }
 
-    private static final String TABLE_KEY = "limelight";
-    private static final String VAR_NAME_LED_MODE = "ledMode";
-    private static final String LIMELIGHT_MODE = "camMode";
 
 
-    private static final int PIPELINE_DEFAULT = 0;
-    private static final int FORCE_OFF = 1;
-    private static final int FORCE_BLINK = 2;
-    private static final int FORCE_ON = 3;
-    private static final int VISION_CAMERA = 0;
-    private static final int DRIVER_CAMERA = 1;
+  //utilites
+  private static final String TABLE_KEY = "limelight";
+  private static final String VAR_NAME_LED_MODE = "ledMode";
+  private static final String LIMELIGHT_MODE = "camMode";
 
-    public  boolean resetToDefault()
+
+  private static final int PIPELINE_DEFAULT = 0;
+  private static final int FORCE_OFF = 1;
+  private static final int FORCE_BLINK = 2;
+  private static final int FORCE_ON = 3;
+  private static final int VISION_CAMERA = 0;
+  private static final int DRIVER_CAMERA = 1;
+
+  public  boolean resetToDefault()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(PIPELINE_DEFAULT);
     }
 
-    public  boolean forceOff()
+  public  boolean forceOff()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_OFF);
     }
 
-    public  boolean forceBlink()
+  public  boolean forceBlink()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_BLINK);
     }
 
-    public  boolean forceOn()
+  public  boolean forceOn()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_ON);
     }
 
-    public boolean DriverMode()
+  public boolean DriverMode()
     {
         return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(LIMELIGHT_MODE).setNumber(DRIVER_CAMERA);
     }
 
-    public boolean VisionMode()
+  public boolean VisionMode()
     {
         return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(LIMELIGHT_MODE).setNumber(VISION_CAMERA);
     }

@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.RobotMap;
 import frc.robot.commands.ChassisCommand;
 
@@ -23,6 +24,8 @@ public class ChassisSubsystem extends Subsystem {
   
   //rangefinder ultrasonic sensr
   public AnalogInput ultraSonicSensor = new AnalogInput(RobotMap.ultrasonicSensor);
+  //colour sensor
+  public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
   //chassis motor instantiations
   private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
@@ -34,47 +37,45 @@ public class ChassisSubsystem extends Subsystem {
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
   public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2);
 
-  public void tankDrive(double speed){
-    leftside.set(speed);
-    rightside.set(speed);
-  }
-
-  public DifferentialDrive m_Drive = new DifferentialDrive(leftside, rightside);
+  //differential drive
+  public DifferentialDrive m_Drive = new DifferentialDrive(leftside, rightside); 
 
 
-  //colour sensor
-  public final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);
-
-
-
+  //get RED, BLUE, and GREEN values
   public double RedValue(){
     return colorSensor.getRed();
   }
   public double BlueValue(){
     return colorSensor.getBlue();
   }
+
   public double GreenValue(){
     return colorSensor.getGreen();
-  }
-
-  
-  public void colorValues()
+  } 
+  //estimated colour from sensor
+  public Color colourDetected()
   {
-    SmartDashboard.putNumber("red", RedValue());
-    SmartDashboard.putNumber("green", BlueValue());
-    SmartDashboard.putNumber("blue", GreenValue());
+    return colorSensor.getColor();
   }
-
 
   public double ultValues()
   {
     return ultraSonicSensor.getAverageValue();
   }
 
-
-
   
+  public void ChassisDashboardValues()
+  {
+    SmartDashboard.putNumber("red", RedValue());
+    SmartDashboard.putNumber("green", BlueValue());
+    SmartDashboard.putNumber("blue", GreenValue());
 
+    System.out.println(colourDetected()); //Print out est, colour
+
+    SmartDashboard.putNumber("Ultrasonic Values", ultValues());
+  }
+
+ 
 
   @Override
   public void initDefaultCommand() {

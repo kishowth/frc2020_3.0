@@ -7,26 +7,25 @@
 
 package frc.robot;
 
-import edu.wpi.first.hal.sim.mockdata.AnalogInDataJNI;
-import edu.wpi.first.wpilibj.AnalogAccelerometer;
+
 import edu.wpi.first.wpilibj.I2C;
 
 public class RobotMap {
 
-  // Chassis motor ports
+  // PWM Ports
   public static int leftBackMotor = 0;
   public static int leftFrontMotor = 1;
   public static int rightBackMotor = 2;
   public static int rightFrontMotor = 3;
 
+
+  //other ports
   public static I2C.Port i2cPort = I2C.Port.kOnboard;  
 
-<<<<<<< HEAD
- 
-=======
-  public static int seeifthisworks = 7;
+  //PCM
 
+  //Analog and digital ports
   public static int ultrasonicSensor = 0;
->>>>>>> 92e871c38045cb477b63951dc27fd4cb4233bd01
+
   
 }
