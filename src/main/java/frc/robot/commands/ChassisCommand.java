@@ -28,9 +28,8 @@ public class ChassisCommand extends Command {
   @Override
   protected void execute() {
 
-    //print all the dashboard values from chassis Subsystem
-    Robot.ChassisSubsystem.ChassisDashboardValues();
-   /*-----------------------------------------------------------------------------------------------------*/
+    
+    /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
     Block ball = Pixy2Camera.get().getTheBall(); 
     if (ball != null)
@@ -69,8 +68,6 @@ public class ChassisCommand extends Command {
     SmartDashboard.putBoolean("desired", desiredValue);
 
     /*-----------------------------------------------------------------------------------------------------*/
-
-
 
   }
 

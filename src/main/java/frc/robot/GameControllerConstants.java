@@ -110,6 +110,50 @@ public class GameControllerConstants {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     //vision constants, are final
     public static double functionOfX()
     {
