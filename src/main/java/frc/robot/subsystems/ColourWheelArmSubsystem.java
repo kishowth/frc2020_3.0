@@ -34,7 +34,7 @@ public class ColourWheelArmSubsystem extends Subsystem {
   private final ColorSensorV3 colorSensor = new ColorSensorV3(RobotMap.i2cPort);  
   private Encoder colourWheelEncoder = new Encoder(RobotMap.colourWheelEncoderA, RobotMap.colourWheelEncoderB);
 
-  ColorMatch colorMatch = new ColorMatch();  
+  public ColorMatch color_Match = new ColorMatch();  
 
 
   //arm control functions
@@ -49,6 +49,7 @@ public class ColourWheelArmSubsystem extends Subsystem {
   public double RedValue(){
     return colorSensor.getRed();
   }
+
   public double BlueValue(){
     return colorSensor.getBlue();
   }
@@ -58,12 +59,12 @@ public class ColourWheelArmSubsystem extends Subsystem {
   } 
 
   //making actual colours from the r g b values. [not final r g b parameters]
-  private Color k_red = ColorMatch.makeColor(0.561, 0.232, 0.114); 
-  private Color k_green = ColorMatch.makeColor(0.197, 0.561, 0.240);
-  private Color k_blue = ColorMatch.makeColor(0.143, 0.427, 0.429);
-  private Color k_yellow = ColorMatch.makeColor(0.361, 0.524, 0.113);
+  public Color k_red = color_Match.makeColor(0.561, 0.232, 0.114); 
+  public Color k_green = color_Match.makeColor(0.197, 0.561, 0.240);
+  public Color k_blue = color_Match.makeColor(0.143, 0.427, 0.429);
+  public Color k_yellow = color_Match.makeColor(0.361, 0.524, 0.113);
 
-
+  
 
   //colour detected from sensor
   public Color colourDetected()

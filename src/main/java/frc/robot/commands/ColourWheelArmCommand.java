@@ -8,6 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorMatchResult;
+
+
 import frc.robot.Robot;
 
 public class ColourWheelArmCommand extends Command {
@@ -18,7 +23,9 @@ public class ColourWheelArmCommand extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+   
+  }
 
   // Called repeatedly when this Command is scheduled to run
 
@@ -26,18 +33,48 @@ public class ColourWheelArmCommand extends Command {
   boolean est_green = false;
   boolean est_blue = false;
 
+
   
   @Override
   protected void execute() {
 
+    Color KRED = Robot.colourWheelArmSubsystem.k_red;
+    Color KBLUE = Robot.colourWheelArmSubsystem.k_blue;
+    Color KGREEN = Robot.colourWheelArmSubsystem.k_green;
+    Color KYELLOW = Robot.colourWheelArmSubsystem.k_yellow;
+    Color detectedColor = Robot.colourWheelArmSubsystem.colourDetected();
+
+    //making the colours
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KRED); 
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KBLUE); 
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KGREEN); 
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KYELLOW); 
+
+    String colorString; 
+    ColorMatchResult match = Robot.colourWheelArmSubsystem.color_Match.matchClosestColor(detectedColor);
     
+    if(match.color == KBLUE)
+    {
+      colorString = "The colour is blue.";
+    }
+    else if(match.color == KRED)
+    {
+      colorString = "The colour is Red";
+    }
+    else if(match.color == KGREEN)
+    {
+      colorString = "The colour is Green";
+    }
+    else if (match.color == KYELLOW)
+    {
+      colorString = "The colour is yellow"; 
+    }
+    else
+    {
+      colorString = "There is no colour.";
+    }
 
-
-
-
-
-
-
+    SmartDashboard.putString("COLOUR DETECTED", colorString);
 
 
   }
@@ -50,12 +87,10 @@ public class ColourWheelArmCommand extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-  }
+  protected void interrupted() {}
 }
