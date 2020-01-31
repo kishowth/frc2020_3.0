@@ -20,10 +20,15 @@ public double getRightDriveSpeed()
 {
   return GameControllerConstants.RIGHT_JOYSTICK_Y();
 }
-//vision auto Alignment Binding
+//vision Auto-Alignment Binding
 public boolean getAuto()
 {
   return GameControllerConstants.ButtonA();
+}
+//For pixy
+public boolean getFindPowerCells()
+{
+  return GameControllerConstants.ButtonY();
 }
 //LED control
 public boolean LimelightON()
@@ -40,7 +45,8 @@ public double getsteer()
 public double getDrive()
 {
   return GameControllerConstants.functionOfY();
-}
+} 
+
 
 
 

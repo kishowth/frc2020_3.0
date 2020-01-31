@@ -29,38 +29,43 @@ public class ChassisCommand extends Command {
   protected void execute() {
 
     //constantly run these functions
-    Robot.ChassisSubsystem.periodicCommands();
+    Robot.ChassisSubsystem.periodicCommands(); 
     Robot.ChassisSubsystem.chassisSystemDashboard();
     
 
 
     /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
-    Block ball = Pixy2Camera.get().getTheBall(); 
-    if (ball != null)
+    Block ball = Pixy2Camera.get().getTheBall();  
+    boolean findBall = Robot.m_oi.getFindPowerCells();
+
+    if (findBall)
     {
-        boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
-        boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+      if (ball != null)
+      {
+          boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
+          boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
     
-        if (ballIsLeftOfPixy)
-        {
-          Robot.ChassisSubsystem.leftside.set(0); //-.25
-          Robot.ChassisSubsystem.rightside.set(0);
-          System.out.println("Turning left");
-        }
-        else if (ballIsRightOfPixy)
-        {
-          Robot.ChassisSubsystem.leftside.set(0); //.25
-          Robot.ChassisSubsystem.rightside.set(0);
-          System.out.println("Turning right");
-        }
-        else
-        {
+          if (ballIsLeftOfPixy)
+          {
+            Robot.ChassisSubsystem.leftside.set(0); //-.25
+            Robot.ChassisSubsystem.rightside.set(0);
+            System.out.println("Turning left");
+          }
+          else if (ballIsRightOfPixy)
+          {
+            Robot.ChassisSubsystem.leftside.set(0); //.25
+            Robot.ChassisSubsystem.rightside.set(0);
+            System.out.println("Turning right");
+          }
+          else
+          {
           Robot.ChassisSubsystem.leftside.set(0.0);
           Robot.ChassisSubsystem.rightside.set(0.0);
           System.out.println("Not turning");
-        }
+          }
     }
+  }
     /*-----------------------------------------------------------------------------------------------------*/
 
 

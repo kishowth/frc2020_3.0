@@ -66,7 +66,7 @@ public class ChassisSubsystem extends Subsystem {
     return ultraSonicSensor.getAverageValue();
   }
 
-  //all functions in this class that need to run periodically so values can be constantly updated
+  //all functions in this class that need to run periodically so values can be constantly updated. Call this in Command 
   public void periodicCommands()
   {
     leftSideEncoderValueInInches();
@@ -75,7 +75,7 @@ public class ChassisSubsystem extends Subsystem {
     ultValues();
   }
 
-  //for autos
+  //for autonomous
   public void driveToDistance(double distance)
   {
     leftside.set(leftSideEncoderValueInInches()); 
@@ -84,7 +84,7 @@ public class ChassisSubsystem extends Subsystem {
 
 
 
-
+  
   //Function to put all sensor values from this subsystem on the dashboard
   public void chassisSystemDashboard()
   {
@@ -93,8 +93,6 @@ public class ChassisSubsystem extends Subsystem {
     SmartDashboard.putNumber("Right Encoder Value (inches)", rightSideEncoderValueInInches());  
 
     SmartDashboard.putNumber("Gyro", getrobotAngle());
-
-
   }
 
  
