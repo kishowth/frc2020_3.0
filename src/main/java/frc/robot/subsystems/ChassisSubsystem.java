@@ -69,14 +69,22 @@ public class ChassisSubsystem extends Subsystem {
   //all functions in this class that need to run periodically so values can be constantly updated
   public void periodicCommands()
   {
-    
     leftSideEncoderValueInInches();
     rightSideEncoderValueInInches();
     getrobotAngle();
     ultValues();
-
-
   }
+
+  //for autos
+  public void driveToDistance(double distance)
+  {
+    leftside.set(leftSideEncoderValueInInches()); 
+    rightside.set(rightSideEncoderValueInInches());
+  }
+
+
+
+
   //Function to put all sensor values from this subsystem on the dashboard
   public void chassisSystemDashboard()
   {
