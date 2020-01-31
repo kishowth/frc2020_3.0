@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.commands.ChassisCommand;
 
@@ -23,9 +25,13 @@ public class ChassisSubsystem extends Subsystem {
   
   //rangefinder ultrasonic sensr
   public AnalogInput ultraSonicSensor = new AnalogInput(RobotMap.ultrasonicSensor);
+
   //chassis encoders
   public Encoder leftSideEncoder = new Encoder(RobotMap.leftDtEncoderA, RobotMap.leftDtEncoderB);
   public Encoder rightSideEncoder = new Encoder(RobotMap.rightDtEncoderA, RobotMap.rightDtEncoderB);
+
+  //gyro Instantiation
+  public AHRS gyro = new AHRS(RobotMap.gyro);
 
   //chassis motor instantiations
   private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
@@ -37,36 +43,50 @@ public class ChassisSubsystem extends Subsystem {
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
   public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2);
 
-  //differential drives
+  //setting up a differential drive
   public DifferentialDrive m_Drive = new DifferentialDrive(rightside, leftside);  
 
 
-  //getting original encoder values from both chassis encoders
-  public double leftSideEncoderValue(){
-    return leftSideEncoder.getDistance();
+  //getting original encoder values from both chassis encoders 
+  public double leftSideEncoderValueInInches(){
+    return leftSideEncoder.getDistance() * RobotConstants.ENCODER_TICKS_IN_INCHES;
   }
 
-  public double rightSideEncoderValue(){
-    return rightSideEncoder.getDistance();
+  public double rightSideEncoderValueInInches(){
+    return rightSideEncoder.getDistance() * RobotConstants.ENCODER_TICKS_IN_INCHES;
   } 
 
+  //read the robot's current angle
+  public double getrobotAngle(){
+    return gyro.getAngle();
+  }
  
-  //20 encoder ticks is 1 inch
-  double LeftEncoderValueInInches = leftSideEncoderValue() * 20;
-  double RightEncoderValueInInches = rightSideEncoderValue() * 20; 
-
-
   //get the average range of ultrasonic values 
   public double ultValues(){
     return ultraSonicSensor.getAverageValue();
   }
 
+  //all functions in this class that need to run periodically so values can be constantly updated
+  public void periodicCommands()
+  {
+    
+    leftSideEncoderValueInInches();
+    rightSideEncoderValueInInches();
+    getrobotAngle();
+    ultValues();
+
+
+  }
   //Function to put all sensor values from this subsystem on the dashboard
   public void chassisSystemDashboard()
   {
     SmartDashboard.putNumber("Ultrasonic Values", ultValues());
-    SmartDashboard.putNumber("Left Encoder Value", LeftEncoderValueInInches);
-    SmartDashboard.putNumber("Right Encoder Value", RightEncoderValueInInches);
+    SmartDashboard.putNumber("Left Encoder Value (inches)", leftSideEncoderValueInInches());
+    SmartDashboard.putNumber("Right Encoder Value (inches)", rightSideEncoderValueInInches());  
+
+    SmartDashboard.putNumber("Gyro", getrobotAngle());
+
+
   }
 
  

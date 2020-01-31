@@ -33,6 +33,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
+    //reset gyro
+    Robot.ChassisSubsystem.gyro.reset();
+
     //reset encoders
     Robot.ChassisSubsystem.leftSideEncoder.reset();
     Robot.ChassisSubsystem.rightSideEncoder.reset(); 

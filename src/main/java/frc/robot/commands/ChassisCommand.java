@@ -28,7 +28,12 @@ public class ChassisCommand extends Command {
   @Override
   protected void execute() {
 
+    //constantly run these functions
+    Robot.ChassisSubsystem.periodicCommands();
+    Robot.ChassisSubsystem.chassisSystemDashboard();
     
+
+
     /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
     Block ball = Pixy2Camera.get().getTheBall(); 

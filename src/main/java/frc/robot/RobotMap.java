@@ -9,6 +9,8 @@ package frc.robot;
 
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 
 public class RobotMap {
 
@@ -17,24 +19,26 @@ public class RobotMap {
   public static int leftFrontMotor = 1;
   public static int rightBackMotor = 2;
   public static int rightFrontMotor = 3;
-  public static int colourMech = 4; 
+  public static int colourMech = 4;
 
-  //other ports
-  public static I2C.Port i2cPort = I2C.Port.kOnboard;  
+  // other ports
+  public static I2C.Port i2cPort = I2C.Port.kOnboard;
 
-  //PCM 
+  // PCM
 
-
-  //Analog and digital ports
-  public static int ultrasonicSensor = 0; 
+  // Analog and digital ports
+  public static int ultrasonicSensor = 0;
   public static int leftDtEncoderA = 1;
   public static int leftDtEncoderB = 2;
   public static int rightDtEncoderA = 3;
-  public static int rightDtEncoderB = 4; 
-  public static int colourWheelEncoderA = 5;  
+  public static int rightDtEncoderB = 4;
+  public static int colourWheelEncoderA = 5;
   public static int colourWheelEncoderB = 6;
 
+  //MXP port
+  public static Port gyro = SerialPort.Port.kMXP;
 
 
-  
+
+
 }
