@@ -23,9 +23,7 @@ public class ColourWheelArmCommand extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-   
-  }
+  protected void initialize() {}
 
   // Called repeatedly when this Command is scheduled to run
 
@@ -33,11 +31,9 @@ public class ColourWheelArmCommand extends Command {
   boolean est_green = false;
   boolean est_blue = false;
 
-   
-
-  
   @Override
-  protected void execute() {
+  protected void execute() 
+  {
 
     Color KRED = Robot.colourWheelArmSubsystem.k_red;
     Color KBLUE = Robot.colourWheelArmSubsystem.k_blue;

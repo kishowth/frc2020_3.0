@@ -34,20 +34,19 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     //reset gyro
-    Robot.ChassisSubsystem.gyro.reset();
+    Robot.ChassisSubsystem.resetGyro();
 
     //reset encoders
     Robot.ChassisSubsystem.leftSideEncoder.reset();
     Robot.ChassisSubsystem.rightSideEncoder.reset(); 
 
-  
-
-
+    //initialize pixy
     Pixy2Camera.init();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    //chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    
   }
 
  

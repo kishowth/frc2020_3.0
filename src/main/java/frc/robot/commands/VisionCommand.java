@@ -44,10 +44,10 @@ public class VisionCommand extends Command {
         Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
         Robot.VisionSubsystem.m_LimelightSteerCommand);
       }
-       else 
+      else 
        {
         Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
-      }
+       }
     }
 
     else {

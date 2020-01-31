@@ -31,7 +31,7 @@ public class ChassisSubsystem extends Subsystem {
   public Encoder rightSideEncoder = new Encoder(RobotMap.rightDtEncoderA, RobotMap.rightDtEncoderB);
 
   //gyro Instantiation
-  public AHRS gyro = new AHRS(RobotMap.gyro);
+  private AHRS gyro = new AHRS(RobotMap.gyro);
 
   //chassis motor instantiations
   private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
@@ -60,7 +60,12 @@ public class ChassisSubsystem extends Subsystem {
   public double getrobotAngle(){
     return gyro.getAngle();
   }
- 
+  
+  //function to reset gyro
+  public void resetGyro()
+  {
+    gyro.reset();
+  } 
   //get the average range of ultrasonic values 
   public double ultValues(){
     return ultraSonicSensor.getAverageValue();
@@ -84,7 +89,7 @@ public class ChassisSubsystem extends Subsystem {
 
 
 
-  
+
   //Function to put all sensor values from this subsystem on the dashboard
   public void chassisSystemDashboard()
   {

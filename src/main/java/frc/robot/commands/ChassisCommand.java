@@ -32,8 +32,6 @@ public class ChassisCommand extends Command {
     Robot.ChassisSubsystem.periodicCommands(); 
     Robot.ChassisSubsystem.chassisSystemDashboard();
     
-
-
     /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
     Block ball = Pixy2Camera.get().getTheBall();  
@@ -48,14 +46,14 @@ public class ChassisCommand extends Command {
     
           if (ballIsLeftOfPixy)
           {
-            Robot.ChassisSubsystem.leftside.set(0); //-.25
-            Robot.ChassisSubsystem.rightside.set(0);
+            Robot.ChassisSubsystem.leftside.set(-0.25); //-.25
+            Robot.ChassisSubsystem.rightside.set(-0.25);
             System.out.println("Turning left");
           }
           else if (ballIsRightOfPixy)
           {
-            Robot.ChassisSubsystem.leftside.set(0); //.25
-            Robot.ChassisSubsystem.rightside.set(0);
+            Robot.ChassisSubsystem.leftside.set(0.25); //.25
+            Robot.ChassisSubsystem.rightside.set(0.25);
             System.out.println("Turning right");
           }
           else
@@ -89,12 +87,10 @@ public class ChassisCommand extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-  }
+  protected void interrupted() {}
 }
