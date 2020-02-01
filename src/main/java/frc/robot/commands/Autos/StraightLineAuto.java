@@ -8,6 +8,7 @@
 package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class StraightLineAuto extends Command {
@@ -19,20 +20,45 @@ public class StraightLineAuto extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  
+    Robot.ChassisSubsystem.leftSideEncoder.reset();
+    Robot.ChassisSubsystem.rightSideEncoder.reset();
+
+    odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
+
   }
+  
+  double odometerOnStart;
+  double target = 240;
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   Robot.ChassisSubsystem.driveToDistance(50);
+
+    Robot.ChassisSubsystem.periodicCommands();
+    Robot.ChassisSubsystem.chassisSystemDashboard();
     
+    
+
+    double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
+
+    if(totalDistanceTravelled < target ){
+      Robot.ChassisSubsystem.leftside.set(-0.2);
+      Robot.ChassisSubsystem.rightside.set(0.2);
+    }
+    else{
+      Robot.ChassisSubsystem.leftside.set(0.0);
+      Robot.ChassisSubsystem.rightside.set(0.0);
+    }
+
+    SmartDashboard.putNumber("total distance travelled", totalDistanceTravelled);
+    //SmartDashboard.putNumber("Dis travelled ", distanceTravelled);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isCompleted();
+    return false;
   }
 
   // Called once after isFinished returns true

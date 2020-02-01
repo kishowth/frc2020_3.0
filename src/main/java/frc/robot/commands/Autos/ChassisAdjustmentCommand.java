@@ -8,10 +8,11 @@
 package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class ChassisAdjustment extends Command {
-  public ChassisAdjustment() {
+public class ChassisAdjustmentCommand extends Command {
+  public ChassisAdjustmentCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ChassisSubsystem);
   }
@@ -28,8 +29,8 @@ public class ChassisAdjustment extends Command {
   double lastAngle; 
 
    //Gyro PID Control Variables
-	public static final double GYRO_PID_P = 0.15;	
-	public static final double GYRO_PID_D = 0.1;
+	public static final double GYRO_PID_P = 8.0;	
+	public static final double GYRO_PID_D = 1.0;
 
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -46,8 +47,13 @@ public class ChassisAdjustment extends Command {
     Robot.ChassisSubsystem.leftside.set(leftAdjspeed);
     Robot.ChassisSubsystem.rightside.set(rightAdjSpeed);
 
+    SmartDashboard.putNumber("LEFT ADJ", leftAdjspeed);
+    SmartDashboard.putNumber("RIGHT ADJ", rightAdjSpeed);
+
+
 
     lastAngle = Robot.ChassisSubsystem.getrobotAngle();
+    System.out.println("ADJUSTMENT WORKS");
   }
 
   // Make this return true when this Command no longer needs to run execute()

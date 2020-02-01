@@ -82,14 +82,8 @@ public class ChassisSubsystem extends Subsystem {
     getrobotAngle();
     ultValues();
   }
-  double Ldistance = leftSideEncoderValueInInches();
-  double Rdistance = rightSideEncoderValueInInches();
-  //for autonomous
-  public void driveToDistance(double distance)
-  {
-    leftside.set(Ldistance);
-    rightside.set(Rdistance);
-  }
+  
+
 
 
 

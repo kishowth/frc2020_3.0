@@ -80,10 +80,6 @@ public class ChassisCommand extends Command {
 
     /*-----------------------------------------------------------------------------------------------------*/
 
-    if (GameControllerConstants.LeftBumper() == true){
-      Robot.ChassisSubsystem.driveToDistance(50);
-      System.out.println("THIS WOKRS");
-    }
 
   }
 
