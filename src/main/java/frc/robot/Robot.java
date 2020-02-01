@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.Autos.AutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   Command m_autonomousCommand;
+  Command autoCommand = new AutoCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>(); 
 
   //robot's initialization
@@ -55,7 +57,10 @@ public class Robot extends TimedRobot {
 
   
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    Robot.ChassisSubsystem.leftSideEncoder.reset();
+    Robot.ChassisSubsystem.rightSideEncoder.reset(); 
+  }
 
   @Override
   public void disabledPeriodic() {
@@ -65,7 +70,10 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+//    m_autonomousCommand = m_chooser.getSelected();
+    autoCommand = new AutoCommand();
+    autoCommand.start();
+    
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -75,9 +83,7 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+    
   }
 
   

@@ -7,8 +7,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.GameControllerConstants;
 import frc.robot.Pixy2Camera;
 import frc.robot.Robot;
 import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
@@ -30,7 +32,8 @@ public class ChassisCommand extends Command {
 
     //constantly run these functions
     Robot.ChassisSubsystem.periodicCommands(); 
-    Robot.ChassisSubsystem.chassisSystemDashboard();
+    Robot.ChassisSubsystem.chassisSystemDashboard(); 
+
     
     /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
@@ -76,6 +79,11 @@ public class ChassisCommand extends Command {
     SmartDashboard.putBoolean("desired", desiredValue);
 
     /*-----------------------------------------------------------------------------------------------------*/
+
+    if (GameControllerConstants.LeftBumper() == true){
+      Robot.ChassisSubsystem.driveToDistance(50);
+      System.out.println("THIS WOKRS");
+    }
 
   }
 

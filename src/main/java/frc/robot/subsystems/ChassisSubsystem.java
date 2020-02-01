@@ -27,9 +27,10 @@ public class ChassisSubsystem extends Subsystem {
   public AnalogInput ultraSonicSensor = new AnalogInput(RobotMap.ultrasonicSensor);
 
   //chassis encoders
-  public Encoder leftSideEncoder = new Encoder(RobotMap.leftDtEncoderA, RobotMap.leftDtEncoderB);
-  public Encoder rightSideEncoder = new Encoder(RobotMap.rightDtEncoderA, RobotMap.rightDtEncoderB);
+  public Encoder leftSideEncoder = new Encoder(RobotMap.leftDtEncoderA, RobotMap.leftDtEncoderB, false);
+  public Encoder rightSideEncoder = new Encoder(RobotMap.rightDtEncoderA, RobotMap.rightDtEncoderB, false);
 
+  
   //gyro Instantiation
   private AHRS gyro = new AHRS(RobotMap.gyro);
 
@@ -41,7 +42,9 @@ public class ChassisSubsystem extends Subsystem {
 
   //grouping motor controllers
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
-  public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2);
+  public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2); 
+
+  public SpeedControllerGroup allMotors = new SpeedControllerGroup(rightside, leftside);
 
   //setting up a differential drive
   public DifferentialDrive m_Drive = new DifferentialDrive(rightside, leftside);  
@@ -49,11 +52,11 @@ public class ChassisSubsystem extends Subsystem {
 
   //getting original encoder values from both chassis encoders 
   public double leftSideEncoderValueInInches(){
-    return leftSideEncoder.getDistance() * RobotConstants.ENCODER_TICKS_IN_INCHES;
+    return leftSideEncoder.getRaw() / RobotConstants.ENCODER_TICKS_IN_INCHES;
   }
 
   public double rightSideEncoderValueInInches(){
-    return rightSideEncoder.getDistance() * RobotConstants.ENCODER_TICKS_IN_INCHES;
+    return rightSideEncoder.getRaw() / RobotConstants.ENCODER_TICKS_IN_INCHES;
   } 
 
   //read the robot's current angle
@@ -71,7 +74,7 @@ public class ChassisSubsystem extends Subsystem {
     return ultraSonicSensor.getAverageValue();
   }
 
-  //all functions in this class that need to run periodically so values can be constantly updated. Call this in Command 
+  //all functions in this class that need to run periodically so values can be constantly updated. Call this in chassis command class
   public void periodicCommands()
   {
     leftSideEncoderValueInInches();
@@ -79,12 +82,13 @@ public class ChassisSubsystem extends Subsystem {
     getrobotAngle();
     ultValues();
   }
-
+  double Ldistance = leftSideEncoderValueInInches();
+  double Rdistance = rightSideEncoderValueInInches();
   //for autonomous
   public void driveToDistance(double distance)
   {
-    leftside.set(leftSideEncoderValueInInches()); 
-    rightside.set(rightSideEncoderValueInInches());
+    leftside.set(Ldistance);
+    rightside.set(Rdistance);
   }
 
 

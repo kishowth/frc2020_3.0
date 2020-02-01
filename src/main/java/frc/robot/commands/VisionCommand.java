@@ -8,10 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class VisionCommand extends Command {
   public VisionCommand() {
+    // Use requires() here to declare subsystem dependencies
     requires(Robot.VisionSubsystem);
   }
 
@@ -24,53 +26,52 @@ public class VisionCommand extends Command {
   @Override
   protected void execute() {
 
-    //run this function to constantly keep the algorithm with updated values
     Robot.VisionSubsystem.Update_Limelight_Tracking();
 
-
-    //variables for this command
     boolean autoAlign = Robot.m_oi.getAuto();
     boolean lightsOn = Robot.m_oi.LimelightON();
     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
     double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
 
 
-    //if the robot detects the vision target, run the functions to direct itself toward the target. If no target is detected. have manual control 
-    if (autoAlign) 
-    {
-      
-      if (Robot.VisionSubsystem.m_LimelightHasValidTarget) 
-      {
+   
+
+    if (autoAlign) {
+
+      if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
         Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
-        Robot.VisionSubsystem.m_LimelightSteerCommand);
-      }
-      else 
-       {
+            Robot.VisionSubsystem.m_LimelightSteerCommand);
+            Robot.VisionSubsystem.forceOn();
+      } else {
         Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
-       }
+      }
     }
 
+    
     else {
-      Robot.ChassisSubsystem.m_Drive.tankDrive(rightDriveSpeed, leftDriveSpeed);
+      Robot.ChassisSubsystem.m_Drive.tankDrive(-leftDriveSpeed, -rightDriveSpeed);
     }
 
-    /*-----------------------------------------------------------------------------------------------------*/
 
     //LIMELIGHT LED CONTROL
-    if (lightsOn) 
-    {
+    if (lightsOn) {
       Robot.VisionSubsystem.forceOn();
     }
-    else
-    {
+    else{
       Robot.VisionSubsystem.forceOff();
     }
-    
-    /*-----------------------------------------------------------------------------------------------------*/
-
   }
 
    
+
+
+  
+
+
+
+  
+
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
@@ -79,10 +80,12 @@ public class VisionCommand extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+  }
 }

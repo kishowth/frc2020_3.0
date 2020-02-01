@@ -9,15 +9,18 @@ package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Auto extends CommandGroup {
+public class AutoCommand extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Auto() {
+  public AutoCommand() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
+
+    addSequential(new StraightLineAuto());
+    addParallel(new ChassisAdjustment());
 
     // To run multiple commands at the same time,
     // use addParallel()
