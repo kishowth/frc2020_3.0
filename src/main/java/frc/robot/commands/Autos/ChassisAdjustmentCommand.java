@@ -21,39 +21,19 @@ public class ChassisAdjustmentCommand extends Command {
   @Override
   protected void initialize() {
     
-    lastAngle = Robot.ChassisSubsystem.getrobotAngle();
+    
 
 
   }
 
-  double lastAngle; 
-
-   //Gyro PID Control Variables
-	public static final double GYRO_PID_P = 8.0;	
-	public static final double GYRO_PID_D = 1.0;
+  
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
 
-    double error = getError(lastAngle);
-
-    double rightAdjSpeed = getRightAdjustment(error);
-    double leftAdjspeed =  getLeftAdjustment(error); 
-
-
-
-    Robot.ChassisSubsystem.leftside.set(leftAdjspeed);
-    Robot.ChassisSubsystem.rightside.set(rightAdjSpeed);
-
-    SmartDashboard.putNumber("LEFT ADJ", leftAdjspeed);
-    SmartDashboard.putNumber("RIGHT ADJ", rightAdjSpeed);
-
-
-
-    lastAngle = Robot.ChassisSubsystem.getrobotAngle();
-    System.out.println("ADJUSTMENT WORKS");
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -73,66 +53,7 @@ public class ChassisAdjustmentCommand extends Command {
   protected void interrupted() {
   }
 
-
-  public double getRightAdjustment(double errorAngle){
-
-    if (errorAngle > 180.0)  
-      { 
-        errorAngle -= 360.0; 
-      }
-
-      if (errorAngle < -180.0) 
-      {
-        errorAngle += 360.0;
-      }
-    	
-		double rightadj = 0;
-
-		// Slow down one motor based on the error.
-    if (errorAngle > 0) 
-    {
-      rightadj -= calcPValue(errorAngle);
-    }
-
-      return rightadj;
-      }
-
   
-
-	public double getLeftAdjustment(double errorAngle){
-
-    	
-      if (errorAngle > 180.0)  
-      { 
-        errorAngle -= 360.0; 
-      }
-
-      if (errorAngle < -180.0) 
-      {
-        errorAngle += 360.0;
-      }
-    	
-		double leftAdj = 0;
-
-		// Slow down one motor based on the error.
-    if (errorAngle < 0) 
-    {
-        leftAdj = leftAdj + calcPValue(errorAngle);
-    }
-
-      return leftAdj;
-      }
-
-    public double getError(double previousAngle)
-    {
-      double currentAngle = Robot.ChassisSubsystem.getrobotAngle();
-      double error = currentAngle - previousAngle;
-      return error;
-    }
-
-    private double calcPValue(double error){
-      return error * GYRO_PID_P;
-    }
 
     
 
