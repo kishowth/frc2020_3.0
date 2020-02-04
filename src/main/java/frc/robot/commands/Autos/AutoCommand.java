@@ -18,9 +18,10 @@ public class AutoCommand extends CommandGroup {
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
-    
-    addParallel(new ChassisAdjustmentCommand());
+
     addSequential(new StraightLineAuto());
+    
+
 
     // To run multiple commands at the same time,
     // use addParallel()

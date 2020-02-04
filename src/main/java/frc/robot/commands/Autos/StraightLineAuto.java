@@ -33,7 +33,7 @@ public class StraightLineAuto extends Command {
   double lastAngle; 
 
    //Gyro PID Control Variables
-	public static final double GYRO_PID_P = 8.0;	
+	public static final double GYRO_PID_P = 0;	
 	public static final double GYRO_PID_D = 1.0;
 
   // Called repeatedly when this Command is scheduled to run
@@ -46,8 +46,8 @@ public class StraightLineAuto extends Command {
     double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
 
     if(totalDistanceTravelled < target ){
-      Robot.ChassisSubsystem.leftside.set(-0.2);
-      Robot.ChassisSubsystem.rightside.set(0.2);
+      Robot.ChassisSubsystem.leftside.set(-0.5);
+      Robot.ChassisSubsystem.rightside.set(0.5);
     }
     else{
       Robot.ChassisSubsystem.leftside.set(0.0);
