@@ -90,7 +90,7 @@ public class ColourWheelArmSubsystem extends Subsystem {
     SmartDashboard.putNumber("blue", GreenValue());
     SmartDashboard.putNumber("ColourWheel Encoder In inches", colourWheelEncoderInInches);
 
-    System.out.println(colourDetected()); //Print out predicted colour on console
+    System.out.println("I THINK COLOUR IS" + colourDetected());
   }
 
 

@@ -28,15 +28,16 @@ public class StraightLineAuto extends Command {
   }
   
   double odometerOnStart;
-  double target = 240;
+  double target = 24;
 
   double lastAngle; 
 
-   //Gyro PID Control Variables
+  //Gyro PID Control Variables
 	public static final double GYRO_PID_P = 0;	
-	public static final double GYRO_PID_D = 1.0;
+	public static final double GYRO_PID_D = 0.0;
 
-  // Called repeatedly when this Command is scheduled to run
+  //Called repeatedly when this Command is scheduled to run
+
   @Override
   protected void execute() {
 
@@ -46,8 +47,9 @@ public class StraightLineAuto extends Command {
     double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
 
     if(totalDistanceTravelled < target ){
-      Robot.ChassisSubsystem.leftside.set(-0.5);
-      Robot.ChassisSubsystem.rightside.set(0.5);
+      Robot.ChassisSubsystem.leftside.set(-0.2);
+      Robot.ChassisSubsystem.rightside.set(0.2);
+      System.out.println("TRAVELLING....");
     }
     else{
       Robot.ChassisSubsystem.leftside.set(0.0);
@@ -55,7 +57,6 @@ public class StraightLineAuto extends Command {
     }
 
     SmartDashboard.putNumber("total distance travelled", totalDistanceTravelled);
-    //SmartDashboard.putNumber("Dis travelled ", distanceTravelled);
 
     adjustDirectionStep();
   }

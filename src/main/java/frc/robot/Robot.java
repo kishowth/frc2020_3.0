@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.Autos.Auto2timeCommand;
 import frc.robot.commands.Autos.AutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -17,17 +18,21 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.ColourWheelArmSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 
 public class Robot extends TimedRobot {
+  
   public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
   public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
+  public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
+  Command timedCommand = new Auto2timeCommand();
   Command autoCommand = new AutoCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>(); 
 
@@ -60,6 +65,7 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
     Robot.ChassisSubsystem.leftSideEncoder.reset();
     Robot.ChassisSubsystem.rightSideEncoder.reset(); 
+    Robot.ChassisSubsystem.resetGyro();
   }
 
   @Override
@@ -70,9 +76,10 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
-//    m_autonomousCommand = m_chooser.getSelected();
-    autoCommand = new AutoCommand();
-    autoCommand.start();
+  //m_autonomousCommand = m_chooser.getSelected();
+    //autoCommand = new AutoCommand();
+    timedCommand =  new Auto2timeCommand();
+    timedCommand.start();
     
 
     /*

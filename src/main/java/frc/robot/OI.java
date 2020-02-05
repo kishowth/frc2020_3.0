@@ -36,6 +36,14 @@ public boolean LimelightON()
   return GameControllerConstants.ButtonB();
 }
 
+public double getShooting()
+{
+  return GameControllerConstants.RightTrigger();
+}
+
+
+
+
 //vision algorithm methods
 public double getsteer()
 {

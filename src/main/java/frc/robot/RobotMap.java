@@ -21,6 +21,11 @@ public class RobotMap {
   public static int rightFrontMotor = 3;
   public static int colourMech = 4;
 
+  public static int shooterLEFT = 7;
+  public static int shooterRIGHT = 8;
+
+
+
   // other ports
   public static I2C.Port i2cPort = I2C.Port.kOnboard;
 
