@@ -24,17 +24,21 @@ public class StraightLineAuto extends Command {
     Robot.ChassisSubsystem.rightSideEncoder.reset();
 
     odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
-    lastAngle = Robot.ChassisSubsystem.getrobotAngle();
+    desiredAngle = Robot.ChassisSubsystem.getrobotAngle();
+
+    System.out.println("Desired = " + desiredAngle);
   }
   
   double odometerOnStart;
-  double target = 24;
+  double targetinInches = 240;
 
-  double lastAngle; 
+  double desiredAngle; 
 
   //Gyro PID Control Variables
-	public static final double GYRO_PID_P = 0;	
-	public static final double GYRO_PID_D = 0.0;
+  public static final double GYRO_PID_P = 0.05;
+  public static final double DEAD_ZONE = 1;
+  //000000000001;	
+//	public static final double GYRO_PID_D = 0.09;
 
   //Called repeatedly when this Command is scheduled to run
 
@@ -46,19 +50,24 @@ public class StraightLineAuto extends Command {
     
     double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
 
-    if(totalDistanceTravelled < target ){
+
+    if (totalDistanceTravelled < targetinInches){
       Robot.ChassisSubsystem.leftside.set(-0.2);
       Robot.ChassisSubsystem.rightside.set(0.2);
-      System.out.println("TRAVELLING....");
     }
-    else{
+    
+    else
+    {
       Robot.ChassisSubsystem.leftside.set(0.0);
       Robot.ChassisSubsystem.rightside.set(0.0);
     }
 
     SmartDashboard.putNumber("total distance travelled", totalDistanceTravelled);
 
-    adjustDirectionStep();
+   adjustDirectionStep();
+
+
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -81,79 +90,84 @@ public class StraightLineAuto extends Command {
 
   private void adjustDirectionStep()
   {
-    double error = getError(lastAngle);
+    double error = getError();
+    System.out.println("error = " + error);
 
-    double rightAdjSpeed = getRightAdjustment(error);
-    double leftAdjspeed =  getLeftAdjustment(error); 
+    double rightAdj = getRightAdjustment(error);
+    double leftAdj =  getLeftAdjustment(error); 
+
+    boolean isTooFarRight = rightAdj > 0;
+    boolean isTooFarLeft = leftAdj > 0;
+
+    double newleftSpeed = Robot.ChassisSubsystem.leftside.get();
+    double newrightSpeed = Robot.ChassisSubsystem.rightside.get();
+
+    if (isTooFarRight)
+    {
+    newleftSpeed = newleftSpeed + rightAdj / 2;
+    newrightSpeed = newrightSpeed + rightAdj / 2 ;
+    }
+    else if(isTooFarLeft)
+    {
+      newleftSpeed = newleftSpeed + leftAdj / 2;
+      newrightSpeed = newrightSpeed + leftAdj / 2 ;
+    }
+    
+    if (newleftSpeed > 0)
+    {
+      newleftSpeed = 0;
+    }
+    else if (newrightSpeed < 0)
+    {
+      newrightSpeed = 0;
+    }
+
+    Robot.ChassisSubsystem.leftside.set(newleftSpeed);
+    Robot.ChassisSubsystem.rightside.set(newrightSpeed);
+
+    SmartDashboard.putNumber("Left adjustment", leftAdj);
+    SmartDashboard.putNumber("Right adjustment", rightAdj);
 
 
-
-    Robot.ChassisSubsystem.leftside.set(leftAdjspeed);
-    Robot.ChassisSubsystem.rightside.set(rightAdjSpeed);
-
-    SmartDashboard.putNumber("LEFT ADJ", leftAdjspeed);
-    SmartDashboard.putNumber("RIGHT ADJ", rightAdjSpeed);
-
-
-
-    lastAngle = Robot.ChassisSubsystem.getrobotAngle();
-    System.out.println("ADJUSTMENT WORKS");
+    SmartDashboard.putNumber("Final Left Speed", newleftSpeed);
+    SmartDashboard.putNumber("Final Right Speed", newrightSpeed);
   }
 
-
+  // positive output
   public double getRightAdjustment(double errorAngle){
 
-    if (errorAngle > 180.0)  
-      { 
-        errorAngle -= 360.0; 
-      }
-
-      if (errorAngle < -180.0) 
-      {
-        errorAngle += 360.0;
-      }
     	
 		double rightadj = 0;
 
 		// Slow down one motor based on the error.
-    if (errorAngle > 0) 
+    if (errorAngle > DEAD_ZONE) 
     {
-      rightadj -= calcPValue(errorAngle);
+      rightadj = calcPValue(errorAngle);
     }
 
       return rightadj;
-      }
+  }
 
   
-
+  // positive output
 	public double getLeftAdjustment(double errorAngle){
 
-    	
-      if (errorAngle > 180.0)  
-      { 
-        errorAngle -= 360.0; 
-      }
 
-      if (errorAngle < -180.0) 
-      {
-        errorAngle += 360.0;
-      }
-    	
 		double leftAdj = 0;
 
 		// Slow down one motor based on the error.
-    if (errorAngle < 0) 
+    if (errorAngle < -DEAD_ZONE) 
     {
-        leftAdj = leftAdj + calcPValue(errorAngle);
+        leftAdj = -calcPValue(errorAngle);
     }
 
-      return leftAdj;
+      return leftAdj; //return as +
       }
 
-    public double getError(double previousAngle)
+    public double getError()
     {
       double currentAngle = Robot.ChassisSubsystem.getrobotAngle();
-      double error = currentAngle - previousAngle;
+      double error = currentAngle - desiredAngle;
       return error;
     }
 
@@ -161,4 +175,18 @@ public class StraightLineAuto extends Command {
       return error * GYRO_PID_P;
     }
 
+    private double clampAngle(double angle)
+    {
+      if (angle > 180.0)  
+      { 
+        angle -= 360.0; 
+      }
+
+      if (angle > -180.0) 
+      {
+        angle += 360.0;
+      }
+
+      return angle;
+    }
 }

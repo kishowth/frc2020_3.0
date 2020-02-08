@@ -24,17 +24,21 @@ public class ShooterCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
     double shoot = Robot.m_oi.getShooting();
 
     if( shoot > 0)
     {
-      //Robot.shooterSubsystem.leftShooterActivate(1);
+      Robot.shooterSubsystem.leftShooterActivate(1);
       Robot.shooterSubsystem.rightShooterActivate(1);
+      Robot.shooterSubsystem.left2ShooterActivate(1);
     } 
     else 
     {
       Robot.shooterSubsystem.leftShooterActivate(0);
       Robot.shooterSubsystem.rightShooterActivate(0);
+      Robot.shooterSubsystem.left2ShooterActivate(0);
+
     }
 
 

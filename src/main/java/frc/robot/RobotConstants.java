@@ -13,7 +13,7 @@ package frc.robot;
 public class RobotConstants {
 
     //20 encoder ticks is 1 inch
-    public static double ENCODER_TICKS_IN_INCHES = 20;
+    public static double ENCODER_TICKS_IN_INCHES = 40;
 
 
 

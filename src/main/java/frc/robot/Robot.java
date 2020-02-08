@@ -9,7 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.commands.Autos.Auto2timeCommand;
 import frc.robot.commands.Autos.AutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -32,7 +31,6 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   Command m_autonomousCommand;
-  Command timedCommand = new Auto2timeCommand();
   Command autoCommand = new AutoCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>(); 
 
@@ -77,9 +75,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
   //m_autonomousCommand = m_chooser.getSelected();
-    //autoCommand = new AutoCommand();
-    timedCommand =  new Auto2timeCommand();
-    timedCommand.start();
+    autoCommand = new AutoCommand();
+    //timedCommand =  new Auto2timeCommand();
+    //timedCommand.start();
+    autoCommand.start();
     
 
     /*
