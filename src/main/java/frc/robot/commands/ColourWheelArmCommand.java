@@ -30,10 +30,13 @@ public class ColourWheelArmCommand extends Command {
   boolean est_red = false;
   boolean est_green = false;
   boolean est_blue = false;
+  boolean est_yellow = false;
 
   @Override
   protected void execute() 
   {
+
+    Robot.colourWheelArmSubsystem.colourWheelSystemDashboard();
 
     Color KRED = Robot.colourWheelArmSubsystem.k_red;
     Color KBLUE = Robot.colourWheelArmSubsystem.k_blue;
@@ -53,18 +56,38 @@ public class ColourWheelArmCommand extends Command {
     if(match.color == KBLUE)
     {
       colorString = "The colour is blue.";
+      est_blue = true;
+
+      est_red = false;
+      est_green = false;
+      est_yellow = false;
     }
     else if(match.color == KRED)
     {
       colorString = "The colour is Red";
+      est_red = true;
+
+      est_blue = false;
+      est_green = false;
+      est_yellow = false;
+      
     }
     else if(match.color == KGREEN)
     {
       colorString = "The colour is Green";
+      est_green = true;
+      
+      est_blue = false;
+      est_red = false;
+      est_yellow = false;
     }
     else if (match.color == KYELLOW)
     {
       colorString = "The colour is yellow"; 
+      est_yellow = true;
+      est_blue = false;
+      est_red = false;
+      est_green = false;
     }
     else
     {
@@ -72,6 +95,11 @@ public class ColourWheelArmCommand extends Command {
     }
 
     SmartDashboard.putString("COLOUR DETECTED", colorString);
+
+    SmartDashboard.putBoolean("BLUE DETECTED", est_blue );
+    SmartDashboard.putBoolean("RED DETECTED", est_red );
+    SmartDashboard.putBoolean("GREEN DETECTED", est_green );
+    SmartDashboard.putBoolean("YELLOW DETECTED", est_yellow);
 
 
   }

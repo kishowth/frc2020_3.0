@@ -58,8 +58,10 @@ public class ColourWheelArmSubsystem extends Subsystem {
     return colorSensor.getGreen();
   } 
 
+
+
   //making actual colours from the r g b values. [not final r g b parameters]
-  public Color k_red = color_Match.makeColor(0.561, 0.232, 0.114); 
+  public Color k_red = color_Match.makeColor(602.0, 307.0, 596.0); 
   public Color k_green = color_Match.makeColor(0.197, 0.561, 0.240);
   public Color k_blue = color_Match.makeColor(0.143, 0.427, 0.429);
   public Color k_yellow = color_Match.makeColor(0.361, 0.524, 0.113);
@@ -90,7 +92,6 @@ public class ColourWheelArmSubsystem extends Subsystem {
     SmartDashboard.putNumber("blue", GreenValue());
     SmartDashboard.putNumber("ColourWheel Encoder In inches", colourWheelEncoderInInches);
 
-    System.out.println("I THINK COLOUR IS" + colourDetected());
   }
 
 
