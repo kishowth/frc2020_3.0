@@ -9,7 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-/* */
+/*
+opr for operator commands 
+*/
 public class GameControllerConstants {
 
     /*-----variables for button parameters-----*/
@@ -35,7 +37,11 @@ public class GameControllerConstants {
     static Joystick driverController = new Joystick(0);
     static Joystick operatorController = new Joystick(1);
 
-    /*------------AXIS METHODS---------------------- */
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                                      DRIVER CONTROLLER METHODS                                                    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*------------AXIS METHODS----------------------*/
+    
     public static double LEFT_JOYSTICK_Y()
     {
         return driverController.getRawAxis(LEFT_JOY_Y);
@@ -104,56 +110,81 @@ public class GameControllerConstants {
     {
         return driverController.getRawButton(RIGHT_JOYSTICK_BUTTON);
     }
-    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                                      OPERATOR CONTROLLER METHODS                                                  //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    public static double oprLEFT_JOYSTICK_Y()
+    {
+        return operatorController.getRawAxis(LEFT_JOY_Y);
+    }
+
+    public static double oprRIGHT_JOYSTICK_Y()
+    {
+        return operatorController.getRawAxis(RIGHT_JOY_Y);
+    }
+
+    public static double oprLEFT_JOYSTICK_X(){
+        return operatorController.getRawAxis(LEFT_JOY_X);
+    }
+
+    public static double oprRIGHT_JOYSTICK_X(){
+        return operatorController.getRawAxis(RIGHT_JOY_X);
+    }
+
+    public static double oprRightTrigger(){
+        return operatorController.getRawAxis(RIGHT_TRIGGER);
+    }
+
+    public static double oprLeftTrigger(){
+        return operatorController.getRawAxis(LEFT_TRIGGER);
+    }
 
 
+    /*------------BUTTON METHODS--------------- */
+
+    public static boolean oprButtonA()
+    {
+        return operatorController.getRawButton(BUTTON_A);
+    }
+
+    public static boolean oprButtonB() 
+    {
+        return operatorController.getRawButton(BUTTON_B);
+    }
+
+    public static boolean oprButtonX()
+    {
+        return operatorController.getRawButton(BUTTON_X);
+    } 
+
+    public static boolean oprButtonY()
+    {
+        return operatorController.getRawButton(BUTTON_Y);
+    }
+
+    public static boolean oprLeftBumper()
+    {
+        return operatorController.getRawButton(LEFT_BUMPER);
+    }
+
+    public static boolean oprRightBumper()
+    {
+        return operatorController.getRawButton(RIGHT_BUMPER);
+    }
+
+    public static boolean oprLeftJoystickButton()
+    {
+        return operatorController.getRawButton(LEFT_JOYSTICK_BUTTON);
+    }
+
+    public static boolean oprRightJoystickButton()
+    {
+        return operatorController.getRawButton(RIGHT_JOYSTICK_BUTTON);
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     //vision constants, are final
     public static double functionOfX()
     {

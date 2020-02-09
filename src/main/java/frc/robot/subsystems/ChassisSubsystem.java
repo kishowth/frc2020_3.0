@@ -44,8 +44,6 @@ public class ChassisSubsystem extends Subsystem {
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
   public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2); 
 
-  public SpeedControllerGroup allMotors = new SpeedControllerGroup(rightside, leftside);
-
   //setting up a differential drive
   public DifferentialDrive m_Drive = new DifferentialDrive(rightside, leftside);  
 
