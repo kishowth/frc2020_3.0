@@ -25,13 +25,12 @@ public class ColourWheelArmCommand extends Command {
   @Override
   protected void initialize() {}
 
-  // Called repeatedly when this Command is scheduled to run
 
   boolean est_red = false;
   boolean est_green = false;
   boolean est_blue = false;
   boolean est_yellow = false;
-
+ // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
@@ -100,7 +99,6 @@ public class ColourWheelArmCommand extends Command {
     SmartDashboard.putBoolean("RED DETECTED", est_red );
     SmartDashboard.putBoolean("GREEN DETECTED", est_green );
     SmartDashboard.putBoolean("YELLOW DETECTED", est_yellow);
-
 
   }
 

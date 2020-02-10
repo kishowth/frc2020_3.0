@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.VisionCommand;
 
 /**
@@ -40,10 +39,10 @@ public class VisionSubsystem extends Subsystem {
     final double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
     final double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
 
-    SmartDashboard.putNumber("limelightX", tx);   
-    SmartDashboard.putNumber("limelightY", ty);   
-    SmartDashboard.putNumber("limelightv", tv);   
-    SmartDashboard.putNumber("limelightArea", ta);   
+    // SmartDashboard.putNumber("limelightX", tx);   
+    // SmartDashboard.putNumber("limelightY", ty);   
+    // SmartDashboard.putNumber("limelightv", tv);   
+    // SmartDashboard.putNumber("limelightArea", ta);   
 
     
 

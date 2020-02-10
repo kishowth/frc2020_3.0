@@ -215,10 +215,12 @@ public class Pixy2Camera {
     }
 
     public boolean isRight(Block ball){
-        if (ball.getX() > p2.getFrameWidth()/2){
+        if (ball.getX() > p2.getFrameWidth()/2)
+        {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
