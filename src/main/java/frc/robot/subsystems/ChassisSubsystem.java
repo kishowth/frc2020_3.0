@@ -30,7 +30,6 @@ public class ChassisSubsystem extends Subsystem {
   public Encoder leftSideEncoder = new Encoder(RobotMap.leftDtEncoderA, RobotMap.leftDtEncoderB, false);
   public Encoder rightSideEncoder = new Encoder(RobotMap.rightDtEncoderA, RobotMap.rightDtEncoderB, false);
 
-  
   //gyro Instantiation
   private AHRS gyro = new AHRS(RobotMap.gyro);
 
@@ -81,11 +80,6 @@ public class ChassisSubsystem extends Subsystem {
     ultValues();
   }
   
-
-
-
-
-
   //Function to put all sensor values from this subsystem on the dashboard
   public void chassisSystemDashboard()
   {
@@ -96,7 +90,23 @@ public class ChassisSubsystem extends Subsystem {
     SmartDashboard.putNumber("Gyro", getrobotAngle());
   }
 
- 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new ChassisCommand());
