@@ -20,6 +20,8 @@ public class ShooterSubsystem extends Subsystem {
   private VictorSP LEFT_SHOOTER = new VictorSP(RobotMap.shooterLEFT);
   private VictorSP RIGHT_SHOOTER = new VictorSP(RobotMap.shooterRIGHT); 
   private VictorSP LEFT_SHOOTER2 = new VictorSP(RobotMap.shooterLEFT2);
+  private VictorSP RIGHT_SHOOTER2 = new VictorSP(RobotMap.shooterRIGHT2);
+
 
   public void leftShooterActivate(double speed)
   {
@@ -34,6 +36,11 @@ public class ShooterSubsystem extends Subsystem {
   public void left2ShooterActivate(double speed)
   {
     LEFT_SHOOTER2.set(speed);
+  }
+
+  public void right2ShooterActivate(double speed)
+  {
+    RIGHT_SHOOTER2.set(speed);
   }
 
 

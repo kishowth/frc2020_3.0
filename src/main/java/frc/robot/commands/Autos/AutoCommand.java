@@ -19,8 +19,36 @@ public class AutoCommand extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
 
+    //there are primarily 2 main functions for the chassis base:
+    //1. StraightLineAuto basically drives the robot to a set distance 
+    //2. Turn to angle basically turns the robot to a desired angle relative to the field.
+    // StraightLineAuto is measured in inches. 
+
+    //------------------------------------------------
+    //                                             
+    //                                             
+    //    =======                                  
+    //    |     |                                             
+    //    |     |   ---------------------------------->       
+    //    |     |                 100 inches                  
+    //    |     |                                             
+    //    =======                                            
+
+    //
+
+
+
     addSequential(new StraightLineAuto(100));
     addSequential(new TurnToAngleCommand(90));
+
+
+
+
+
+
+
+
+
 
 
     // To run multiple commands at the same time,

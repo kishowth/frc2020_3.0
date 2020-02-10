@@ -32,13 +32,14 @@ public class ShooterCommand extends Command {
       Robot.shooterSubsystem.leftShooterActivate(1);
       Robot.shooterSubsystem.rightShooterActivate(1);
       Robot.shooterSubsystem.left2ShooterActivate(1);
+      Robot.shooterSubsystem.right2ShooterActivate(1);
     } 
     else 
     {
       Robot.shooterSubsystem.leftShooterActivate(0);
       Robot.shooterSubsystem.rightShooterActivate(0);
       Robot.shooterSubsystem.left2ShooterActivate(0);
-
+      Robot.shooterSubsystem.right2ShooterActivate(0);
     }
 
 

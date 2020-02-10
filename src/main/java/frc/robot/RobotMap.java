@@ -21,9 +21,11 @@ public class RobotMap {
   public static int rightFrontMotor = 3;
   public static int colourMech = 4;
 
+  public static int shooterLEFT2 = 5;
   public static int shooterLEFT = 7;
   public static int shooterRIGHT = 8;
   public static int shooterLEFT2 = 9;
+  
 
 
 
