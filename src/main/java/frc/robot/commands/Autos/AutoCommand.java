@@ -19,7 +19,7 @@ public class AutoCommand extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
 
-    addSequential(new StraightLineAuto());
+    addSequential(new StraightLineAuto(100));
     addSequential(new TurnToAngleCommand(90));
 
 

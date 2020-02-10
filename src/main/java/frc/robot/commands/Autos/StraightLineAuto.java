@@ -16,9 +16,15 @@ public class StraightLineAuto extends Command {
 
 
 
-  public StraightLineAuto() {
+  public StraightLineAuto(double driveToDistance) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ChassisSubsystem);
+
+    //in this command, it uses targetInInches as its 'distance', so by making the variable 
+    //driveToDistance = targetInInches, whatever number is inputted in the parenthesis of 
+    //this method will automatically apply to this class. This gets rid of making multiple
+    //autoCommands for various distances
+    targetinInches = driveToDistance;
   }
 
   // Called just before this Command runs the first time
@@ -34,10 +40,10 @@ public class StraightLineAuto extends Command {
     desiredAngle = Robot.ChassisSubsystem.getrobotAngle();
   }
   
-  //input how far the robot needs to move in inches
-  double targetinInches = 240;
+
 
   //variables for this command
+  double targetinInches;
   double odometerOnStart;
   double desiredAngle; 
 
