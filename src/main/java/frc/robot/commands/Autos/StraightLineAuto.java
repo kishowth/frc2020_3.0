@@ -38,8 +38,7 @@ public class StraightLineAuto extends Command {
   public static final double GYRO_PID_P = 0.05;
   public static final double DEAD_ZONE = 1;
   //000000000001;	
-//	public static final double GYRO_PID_D = 0.09;
-
+  //public static final double GYRO_PID_D = 0.09;
   //Called repeatedly when this Command is scheduled to run
 
   @Override
@@ -67,7 +66,6 @@ public class StraightLineAuto extends Command {
    adjustDirectionStep();
 
 
-  
   }
 
   // Make this return true when this Command no longer needs to run execute()
