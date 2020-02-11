@@ -41,7 +41,6 @@ public class StraightLineAuto extends Command {
   }
   
 
-
   //variables for this command
   double targetinInches;
   double odometerOnStart;
