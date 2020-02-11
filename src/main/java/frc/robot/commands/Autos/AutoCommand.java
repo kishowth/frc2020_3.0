@@ -14,27 +14,42 @@ public class AutoCommand extends CommandGroup {
    * Add your docs here.
    */
   public AutoCommand() {
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
+    
 
     //there are primarily 2 main functions for the chassis base:
     //1. StraightLineAuto basically drives the robot to a set distance 
     //2. Turn to angle basically turns the robot to a desired angle relative to the field.
     // StraightLineAuto is measured in inches. 
+                             
+    //To run 2 commands in sequence
+    //Use the *addSequenntial* method
+    //in its parameters, write:  new StraightLineAuto OR new TurnToAngle and the number specific for that
 
-    //------------------------------------------------
-    //                                             
-    //                                             
-    //    =======                                  
-    //    |     |                                             
-    //    |     |   ---------------------------------->       
-    //    |     |                 100 inches                  
-    //    |     |                                             
-    //    =======                                            
 
-    //
+    //for example go forward 45 inches and turn 90DEG Clockwise: 
+
+    //==========================================
+    // addSequential(new StraightLineAuto(45));
+    // addSequential(new TurnToAngleCommand(90));
+    //==========================================
+
+    // To run multiple commands at the same time,
+    // use addParallel()
+    // e.g. addParallel(new Command1());
+    // addSequential(new Command2());
+    // Command1 and Command2 will run in parallel. 
+
+    //For example, go 30 inches WHILE turning 40 DEG Counterclockwise:
+
+    //============================================
+    // addParallel(new StraightLineAuto(30));
+    // addSequential(new TurnToAngleCommand(-40)); 
+    //============================================
+
+
+    //     NOTE:
+    //     (-) is backward for chassis
+    //     (-) is counterclockwise for gyro turning
 
 
 
@@ -43,24 +58,5 @@ public class AutoCommand extends CommandGroup {
 
 
 
-
-
-
-
-
-
-
-
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
-
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
   }
 }
