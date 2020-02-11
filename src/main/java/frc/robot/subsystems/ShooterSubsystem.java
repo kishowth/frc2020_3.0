@@ -17,30 +17,30 @@ import frc.robot.commands.ShooterCommand;
  */
 public class ShooterSubsystem extends Subsystem {
   
-  private VictorSP LEFT_SHOOTER = new VictorSP(RobotMap.shooterLEFT);
-  private VictorSP RIGHT_SHOOTER = new VictorSP(RobotMap.shooterRIGHT); 
-  private VictorSP LEFT_SHOOTER2 = new VictorSP(RobotMap.shooterLEFT2);
-  private VictorSP RIGHT_SHOOTER2 = new VictorSP(RobotMap.shooterRIGHT2);
+  private VictorSP LEFT_SHOOTER_1 = new VictorSP(RobotMap.leftShooterMotor1);
+  private VictorSP LEFT_SHOOTER_2 = new VictorSP(RobotMap.leftShooterMotor2);
+  private VictorSP RIGHT_SHOOTER_1 = new VictorSP(RobotMap.rightShooterMotor1);
+  private VictorSP RIGHT_SHOOTER_2 = new VictorSP(RobotMap.rightShooterMotor2);
 
 
   public void leftShooterActivate(double speed)
   {
-    LEFT_SHOOTER.set(-speed);
+    LEFT_SHOOTER_1.set(-speed);
   }
 
   public void rightShooterActivate(double speed)
   {
-    RIGHT_SHOOTER.set(-speed);
+    LEFT_SHOOTER_2.set(-speed);
   }
 
   public void left2ShooterActivate(double speed)
   {
-    LEFT_SHOOTER2.set(speed);
+    RIGHT_SHOOTER_1.set(speed);
   }
 
   public void right2ShooterActivate(double speed)
   {
-    RIGHT_SHOOTER2.set(speed);
+    RIGHT_SHOOTER_2.set(speed);
   }
 
 

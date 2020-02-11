@@ -9,14 +9,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * Add your docs here.
+/*
+ *
+ * 
+ *  
  */
 public class GyroPIDController {
 
+    
     static double desiredAngle;
 
-    public static void adjustDirectionStep() {
+    public static void adjustDirectionStep() 
+    {
         double error = getError();
         System.out.println("error = " + error);
 
@@ -29,17 +33,25 @@ public class GyroPIDController {
         double newleftSpeed = Robot.ChassisSubsystem.leftside.get();
         double newrightSpeed = Robot.ChassisSubsystem.rightside.get();
 
-        if (isTooFarRight) {
+        if (isTooFarRight) 
+        {
             newleftSpeed = newleftSpeed + rightAdj / 2;
             newrightSpeed = newrightSpeed + rightAdj / 2;
-        } else if (isTooFarLeft) {
+        } 
+        else if (isTooFarLeft) 
+        {
             newleftSpeed = newleftSpeed + leftAdj / 2;
             newrightSpeed = newrightSpeed + leftAdj / 2;
         }
 
-        if (newleftSpeed > 0) {
+
+
+        if (newleftSpeed > 0) 
+        {
             newleftSpeed = 0;
-        } else if (newrightSpeed < 0) {
+        } 
+        else if (newrightSpeed < 0) 
+        {
             newrightSpeed = 0;
         }
 
@@ -53,7 +65,8 @@ public class GyroPIDController {
         SmartDashboard.putNumber("Final Right Speed", newrightSpeed);
     }
 
-    public static double getRightAdjustment(double errorAngle) {
+    public static double getRightAdjustment(double errorAngle) 
+    {
 
         double rightadj = 0;
 
@@ -66,7 +79,8 @@ public class GyroPIDController {
     }
 
     // positive output
-    public static double getLeftAdjustment(double errorAngle) {
+    public static double getLeftAdjustment(double errorAngle) 
+    {
         double leftAdj = 0;
 
         // Slow down one motor based on the error.
@@ -77,7 +91,8 @@ public class GyroPIDController {
         return leftAdj; // return as +
     }
 
-    public static double getError() {
+    public static double getError() 
+    {
         double currentAngle = Robot.ChassisSubsystem.getrobotAngle();
         double error = currentAngle - desiredAngle;
         return error;
@@ -102,75 +117,6 @@ public class GyroPIDController {
 
     return angle;
     }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
