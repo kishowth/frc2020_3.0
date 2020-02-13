@@ -37,7 +37,17 @@ public class ChassisSubsystem extends Subsystem {
   private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
   private VictorSP left2 = new VictorSP(RobotMap.leftFrontMotor);
   private VictorSP right1 = new VictorSP(RobotMap.rightBackMotor);
-  private VictorSP right2 = new VictorSP(RobotMap.rightFrontMotor);
+  private VictorSP right2 = new VictorSP(RobotMap.rightFrontMotor); 
+
+  //NEW DRIVE TRAIN 
+  
+   
+  
+  
+  
+  
+  
+  
 
   //grouping motor controllers
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);

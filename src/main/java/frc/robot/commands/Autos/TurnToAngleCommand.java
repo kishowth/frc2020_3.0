@@ -26,7 +26,8 @@ public class TurnToAngleCommand extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize() 
+  {
 
     //making a variable for the Robot's current angle
     double currentAngle = Robot.ChassisSubsystem.getrobotAngle();
