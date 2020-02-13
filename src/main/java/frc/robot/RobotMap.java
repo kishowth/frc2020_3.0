@@ -21,10 +21,10 @@ public class RobotMap {
   public static int rightFrontMotor = 3;
   public static int colourMech = 4;
 
-  public static int leftShooterMotor1 = 5;
-  public static int leftShooterMotor2 = 7;
-  public static int rightShooterMotor1 = 8;
-  public static int rightShooterMotor2 = 9;
+  public static int leftFrontShooterMotor = 6;
+  public static int leftBackShooterMotor = 7;
+  public static int rightFrontShooterMotor = 8 ;
+  public static int rightBackShooterMotor = 9;
   
 
   // other ports

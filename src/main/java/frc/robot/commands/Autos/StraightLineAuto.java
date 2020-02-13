@@ -24,7 +24,7 @@ public class StraightLineAuto extends Command {
     //driveToDistance = targetInInches, whatever number is inputted in the parenthesis of 
     //this method will automatically apply to this class. This gets rid of making multiple
     //autoCommands for various distances
-    targetinInches = driveToDistance;
+    
   }
 
   // Called just before this Command runs the first time
@@ -38,6 +38,8 @@ public class StraightLineAuto extends Command {
     //stating variables to use in autonomous
     odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
     desiredAngle = Robot.ChassisSubsystem.getrobotAngle();
+
+    targetinInches = 5000;
   }
   
 
@@ -58,11 +60,12 @@ public class StraightLineAuto extends Command {
     //Function for the total distance the robot has travelled so far
     double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
 
+
     //until the total distance covered by the robot is not met, run the chassis at this speed, when it reaches target value, stop all motors.
     if (totalDistanceTravelled < targetinInches)
     {
-      Robot.ChassisSubsystem.leftside.set(-0.2);
-      Robot.ChassisSubsystem.rightside.set(0.2);
+      Robot.ChassisSubsystem.leftside.set(-0.5);
+      Robot.ChassisSubsystem.rightside.set(0.5);
     }
     
     else
@@ -76,7 +79,7 @@ public class StraightLineAuto extends Command {
 
     
     //auto adjust the Robot Chassis using the gyro controller so the robot is going in a straight line 
-    GyroPIDController.adjustDirectionStep();
+     GyroPIDController.adjustDirectionStep();
 
      //adjustDirectionStep();
 

@@ -53,7 +53,7 @@ public class AutoCommand extends CommandGroup {
 
 
 
-    addSequential(new StraightLineAuto(100));
+    addSequential(new StraightLineAuto(25));
     addSequential(new TurnToAngleCommand(90));
 
 
