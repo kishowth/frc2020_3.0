@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
 
 public class RobotMap {
 
-
   //PCM Ports
   public static int leftDriveShifterA = 1;
   public static int leftDriveShifterB = 2;
   public static int rightDriveShifterA = 3;
   public static int rightDriveShifterB = 4;
-  // PWM Ports
+
+  //PWM Ports
   public static int leftBackMotor = 0;
   public static int leftFrontMotor = 1;
   public static int rightBackMotor = 2;
@@ -33,11 +33,6 @@ public class RobotMap {
   public static int rightBackShooterMotor = 9;
   
 
-  // other ports
-  public static I2C.Port i2cPort = I2C.Port.kOnboard; 
-
-  
-
   // Analog and digital ports
   public static int ultrasonicSensor = 0;
   public static int leftDtEncoderA = 2;
@@ -47,8 +42,10 @@ public class RobotMap {
   public static int colourWheelEncoderA = 5;
   public static int colourWheelEncoderB = 6;
 
-  //MXP port
+  // other ports
+  public static I2C.Port i2cPort = I2C.Port.kOnboard; 
   public static Port gyro = SerialPort.Port.kMXP;
+
 
 
 

@@ -125,7 +125,7 @@ public class StraightLineAuto extends Command {
   // private void adjustDirectionStep()
   // {
   //   double error = getError();
-  //   System.out.println("error = " + error);
+  //   //System.out.println("error = " + error);
 
   //   double rightAdj = getRightAdjustment(error);
   //   double leftAdj =  getLeftAdjustment(error); 

@@ -85,8 +85,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
   //m_autonomousCommand = m_chooser.getSelected();
     autoCommand = new AutoCommand();
-    //timedCommand =  new Auto2timeCommand();
-    //timedCommand.start();
+    
     autoCommand.start();
 
     String autoselector = SmartDashboard.getString("Auto Selector", "Auto 1");

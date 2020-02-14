@@ -8,72 +8,52 @@
 package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class TurnToAngleCommand extends Command {
-
-  public TurnToAngleCommand(double angle) 
-  {
+public class DriveToDistanceCommand extends Command {
+  public DriveToDistanceCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ChassisSubsystem);
-    turnAmount = angle;
   }
 
-  //instantiate variables
-  final double turnAmount;
-  double desiredWorldAngle;
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() 
   {
-
-    //reset chassis encoders
     Robot.ChassisSubsystem.leftSideEncoder.reset();
     Robot.ChassisSubsystem.rightSideEncoder.reset();
 
-    //desired angle relative to the game field
-    desiredWorldAngle = Robot.ChassisSubsystem.getrobotAngle() + turnAmount;
+    encoderCount = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
   }
+
+  double requiredDistance = 30; //inches
+  double encoderCount;
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() { 
+  protected void execute() 
+  {
+    Robot.ChassisSubsystem.chassisSystemDashboard();
+    Robot.ChassisSubsystem.periodicCommands();
 
-    //if the inputted angle is positive, turning to the right, set the chassis' motors to a certain speed until this the robot's desired angle is met
-    if(turnAmount < 0)
-    {
-      Robot.ChassisSubsystem.leftside.set(-0.3);
-      Robot.ChassisSubsystem.rightside.set(-0.3);
+    double totalDistanceCovered = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - encoderCount;
 
-    }
-    //if the inputted angle is negative, turning to the left, set the chassis' motors to a certain speed until this the robot's desired angle is met
-    else if(turnAmount > 0)
+    if (totalDistanceCovered < requiredDistance)
     {
-     Robot.ChassisSubsystem.leftside.set(0.3);
-      Robot.ChassisSubsystem.rightside.set(0.3);
+      Robot.ChassisSubsystem.leftside.set(0.2);
+      Robot.ChassisSubsystem.rightside.set(0.2);
     }
-    //input the amount the robot has turned, in degrees.
-    SmartDashboard.putNumber("TURN AMOUNT", turnAmount);
+
+
+
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-
-    System.out.println(desiredWorldAngle);
-    
-    if (turnAmount < 0)
-    {
-      return Robot.ChassisSubsystem.getrobotAngle() <= desiredWorldAngle;
-    }
-    else 
-    { 
-      return Robot.ChassisSubsystem.getrobotAngle() >= desiredWorldAngle;
-    }
-    
+    return false;
   }
 
   // Called once after isFinished returns true

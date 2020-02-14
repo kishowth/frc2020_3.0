@@ -13,8 +13,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.PWMSpeedController;
-import edu.wpi.first.wpilibj.PWM.PeriodMultiplier;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -108,6 +106,7 @@ public class ChassisSubsystem extends Subsystem {
   public double rightSideEncoderValueInInches(){
     return rightSideEncoder.getRaw() / RobotConstants.ENCODER_TICKS_IN_INCHES;
   } 
+
 
   //read the robot's current angle
   public double getrobotAngle(){
