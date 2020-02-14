@@ -8,11 +8,22 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.PWM.PeriodMultiplier;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PWMSparkMax;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,16 +48,48 @@ public class ChassisSubsystem extends Subsystem {
   private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
   private VictorSP left2 = new VictorSP(RobotMap.leftFrontMotor);
   private VictorSP right1 = new VictorSP(RobotMap.rightBackMotor);
-  private VictorSP right2 = new VictorSP(RobotMap.rightFrontMotor); 
+  private VictorSP right2 = new VictorSP(RobotMap.rightFrontMotor);  
 
-  //NEW DRIVE TRAIN 
+  //Ball shifters
+  DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
+  DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.rightDriveShifterA, RobotMap.rightDriveShifterB);
+
+  //compressor
+  public Compressor compressor = new Compressor();
   
-   
+  //when piston is pushed out, robot is on low gear
+  //when piston is retracted, robot is on high gear
+
+  public void shiftToSlow()
+  {
+    leftshifter.set(Value.kForward);
+    rightShifter.set(Value.kForward);
+  }
+
+  public void shiftToFast()
+  {
+    leftshifter.set(Value.kReverse);
+    rightShifter.set(Value.kReverse);
+  }
+
+  public void leaveShifterState()
+  {
+    leftshifter.set(Value.kOff);
+    rightShifter.set(Value.kOff);
+    
+  }
+
+ 
+
+
+
+  //NEW DRIVE TRAIN intantiations
   
-  
-  
-  
-  
+  //private Spark leftBack = new Spark(1);
+  // private Spark leftFront = new Spark(RobotMap.);
+  // private Spark rightFront =  new Spark(RobotMap.);
+  // private Spark rightBack = new Spark(RobotMap.);
+
   
 
   //grouping motor controllers

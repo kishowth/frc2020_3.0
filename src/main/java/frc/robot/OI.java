@@ -54,6 +54,12 @@ public double getDrive()
 } 
 
 
+public boolean getBallShift()
+{
+  return GameControllerConstants.LeftJoystickButton();
+}
+
+
 
 
 

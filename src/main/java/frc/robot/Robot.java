@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.Autos.AutoCommand;
+import frc.robot.commands.Autos.NothingAutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -32,11 +33,15 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   Command autoCommand = new AutoCommand();
+  Command nothingCommand = new NothingAutoCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>(); 
 
   //robot's initialization
   @Override
   public void robotInit() {
+
+    //start Compressor
+    Robot.ChassisSubsystem.compressor.start();
 
     //reset gyro
     Robot.ChassisSubsystem.resetGyro();
@@ -47,9 +52,13 @@ public class Robot extends TimedRobot {
 
     //initialize pixy
     Pixy2Camera.init();
+
     m_oi = new OI();
+
+    //listing all autonomous options on dashboard
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    //chooser.addOption("My Auto", new MyAutoCommand());
+    m_chooser.addOption("Auto 1", new AutoCommand());
+    m_chooser.addOption("NO AUTO", new NothingAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     
   }
@@ -79,13 +88,28 @@ public class Robot extends TimedRobot {
     //timedCommand =  new Auto2timeCommand();
     //timedCommand.start();
     autoCommand.start();
+
+    String autoselector = SmartDashboard.getString("Auto Selector", "Auto 1");
+    
+    switch(autoselector)
+    {
+      case "auto 1": nothingCommand = new NothingAutoCommand();
+        break;
+
+    }
+    
     
 
     /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * String autoSelected = SmartDashboard.getString("Auto Selector","Default"); 
+     * 
+     * switch(autoSelected) 
+     * { 
+     * case "My Auto": autonomousCommand = new MyAutoCommand(); 
+     * break; 
+     * case "Default Auto": default:
+     * autonomousCommand = new ExampleCommand(); break; 
+     * }
      */
 
     // schedule the autonomous command (example)

@@ -34,6 +34,32 @@ public class ChassisCommand extends Command {
     Robot.ChassisSubsystem.periodicCommands(); 
     Robot.ChassisSubsystem.chassisSystemDashboard(); 
 
+    boolean chassisShift = Robot.m_oi.getBallShift();
+
+
+    if(chassisShift)
+    {
+      Robot.ChassisSubsystem.shiftToFast();
+    }
+    else if (chassisShift)
+    {
+      Robot.ChassisSubsystem.shiftToSlow();
+    }
+    else 
+    {
+      
+    }
+
+
+
+
+
+
+
+
+
+
+
     
     /*-----------------------------------------------------------------------------------------------------*/
     Pixy2Camera.get().step();
