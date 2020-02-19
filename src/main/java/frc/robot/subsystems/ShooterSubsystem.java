@@ -40,7 +40,7 @@ public class ShooterSubsystem extends Subsystem {
 
   public void right2ShooterActivate(double speed)
   {
-    RIGHT_SHOOTER_2.set(-speed);
+    RIGHT_SHOOTER_2.set(speed);
   }
 
 

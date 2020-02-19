@@ -15,16 +15,17 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
 public class RobotMap {
 
   //PCM Ports
-  public static int leftDriveShifterA = 1;
-  public static int leftDriveShifterB = 2;
-  public static int rightDriveShifterA = 3;
-  public static int rightDriveShifterB = 4;
+  public static int leftDriveShifterA = 0;
+  public static int leftDriveShifterB = 1;
+  public static int rightDriveShifterA = 2;
+  public static int rightDriveShifterB = 3;
 
   //PWM Ports
   public static int leftBackMotor = 0;
   public static int leftFrontMotor = 1;
   public static int rightBackMotor = 2;
   public static int rightFrontMotor = 3;
+  
   public static int colourMech = 4;
 
   public static int leftFrontShooterMotor = 6;

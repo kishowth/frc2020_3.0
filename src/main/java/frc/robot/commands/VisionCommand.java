@@ -36,30 +36,30 @@ public class VisionCommand extends Command {
 
    
 
-    if (autoAlign) {
+    // if (autoAlign) {
 
-      if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
-        Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
-            Robot.VisionSubsystem.m_LimelightSteerCommand);
-            Robot.VisionSubsystem.forceOn();
-      } else {
-        Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
-      }
-    }
+    //   if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
+    //     Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
+    //         Robot.VisionSubsystem.m_LimelightSteerCommand);
+    //         Robot.VisionSubsystem.forceOn();
+    //   } else {
+    //     Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
+    //   }
+    // }
 
     
-    else {
-      Robot.ChassisSubsystem.m_Drive.tankDrive(-leftDriveSpeed, -rightDriveSpeed);
-    }
+    // else {
+    //   //Robot.ChassisSubsystem.m_Drive.tankDrive(-leftDriveSpeed, -rightDriveSpeed);
+    // }
 
 
-    //LIMELIGHT LED CONTROL
-    if (lightsOn) {
-      Robot.VisionSubsystem.forceOn();
-    }
-    else{
-      Robot.VisionSubsystem.forceOff();
-    }
+    // //LIMELIGHT LED CONTROL
+    // if (lightsOn) {
+    //   Robot.VisionSubsystem.forceOn();
+    // }
+    // else{
+    //   Robot.VisionSubsystem.forceOff();
+    // }
   }
 
   // Make this return true when this Command no longer needs to run execute()

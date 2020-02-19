@@ -54,9 +54,14 @@ public double getDrive()
 } 
 
 
-public boolean getBallShift()
+public boolean getBallShift1()
 {
   return GameControllerConstants.LeftJoystickButton();
+}
+
+public boolean getBallShift2()
+{
+  return GameControllerConstants.RightJoystickButton();
 }
 
 

@@ -43,10 +43,10 @@ public class ChassisSubsystem extends Subsystem {
   private AHRS gyro = new AHRS(RobotMap.gyro);
 
   //chassis motor instantiations
-  private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
-  private VictorSP left2 = new VictorSP(RobotMap.leftFrontMotor);
-  private VictorSP right1 = new VictorSP(RobotMap.rightBackMotor);
-  private VictorSP right2 = new VictorSP(RobotMap.rightFrontMotor);  
+  private Spark left1 = new Spark(RobotMap.leftBackMotor);
+  private Spark left2 = new Spark(RobotMap.leftFrontMotor);
+  private Spark right1 = new Spark(RobotMap.rightBackMotor);
+  private Spark right2 = new Spark(RobotMap.rightFrontMotor);  
 
   //Ball shifters
   DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
@@ -77,25 +77,17 @@ public class ChassisSubsystem extends Subsystem {
     
   }
 
- 
-
-
-
-  //NEW DRIVE TRAIN intantiations
-  
-  //private Spark leftBack = new Spark(1);
-  // private Spark leftFront = new Spark(RobotMap.);
-  // private Spark rightFront =  new Spark(RobotMap.);
-  // private Spark rightBack = new Spark(RobotMap.);
-
-  
-
   //grouping motor controllers
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
   public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2); 
 
   //setting up a differential drive
-  public DifferentialDrive m_Drive = new DifferentialDrive(rightside, leftside);  
+  //public DifferentialDrive m_Drive = new DifferentialDrive(rightside, leftside);  
+
+  public void tankDrive(double speed){
+    leftside.set(speed);
+    rightside.set(speed);
+  }
 
 
   //getting original encoder values from both chassis encoders 
@@ -141,22 +133,6 @@ public class ChassisSubsystem extends Subsystem {
 
     SmartDashboard.putNumber("Gyro", getrobotAngle());
   }
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   @Override

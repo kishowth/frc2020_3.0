@@ -34,20 +34,27 @@ public class ChassisCommand extends Command {
     Robot.ChassisSubsystem.periodicCommands(); 
     Robot.ChassisSubsystem.chassisSystemDashboard(); 
 
-    boolean chassisShift = Robot.m_oi.getBallShift();
+    boolean chassisShift = Robot.m_oi.getBallShift1();
+    boolean chassisShift2 = Robot.m_oi.getBallShift2();
 
-
+    double leftMotorControl = Robot.m_oi.getLeftDriveSpeed();
+    double rightMotorControl = Robot.m_oi.getRightDriveSpeed();
+    
+    //set up tank Drive
+    Robot.ChassisSubsystem.leftside.set(leftMotorControl);
+    Robot.ChassisSubsystem.rightside.set(rightMotorControl);
+    
     if(chassisShift)
     {
       Robot.ChassisSubsystem.shiftToFast();
     }
-    else if (chassisShift)
+    else if (chassisShift2)
     {
       Robot.ChassisSubsystem.shiftToSlow();
     }
     else 
     {
-      
+      Robot.ChassisSubsystem.leaveShifterState();
     }
 
 
@@ -61,50 +68,50 @@ public class ChassisCommand extends Command {
 
 
     
-    /*-----------------------------------------------------------------------------------------------------*/
-    Pixy2Camera.get().step();
-    Block ball = Pixy2Camera.get().getTheBall();  
-    boolean findBall = Robot.m_oi.getFindPowerCells();
+  //   /*-----------------------------------------------------------------------------------------------------*/
+  //   Pixy2Camera.get().step();
+  //   Block ball = Pixy2Camera.get().getTheBall();  
+  //   boolean findBall = Robot.m_oi.getFindPowerCells();
 
-    if (findBall)
-    {
-      if (ball != null)
-      {
-          boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
-          boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
+  //   if (findBall)
+  //   {
+  //     if (ball != null)
+  //     {
+  //         boolean ballIsLeftOfPixy = Pixy2Camera.get().isLeft(ball);
+  //         boolean ballIsRightOfPixy = Pixy2Camera.get().isRight(ball);
     
-          if (ballIsLeftOfPixy)
-          {
-            Robot.ChassisSubsystem.leftside.set(-0.25); //-.25
-            Robot.ChassisSubsystem.rightside.set(-0.25);
-            System.out.println("Turning left");
-          }
-          else if (ballIsRightOfPixy)
-          {
-            Robot.ChassisSubsystem.leftside.set(0.25); //.25
-            Robot.ChassisSubsystem.rightside.set(0.25);
-            System.out.println("Turning right");
-          }
-          else
-          {
-          Robot.ChassisSubsystem.leftside.set(0.0);
-          Robot.ChassisSubsystem.rightside.set(0.0);
-          System.out.println("Not turning");
-          }
-    }
-  }
-    /*-----------------------------------------------------------------------------------------------------*/
+  //         if (ballIsLeftOfPixy)
+  //         {
+  //           Robot.ChassisSubsystem.leftside.set(-0.25); //-.25
+  //           Robot.ChassisSubsystem.rightside.set(-0.25);
+  //           System.out.println("Turning left");
+  //         }
+  //         else if (ballIsRightOfPixy)
+  //         {
+  //           Robot.ChassisSubsystem.leftside.set(0.25); //.25
+  //           Robot.ChassisSubsystem.rightside.set(0.25);
+  //           System.out.println("Turning right");
+  //         }
+  //         else
+  //         {
+  //         Robot.ChassisSubsystem.leftside.set(0.0);
+  //         Robot.ChassisSubsystem.rightside.set(0.0);
+  //         System.out.println("Not turning");
+  //         }
+  //   }
+  // }
+  //   /*-----------------------------------------------------------------------------------------------------*/
 
 
-     if (Robot.ChassisSubsystem.ultValues() == 4.0) {
-      desiredValue = true;
-    }
-    else {
-      desiredValue = false;
-    }
-    SmartDashboard.putBoolean("desired", desiredValue);
+  //    if (Robot.ChassisSubsystem.ultValues() == 4.0) {
+  //     desiredValue = true;
+  //   }
+  //   else {
+  //     desiredValue = false;
+  //   }
+  //   SmartDashboard.putBoolean("desired", desiredValue);
 
-    /*-----------------------------------------------------------------------------------------------------*/
+  //   /*-----------------------------------------------------------------------------------------------------*/
 
 
   }
