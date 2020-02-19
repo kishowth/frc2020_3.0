@@ -61,7 +61,7 @@ public class ColourWheelArmSubsystem extends Subsystem {
 
 
   //making actual colours from the r g b values. [not final r g b parameters]
-  public Color k_red = color_Match.makeColor(602.0, 307.0, 596.0); 
+  public Color k_red = color_Match.makeColor(0.668, 0.341, 0.661); 
   public Color k_green = color_Match.makeColor(0.197, 0.561, 0.240);
   public Color k_blue = color_Match.makeColor(0.143, 0.427, 0.429);
   public Color k_yellow = color_Match.makeColor(0.361, 0.524, 0.113);
@@ -77,11 +77,12 @@ public class ColourWheelArmSubsystem extends Subsystem {
 
 
   //reading encoder values
-  public double colourWheelEncoderValues(){
+  public double colourWheelEncoderValues()
+  {
     return colourWheelEncoder.getDistance();
   } 
 
-  double colourWheelEncoderInInches =  colourWheelEncoderValues() * 20;
+  double colourWheelEncoderInInches =  colourWheelEncoderValues() * RobotConstants.ENCODER_TICKS_IN_INCHES;
 
 
   //function to print this subsystem's sensor values onto the dashboard.

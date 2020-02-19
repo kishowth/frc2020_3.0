@@ -23,13 +23,29 @@ public class ColourWheelArmCommand extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() 
+  {
+    //making the colours
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KRED); 
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KBLUE); 
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KGREEN); 
+    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KYELLOW); 
 
+
+  }
 
   boolean est_red = false;
   boolean est_green = false;
   boolean est_blue = false;
   boolean est_yellow = false;
+
+  Color KRED = Robot.colourWheelArmSubsystem.k_red;
+  Color KBLUE = Robot.colourWheelArmSubsystem.k_blue;
+  Color KGREEN = Robot.colourWheelArmSubsystem.k_green;
+  Color KYELLOW = Robot.colourWheelArmSubsystem.k_yellow;
+  Color detectedColor = Robot.colourWheelArmSubsystem.colourDetected();
+  
+
  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
@@ -37,18 +53,7 @@ public class ColourWheelArmCommand extends Command {
 
     Robot.colourWheelArmSubsystem.colourWheelSystemDashboard();
 
-    Color KRED = Robot.colourWheelArmSubsystem.k_red;
-    Color KBLUE = Robot.colourWheelArmSubsystem.k_blue;
-    Color KGREEN = Robot.colourWheelArmSubsystem.k_green;
-    Color KYELLOW = Robot.colourWheelArmSubsystem.k_yellow;
-    Color detectedColor = Robot.colourWheelArmSubsystem.colourDetected();
-
-    //making the colours
-    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KRED); 
-    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KBLUE); 
-    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KGREEN); 
-    Robot.colourWheelArmSubsystem.color_Match.addColorMatch(KYELLOW); 
-
+   
     String colorString; 
     ColorMatchResult match = Robot.colourWheelArmSubsystem.color_Match.matchClosestColor(detectedColor);
     
