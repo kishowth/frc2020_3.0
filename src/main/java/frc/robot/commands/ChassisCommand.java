@@ -40,9 +40,9 @@ public class ChassisCommand extends Command {
     double leftMotorControl = Robot.m_oi.getLeftDriveSpeed();
     double rightMotorControl = Robot.m_oi.getRightDriveSpeed();
     
-    //set up tank Drive
-    Robot.ChassisSubsystem.leftside.set(leftMotorControl);
-    Robot.ChassisSubsystem.rightside.set(rightMotorControl);
+    //set up tank Drive, half speed due to fast chassis
+    Robot.ChassisSubsystem.leftside.set(leftMotorControl / 2);
+    Robot.ChassisSubsystem.rightside.set(rightMotorControl / 2);
     
     if(chassisShift)
     {

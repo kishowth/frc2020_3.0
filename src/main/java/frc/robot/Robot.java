@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.Autos.AutoCommand;
+import frc.robot.commands.Autos.Barrie_Autonomous1Command;
+import frc.robot.commands.Autos.Barrie_Autonomous2Command;
 import frc.robot.commands.Autos.NothingAutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,12 +31,15 @@ public class Robot extends TimedRobot {
   public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
   public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
   public static OI m_oi;
 
   Command m_autonomousCommand;
+  Command barrie_autonomous1Command = new Barrie_Autonomous1Command();
+  Command barrie_autonomous2Command = new Barrie_Autonomous2Command();
   Command autoCommand = new AutoCommand();
   Command nothingCommand = new NothingAutoCommand();
-  SendableChooser<Command> m_chooser = new SendableChooser<>(); 
+  SendableChooser<Command> m_chooser = new SendableChooser<>();  
 
   //robot's initialization
   @Override
@@ -53,13 +58,19 @@ public class Robot extends TimedRobot {
     //initialize pixy
     Pixy2Camera.init();
 
+    //instantiate OI
     m_oi = new OI();
 
     //listing all autonomous options on dashboard
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    m_chooser.addOption("Auto 1", new AutoCommand());
+
     m_chooser.addOption("NO AUTO", new NothingAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+
+    m_chooser.addOption("AUTO 1", new Barrie_Autonomous1Command());
+    m_chooser.addOption("AUTO 2", new Barrie_Autonomous2Command());
+    m_chooser.addOption("Auto 3", new AutoCommand());
+
+    SmartDashboard.putData("Select Autonomous", m_chooser);
     
   }
 
@@ -83,19 +94,28 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
-  //m_autonomousCommand = m_chooser.getSelected();
+    //m_autonomousCommand = m_chooser.getSelected();
+    barrie_autonomous1Command = m_chooser.getSelected();
+    barrie_autonomous2Command = m_chooser.getSelected();
     autoCommand = new AutoCommand();
     
     autoCommand.start();
 
-    String autoselector = SmartDashboard.getString("Auto Selector", "Auto 1");
+    String autoselector = SmartDashboard.getString("Auto Selector", "Default");
     
     switch(autoselector)
     {
       case "auto 1": nothingCommand = new NothingAutoCommand();
+        break;  
+      
+      case "AUTO 1" : barrie_autonomous1Command = new Barrie_Autonomous1Command();
+        break;
+      
+      case "AUTO 2" : barrie_autonomous2Command = new Barrie_Autonomous2Command();
         break;
 
     }
+    m_chooser.getSelected().start();
     
     
 

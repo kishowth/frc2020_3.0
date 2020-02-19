@@ -43,6 +43,13 @@ public class ShooterSubsystem extends Subsystem {
     RIGHT_SHOOTER_2.set(speed);
   }
 
+  public void allShooterMotors(double speed)
+  {
+    LEFT_SHOOTER_1.set(-speed);
+    LEFT_SHOOTER_2.set(-speed);
+    RIGHT_SHOOTER_1.set(-speed);
+    RIGHT_SHOOTER_2.set(speed);
+  }
 
 
 

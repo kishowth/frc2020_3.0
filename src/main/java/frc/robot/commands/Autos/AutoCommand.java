@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoCommand extends CommandGroup {
   /**
-   * Add your docs here.
+   * TEST COMMAND
    */
   public AutoCommand() {
     
