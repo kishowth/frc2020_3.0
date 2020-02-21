@@ -28,7 +28,7 @@ public class DriveToDistanceCommand extends Command {
   } 
 
   double requiredDistance = 30; //inches
-  double encoderCount;
+  double encoderCountOnStart;
   
 
   // Called repeatedly when this Command is scheduled to run
