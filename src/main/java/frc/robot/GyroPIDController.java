@@ -18,9 +18,14 @@ public class GyroPIDController {
 
     
     
-    static double desiredAngle;
+    private double desiredAngle;
 
-    public static void adjustDirectionStep() 
+    public void setDesiredAngle(double newAngle)
+    {
+        this.desiredAngle = newAngle;
+    }
+
+    public void adjustDirectionStep() 
     {
         double error = getError();
         //System.out.println("error = " + error);
@@ -66,7 +71,9 @@ public class GyroPIDController {
         SmartDashboard.putNumber("Final Right Speed", newrightSpeed);
     }
 
-    public static double getRightAdjustment(double errorAngle) 
+
+    
+    private double getRightAdjustment(double errorAngle) 
     {
 
         double rightadj = 0;
@@ -80,7 +87,7 @@ public class GyroPIDController {
     }
 
     // positive output
-    public static double getLeftAdjustment(double errorAngle) 
+    private double getLeftAdjustment(double errorAngle) 
     {
         double leftAdj = 0;
 
@@ -92,31 +99,16 @@ public class GyroPIDController {
         return leftAdj; // return as +
     }
 
-    public static double getError() 
+    private double getError() 
     {
         double currentAngle = Robot.ChassisSubsystem.getrobotAngle();
         double error = currentAngle - desiredAngle;
         return error;
     }
 
-    public static double calcPValue(double error)
+    private double calcPValue(double error)
     {
         return error * RobotConstants.GYRO_PID_P;
-    }
-
-    public double clampAngle(double angle)
-    {
-        if (angle > 180.0)  
-        { 
-            angle -= 360.0; 
-        }
-
-        if (angle > -180.0) 
-        {
-            angle += 360.0;
-        }
-
-    return angle;
     }
 
   }
