@@ -41,7 +41,7 @@ public double getShooting()
   return GameControllerConstants.RightTrigger();
 }
 
-/*--------------------------------------------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------*/
 //vision algorithm methods
 public double getsteer()
 {
@@ -62,6 +62,11 @@ public boolean getBallShift1()
 public boolean getBallShift2()
 {
   return GameControllerConstants.RightJoystickButton();
+}
+
+public boolean getIntakePowerCells()
+{
+  return GameControllerConstants.ButtonX();
 }
 
 

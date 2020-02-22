@@ -54,7 +54,7 @@ public class AutoCommand extends CommandGroup {
 
 
     addSequential(new StraightLineAuto(25));
-    addSequential(new TurnToAngleCommand(90));
+    addSequential(new TurnCommand(90));
 
 
 

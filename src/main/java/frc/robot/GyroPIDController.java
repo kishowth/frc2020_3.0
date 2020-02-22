@@ -17,8 +17,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GyroPIDController {
 
     
-    
+    //Gyro Controller PID constants
+    private final double GYRO_PID_P = 0.05;
+    private final double DEAD_ZONE = 1; 
     private double desiredAngle;
+
+
 
     public void setDesiredAngle(double newAngle)
     {
@@ -79,7 +83,7 @@ public class GyroPIDController {
         double rightadj = 0;
 
         // Slow down one motor based on the error.
-        if (errorAngle > RobotConstants.DEAD_ZONE) {
+        if (errorAngle > DEAD_ZONE) {
             rightadj = calcPValue(errorAngle);
         }
 
@@ -92,7 +96,7 @@ public class GyroPIDController {
         double leftAdj = 0;
 
         // Slow down one motor based on the error.
-        if (errorAngle < -RobotConstants.DEAD_ZONE) {
+        if (errorAngle < -DEAD_ZONE) {
             leftAdj = -calcPValue(errorAngle);
         }
 
@@ -108,7 +112,7 @@ public class GyroPIDController {
 
     private double calcPValue(double error)
     {
-        return error * RobotConstants.GYRO_PID_P;
+        return error * GYRO_PID_P;
     }
 
   }

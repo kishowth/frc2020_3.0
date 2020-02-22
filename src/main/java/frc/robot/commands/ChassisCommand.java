@@ -43,19 +43,20 @@ public class ChassisCommand extends Command {
     //set up tank Drive, half speed due to fast chassis
     Robot.ChassisSubsystem.leftside.set(leftMotorControl / 2);
     Robot.ChassisSubsystem.rightside.set(rightMotorControl / 2);
+
     
-    // if(chassisShift)
-    // {
-    //   Robot.ChassisSubsystem.shiftToFast();
-    // }
-    // else if (chassisShift2)
-    // {
-    //   Robot.ChassisSubsystem.shiftToSlow();
-    // }
-    // else 
-    // {
-    //   Robot.ChassisSubsystem.leaveShifterState();
-    // }
+    if(chassisShift)
+    {
+      Robot.ChassisSubsystem.shiftToFast();
+    }
+    else if (chassisShift2)
+    {
+      Robot.ChassisSubsystem.shiftToSlow();
+    }
+    else 
+    {
+      Robot.ChassisSubsystem.leaveShifterState();
+    }
 
 
 
@@ -103,13 +104,13 @@ public class ChassisCommand extends Command {
   //   /*-----------------------------------------------------------------------------------------------------*/
 
 
-  //    if (Robot.ChassisSubsystem.ultValues() == 4.0) {
-  //     desiredValue = true;
-  //   }
-  //   else {
-  //     desiredValue = false;
-  //   }
-  //   SmartDashboard.putBoolean("desired", desiredValue);
+     if (Robot.ChassisSubsystem.ultValues() == 4.0) {
+      desiredValue = true;
+    }
+    else {
+      desiredValue = false;
+    }
+    SmartDashboard.putBoolean("desired", desiredValue);
 
   //   /*-----------------------------------------------------------------------------------------------------*/
 

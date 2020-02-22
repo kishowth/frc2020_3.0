@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class TurnToAngleCommand extends Command {
+public class TurnCommand extends Command {
 
-  public TurnToAngleCommand(double angle) 
+  public TurnCommand(double angle) 
   {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ChassisSubsystem);

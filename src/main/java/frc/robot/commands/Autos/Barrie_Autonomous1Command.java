@@ -19,7 +19,7 @@ public class Barrie_Autonomous1Command extends CommandGroup {
 
     addSequential(new ShootIntoPortCommand());
     addSequential(new StraightLineAuto(10));
-    addSequential(new TurnToAngleCommand(180));
+    addSequential(new TurnCommand(180));
 
     
    

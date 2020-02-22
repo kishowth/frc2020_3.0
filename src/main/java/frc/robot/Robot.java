@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.subsystems.ChassisSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 //import frc.robot.subsystems.ColourWheelArmSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
   //public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   public static OI m_oi;
 
@@ -58,7 +60,7 @@ public class Robot extends TimedRobot {
   
 
     //start Compressor
-   // Robot.ChassisSubsystem.compressor.start();
+    Robot.ChassisSubsystem.compressor.start();
 
     //reset gyro
     Robot.ChassisSubsystem.resetGyro();
@@ -76,15 +78,14 @@ public class Robot extends TimedRobot {
     //listing all autonomous options on dashboard
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
 
-    m_chooser.addDefault("NO AUTO", new NothingAutoCommand());
+    m_chooser.setDefaultOption("NO AUTO", new NothingAutoCommand());
 
-    m_chooser.addObject("AUTO 1", new Barrie_Autonomous1Command());
-    m_chooser.addObject("AUTO 2", new Barrie_Autonomous2Command());
-    m_chooser.addObject("Auto 3", new AutoCommand());
+    m_chooser.addOption("AUTO 1", new Barrie_Autonomous1Command());
+    m_chooser.addOption("AUTO 2", new Barrie_Autonomous2Command());
+    m_chooser.addOption("Auto 3", new AutoCommand());
 
     SmartDashboard.putData("Auto Mode", m_chooser);
 
-    
     
   }
 
@@ -112,23 +113,6 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_chooser.getSelected();
 
 
-    String autoselector = SmartDashboard.getString("Select Autonomous", "Default");
-
-
-
-    
-    switch(autoselector)
-    {
-      case "auto 1": nothingCommand = new NothingAutoCommand();
-        break;  
-      
-      case "AUTO 1" : barrie_autonomous1Command = new Barrie_Autonomous1Command();
-        break;
-      
-      case "AUTO 2" : barrie_autonomous2Command = new Barrie_Autonomous2Command();
-        break;
-
-    }
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();

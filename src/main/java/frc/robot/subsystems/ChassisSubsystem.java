@@ -39,39 +39,39 @@ public class ChassisSubsystem extends Subsystem {
   private AHRS gyro = new AHRS(RobotMap.gyro);
 
   //chassis motor instantiations
-  private VictorSP left1 = new VictorSP(RobotMap.leftBackMotor);
-  private VictorSP left2 = new VictorSP(RobotMap.leftFrontMotor);
-  private VictorSP right1 = new VictorSP(RobotMap.rightBackMotor);
-  private VictorSP right2 = new VictorSP(RobotMap.rightFrontMotor);  
+  private Spark left1 = new Spark(RobotMap.leftBackMotor);
+  private Spark left2 = new Spark(RobotMap.leftFrontMotor);
+  private Spark right1 = new Spark(RobotMap.rightBackMotor);
+  private Spark right2 = new Spark(RobotMap.rightFrontMotor);  
 
   //Ball shifters
-  //DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
-  //DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.rightDriveShifterA, RobotMap.rightDriveShifterB);
+  DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
+  DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.rightDriveShifterA, RobotMap.rightDriveShifterB);
 
   //compressor
-  //public Compressor compressor = new Compressor();
+  public Compressor compressor = new Compressor();
   
-  //when piston is pushed out, robot is on low gear
-  //when piston is retracted, robot is on high gear
+  // when piston is pushed out, robot is on low gear
+  // when piston is retracted, robot is on high gear
 
-  // public void shiftToSlow()
-  // {
-  //   leftshifter.set(Value.kForward);
-  //   rightShifter.set(Value.kForward);
-  // }
+  public void shiftToSlow()
+  {
+    leftshifter.set(Value.kForward);
+    rightShifter.set(Value.kForward);
+  }
 
-  // public void shiftToFast()
-  // {
-  //   leftshifter.set(Value.kReverse);
-  //   rightShifter.set(Value.kReverse);
-  // }
+  public void shiftToFast()
+  {
+    leftshifter.set(Value.kReverse);
+    rightShifter.set(Value.kReverse);
+  }
 
-  // public void leaveShifterState()
-  // {
-  //   leftshifter.set(Value.kOff);
-  //   rightShifter.set(Value.kOff);
+  public void leaveShifterState()
+  {
+    leftshifter.set(Value.kOff);
+    rightShifter.set(Value.kOff);
     
-  // }
+  }
 
   //grouping motor controllers
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);

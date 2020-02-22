@@ -38,7 +38,6 @@ public class StraightLineAuto extends Command {
 
     //stating variables to use in autonomous
     odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
-    targetinInches = 5000;
 
     pidController.setDesiredAngle(Robot.ChassisSubsystem.getrobotAngle());
   }
@@ -48,7 +47,6 @@ public class StraightLineAuto extends Command {
   double targetinInches;
   double odometerOnStart;
   double desiredAngle; 
-
 
   //Called repeatedly when this Command is scheduled to run
   @Override
