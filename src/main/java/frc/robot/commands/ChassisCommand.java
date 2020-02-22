@@ -44,18 +44,18 @@ public class ChassisCommand extends Command {
     Robot.ChassisSubsystem.leftside.set(leftMotorControl / 2);
     Robot.ChassisSubsystem.rightside.set(rightMotorControl / 2);
     
-    if(chassisShift)
-    {
-      Robot.ChassisSubsystem.shiftToFast();
-    }
-    else if (chassisShift2)
-    {
-      Robot.ChassisSubsystem.shiftToSlow();
-    }
-    else 
-    {
-      Robot.ChassisSubsystem.leaveShifterState();
-    }
+    // if(chassisShift)
+    // {
+    //   Robot.ChassisSubsystem.shiftToFast();
+    // }
+    // else if (chassisShift2)
+    // {
+    //   Robot.ChassisSubsystem.shiftToSlow();
+    // }
+    // else 
+    // {
+    //   Robot.ChassisSubsystem.leaveShifterState();
+    // }
 
 
 

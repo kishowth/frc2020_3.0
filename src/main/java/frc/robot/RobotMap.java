@@ -14,6 +14,17 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
 
 public class RobotMap {
 
+  /*
+   * Different Robot Mechanisms
+   * 
+   * -->Chassis: 4 neos
+   * -->Intake: 1 775Pro
+   * -->Storage System: 2 775Pros
+   * -->Shooter: 4 775Pros 
+   * -->Spin mech: 1 775Pro
+   * -->climb: 2 775Pros
+   */
+
   //PCM Ports
   public static int leftDriveShifterA = 0;
   public static int leftDriveShifterB = 1;
@@ -21,20 +32,35 @@ public class RobotMap {
   public static int rightDriveShifterB = 3;
 
   //PWM Ports
+
+  //DriveTrain
   public static int leftBackMotor = 0;
   public static int leftFrontMotor = 1;
   public static int rightBackMotor = 2;
   public static int rightFrontMotor = 3;
-  
+
+  //Intake 
+  public static int intakeMotor = 10;
+
+  //Storage 
+  public static int upperStorageMotor = 11;
+  public static int lowerStorageMotor = 12;
+
+  //Climb
+  public static int leftClimbArm = 13;
+  public static int rightClimbArm = 14;
+
+  //Colour wheel mech
   public static int colourMech = 4;
 
+  //shooter Motors
   public static int leftFrontShooterMotor = 6;
   public static int leftBackShooterMotor = 7;
-  public static int rightFrontShooterMotor = 8 ;
+  public static int rightFrontShooterMotor = 8;
   public static int rightBackShooterMotor = 9;
   
 
-  // Analog and digital ports
+  //Analog and digital ports
   public static int ultrasonicSensor = 0;
   public static int leftDtEncoderA = 2;
   public static int leftDtEncoderB = 3;
@@ -43,9 +69,10 @@ public class RobotMap {
   public static int colourWheelEncoderA = 5;
   public static int colourWheelEncoderB = 6;
 
-  // other ports
-  public static I2C.Port i2cPort = I2C.Port.kOnboard; 
+  //other ports 
+  public static I2C.Port colourSensor = I2C.Port.kOnboard; 
   public static Port gyro = SerialPort.Port.kMXP;
+
 
 
 

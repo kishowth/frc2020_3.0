@@ -7,6 +7,10 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.Autos.AutoCommand;
@@ -16,20 +20,21 @@ import frc.robot.commands.Autos.NothingAutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.subsystems.ChassisSubsystem;
-import frc.robot.subsystems.ColourWheelArmSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
+//import frc.robot.subsystems.ColourWheelArmSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 
 public class Robot extends TimedRobot {
+
+
+
   
   public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
-  public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
+  //public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
   public static OI m_oi;
@@ -41,12 +46,19 @@ public class Robot extends TimedRobot {
   Command nothingCommand = new NothingAutoCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>();  
 
+
+
+
+
+
+
   //robot's initialization
   @Override
   public void robotInit() {
+  
 
     //start Compressor
-    Robot.ChassisSubsystem.compressor.start();
+   // Robot.ChassisSubsystem.compressor.start();
 
     //reset gyro
     Robot.ChassisSubsystem.resetGyro();
@@ -62,15 +74,17 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
 
     //listing all autonomous options on dashboard
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
 
-    m_chooser.addOption("NO AUTO", new NothingAutoCommand());
+    m_chooser.addDefault("NO AUTO", new NothingAutoCommand());
 
-    m_chooser.addOption("AUTO 1", new Barrie_Autonomous1Command());
-    m_chooser.addOption("AUTO 2", new Barrie_Autonomous2Command());
-    m_chooser.addOption("Auto 3", new AutoCommand());
+    m_chooser.addObject("AUTO 1", new Barrie_Autonomous1Command());
+    m_chooser.addObject("AUTO 2", new Barrie_Autonomous2Command());
+    m_chooser.addObject("Auto 3", new AutoCommand());
 
-    SmartDashboard.putData("Select Autonomous", m_chooser);
+    SmartDashboard.putData("Auto Mode", m_chooser);
+
+    
     
   }
 
@@ -94,14 +108,14 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_chooser.getSelected();
-    barrie_autonomous1Command = m_chooser.getSelected();
-    barrie_autonomous2Command = m_chooser.getSelected();
-    autoCommand = new AutoCommand();
     
-    autoCommand.start();
+    m_autonomousCommand = m_chooser.getSelected();
 
-    String autoselector = SmartDashboard.getString("Auto Selector", "Default");
+
+    String autoselector = SmartDashboard.getString("Select Autonomous", "Default");
+
+
+
     
     switch(autoselector)
     {
@@ -115,7 +129,11 @@ public class Robot extends TimedRobot {
         break;
 
     }
-    m_chooser.getSelected().start();
+
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.start();
+  }
+    
     
     
 
