@@ -14,7 +14,7 @@ import frc.robot.Robot;
 
 public class StraightLineAuto extends Command {
 
-
+  GyroPIDController pidController = new GyroPIDController();
 
   public StraightLineAuto(double driveToDistance) {
     // Use requires() here to declare subsystem dependencies
@@ -38,9 +38,9 @@ public class StraightLineAuto extends Command {
 
     //stating variables to use in autonomous
     odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
-    desiredAngle = Robot.ChassisSubsystem.getrobotAngle();
-
     targetinInches = 5000;
+
+    pidController.setDesiredAngle(Robot.ChassisSubsystem.getrobotAngle());
   }
   
 
@@ -80,10 +80,7 @@ public class StraightLineAuto extends Command {
 
     
     //auto adjust the Robot Chassis using the gyro controller so the robot is going in a straight line 
-     GyroPIDController.adjustDirectionStep();
-
-     //adjustDirectionStep();
-
+    pidController.adjustDirectionStep();
   }
 
   // Make this return true when this Command no longer needs to run execute()
