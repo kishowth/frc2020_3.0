@@ -25,11 +25,21 @@ public class IntakeCommand extends Command {
   @Override
   protected void execute() 
   {
-    boolean getBall = Robot.m_oi.getFindPowerCells();
+    boolean getBall = Robot.m_oi.getIntakePowerCells();
+    boolean outakeBall = Robot.m_oi.getIntakeOUT();
 
     if (getBall)
     {
-      Robot.intakeSubsystem.ballIntake(0.2);
+      Robot.intakeSubsystem.ballIntake(1);
+    }
+
+    else if (outakeBall)
+    {
+      Robot.intakeSubsystem.ballIntake(-1);
+    }
+    else
+    {
+      Robot.intakeSubsystem.ballIntake(0);
     }
 
 

@@ -22,7 +22,7 @@ public class IntakeSubsystem extends Subsystem {
 
   public void ballIntake(double speed)
   {
-    intake.set(speed);
+    intake.set(-speed);
   }
 
   @Override

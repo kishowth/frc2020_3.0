@@ -68,6 +68,10 @@ public boolean getIntakePowerCells()
 {
   return GameControllerConstants.ButtonX();
 }
+public boolean getIntakeOUT()
+{
+  return GameControllerConstants.ButtonA();
+}
 
 
 

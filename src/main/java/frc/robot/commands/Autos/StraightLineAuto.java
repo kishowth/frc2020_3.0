@@ -19,7 +19,7 @@ public class StraightLineAuto extends Command {
   public StraightLineAuto(double driveToDistance) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ChassisSubsystem);
-    driveToDistance = targetinInches;
+    targetinInches = driveToDistance;
 
     //in this command, it uses targetInInches as its 'distance', so by making the variable 
     //driveToDistance = targetInInches, whatever number is inputted in the parenthesis of 
