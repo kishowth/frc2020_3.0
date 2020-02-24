@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
@@ -42,12 +43,27 @@ public class ChassisSubsystem extends Subsystem {
   private Spark left1 = new Spark(RobotMap.leftBackMotor);
   private Spark left2 = new Spark(RobotMap.leftFrontMotor);
   private Spark right1 = new Spark(RobotMap.rightBackMotor);
-  private Spark right2 = new Spark(RobotMap.rightFrontMotor);  
+  private Spark right2 = new Spark(RobotMap.rightFrontMotor); 
+
+  //inversions
+  public ChassisSubsystem()
+  {
+    left1.setInverted(false);
+    left2.setInverted(false);
+    right1.setInverted(false);
+    right2.setInverted(false);
+  }
 
   //Ball shifters
   DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
   DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.rightDriveShifterA, RobotMap.rightDriveShifterB);
 
+
+  //grouping motor controllers
+  public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
+  public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2); 
+
+  public DifferentialDrive m_drive = new DifferentialDrive(leftside, rightside);
   //compressor
   public Compressor compressor = new Compressor();
   
@@ -71,18 +87,6 @@ public class ChassisSubsystem extends Subsystem {
     leftshifter.set(Value.kOff);
     rightShifter.set(Value.kOff);
     
-  }
-
-  //grouping motor controllers
-  public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
-  public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2); 
-
-  //setting up a differential drive
-  //public DifferentialDrive m_Drive = new DifferentialDrive(rightside, leftside);  
-
-  public void tankDrive(double speed){
-    leftside.set(speed);
-    rightside.set(speed);
   }
 
 

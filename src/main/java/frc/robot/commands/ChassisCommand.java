@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.GameControllerConstants;
@@ -25,6 +24,11 @@ public class ChassisCommand extends Command {
   protected void initialize() {}
 
   boolean desiredValue = false;
+  String defaultAuto = "DO NOTHING!!";
+  String autoInfo1 = "Auto 1 : Shoot 3 balls and move back";
+  String autoInfo2 = "Auto 2 : Move the Robot away from starting line";
+  String autoInfo3 = "Auto 3 : Just don't use it, it is a testing interface";
+
 
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -59,13 +63,11 @@ public class ChassisCommand extends Command {
     }
 
 
-
-
-
-
-
-
-
+    //message to drivers about various autons 
+    SmartDashboard.putString("AUTON INFORMATION: ", defaultAuto);
+    SmartDashboard.putString("AUTON INFORMATION: ", autoInfo1);
+    SmartDashboard.putString("AUTON INFORMATION: ", autoInfo2);
+    SmartDashboard.putString("AUTON INFORMATION: ", autoInfo3);
 
 
     

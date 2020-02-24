@@ -15,6 +15,7 @@ public class VisionCommand extends Command {
   public VisionCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.VisionSubsystem);
+    
   }
 
   // Called just before this Command runs the first time
@@ -28,38 +29,33 @@ public class VisionCommand extends Command {
 
     Robot.VisionSubsystem.Update_Limelight_Tracking();
 
-    boolean autoAlign = Robot.m_oi.getAuto();
-    boolean lightsOn = Robot.m_oi.LimelightON();
+    boolean autoAlign = Robot.m_oi.getShooterAutoAlign();
     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
     double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
 
 
-   
+    //Vision alignment
 
-    // if (autoAlign) {
+    if (autoAlign) 
+    {
 
-    //   if (Robot.VisionSubsystem.m_LimelightHasValidTarget) {
-    //     Robot.ChassisSubsystem.m_Drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand,
-    //         Robot.VisionSubsystem.m_LimelightSteerCommand);
-    //         Robot.VisionSubsystem.forceOn();
-    //   } else {
-    //     Robot.ChassisSubsystem.m_Drive.arcadeDrive(0.0, 0.0);
-    //   }
-    // }
+      if (Robot.VisionSubsystem.m_LimelightHasValidTarget) 
+        {
+        Robot.VisionSubsystem.forceOn();
+        Robot.ChassisSubsystem.m_drive.arcadeDrive(Robot.VisionSubsystem.m_LimelightDriveCommand, Robot.VisionSubsystem.m_LimelightSteerCommand);
+        } 
+        else 
+        {
+        Robot.ChassisSubsystem.m_drive.arcadeDrive(0.0, 0.0);
+        }
+    }
 
     
-    // else {
-    //   //Robot.ChassisSubsystem.m_Drive.tankDrive(-leftDriveSpeed, -rightDriveSpeed);
-    // }
+    else {
+      Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed, -rightDriveSpeed);
+         }
 
 
-    // //LIMELIGHT LED CONTROL
-    // if (lightsOn) {
-    //   Robot.VisionSubsystem.forceOn();
-    // }
-    // else{
-    //   Robot.VisionSubsystem.forceOff();
-    // }
   }
 
   // Make this return true when this Command no longer needs to run execute()

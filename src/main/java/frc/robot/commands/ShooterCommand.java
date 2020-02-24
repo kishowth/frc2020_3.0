@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 
@@ -23,12 +24,20 @@ public class ShooterCommand extends Command {
   }
 
   // Called repeatedly when this Command is scheduled to run
+
+  double speed1 = Robot.shooterSubsystem.shooterSpeed1();
+  double speed2 = Robot.shooterSubsystem.shooterSpeed2();
+  double speed3 = Robot.shooterSubsystem.shooterSpeed3();
+  double speed4 = Robot.shooterSubsystem.shooterSpeed4();
+
+  double totalSpeed = speed1 + speed2 + speed3 + speed4;
+
   @Override
   protected void execute() {
 
-    double shoot = Robot.m_oi.getShooting();
+    double shoot = Robot.m_oi.getShooterOuttake();
 
-    if( shoot > 0)
+    if(shoot > 0)
     {
       Robot.shooterSubsystem.leftShooterActivate(1);
       Robot.shooterSubsystem.rightShooterActivate(1);
@@ -41,11 +50,11 @@ public class ShooterCommand extends Command {
       Robot.shooterSubsystem.rightShooterActivate(0);
       Robot.shooterSubsystem.left2ShooterActivate(0);
       Robot.shooterSubsystem.right2ShooterActivate(0);
-    }
+    } 
 
+    
 
-
-
+    SmartDashboard.putNumber("Shooter Speed: ", totalSpeed);
 
 
 

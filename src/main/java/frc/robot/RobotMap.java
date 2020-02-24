@@ -43,8 +43,8 @@ public class RobotMap {
   public static int intakeMotor = 10;
 
   //Storage 
-  public static int upperStorageMotor = 11;
-  public static int lowerStorageMotor = 12;
+  public static int horizontalStorageMotor = 11;
+  public static int driverWheelMotor = 12;
 
   //Climb
   public static int leftClimbArm = 13;

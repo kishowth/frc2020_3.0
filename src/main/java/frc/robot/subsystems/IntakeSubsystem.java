@@ -20,9 +20,14 @@ public class IntakeSubsystem extends Subsystem {
 
   private VictorSP intake = new VictorSP(RobotMap.intakeMotor);
 
+  public IntakeSubsystem()
+  {
+    intake.setInverted(true);
+  }
+
   public void ballIntake(double speed)
   {
-    intake.set(-speed);
+    intake.set(speed);
   }
 
   @Override

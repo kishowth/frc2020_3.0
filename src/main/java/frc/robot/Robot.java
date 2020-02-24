@@ -11,6 +11,7 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.cscore.CameraServerCvJNI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.Autos.AutoCommand;
@@ -20,11 +21,11 @@ import frc.robot.commands.Autos.NothingAutoCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 //import frc.robot.subsystems.ColourWheelArmSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 
@@ -38,19 +39,17 @@ public class Robot extends TimedRobot {
   //public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-
+  public static StorageSubsystem storageSubsystem = new StorageSubsystem();
   public static OI m_oi;
 
-  Command m_autonomousCommand;
+  Command selected_autonomous;
   Command barrie_autonomous1Command = new Barrie_Autonomous1Command();
   Command barrie_autonomous2Command = new Barrie_Autonomous2Command();
   Command autoCommand = new AutoCommand();
   Command nothingCommand = new NothingAutoCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>();  
 
-
-
-
+  
 
 
 
@@ -76,8 +75,6 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
 
     //listing all autonomous options on dashboard
-    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-
     m_chooser.setDefaultOption("NO AUTO", new NothingAutoCommand());
 
     m_chooser.addOption("AUTO 1", new Barrie_Autonomous1Command());
@@ -110,12 +107,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     
-    m_autonomousCommand = m_chooser.getSelected();
+    selected_autonomous = m_chooser.getSelected();
 
 
 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    if (selected_autonomous != null) {
+      selected_autonomous.start();
   }
     
     
@@ -133,7 +130,6 @@ public class Robot extends TimedRobot {
      * }
      */
 
-    // schedule the autonomous command (example)
     
   }
 
@@ -152,8 +148,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (selected_autonomous != null) {
+      selected_autonomous.cancel();
     }
   }
 

@@ -7,9 +7,11 @@
 
 package frc.robot;
 
-import frc.robot.GameControllerConstants;;
+import frc.robot.GameControllerConstants;
 
 public class OI {
+
+//Driver bindings
 
 //chassis bindings
 public double getLeftDriveSpeed()
@@ -20,40 +22,8 @@ public double getRightDriveSpeed()
 {
   return GameControllerConstants.RIGHT_JOYSTICK_Y();
 }
-//vision Auto-Alignment Binding
-public boolean getAuto()
-{
-  return GameControllerConstants.ButtonA();
-}
-//For pixy
-public boolean getFindPowerCells()
-{
-  return GameControllerConstants.ButtonY();
-}
-//LED control
-public boolean LimelightON()
-{
-  return GameControllerConstants.ButtonB();
-}
 
-public double getShooting()
-{
-  return GameControllerConstants.RightTrigger();
-}
-
-/*---------------------------------------------------------------------------------------------*/
-//vision algorithm methods
-public double getsteer()
-{
-  return GameControllerConstants.functionOfX();
-}
-
-public double getDrive()
-{
-  return GameControllerConstants.functionOfY();
-} 
-
-
+//shifters
 public boolean getBallShift1()
 {
   return GameControllerConstants.LeftJoystickButton();
@@ -64,14 +34,87 @@ public boolean getBallShift2()
   return GameControllerConstants.RightJoystickButton();
 }
 
-public boolean getIntakePowerCells()
+//Intake 
+public double getIntakeInput()
 {
-  return GameControllerConstants.ButtonX();
+  return GameControllerConstants.RightTrigger();
 }
-public boolean getIntakeOUT()
+
+public double getIntakeOutput()
 {
-  return GameControllerConstants.ButtonA();
+  return GameControllerConstants.LeftTrigger();
 }
+
+//Pixy Ball Tracking
+
+public boolean getPixyTracking()
+{
+  return GameControllerConstants.RightBumper();
+}
+
+
+
+//OPERATOR 
+
+//shooter
+public double getShooterOuttake()
+{
+  return GameControllerConstants.oprRightTrigger();
+}
+
+//climb
+public boolean getClimbDeploy()
+{
+  return GameControllerConstants.oprRightBumper();
+}
+
+public boolean getClimbLift()
+{
+  return GameControllerConstants.oprLeftBumper();
+}
+
+//Limelight Auto-align
+public boolean getShooterAutoAlign()
+{
+  return GameControllerConstants.oprButtonA();
+} 
+
+//Storage
+public boolean getHorizontalStorageSystem()
+{
+  return GameControllerConstants.oprButtonX();
+}
+
+public boolean getVerticalStorageSystem()
+{
+  return GameControllerConstants.oprButtonY();
+}
+
+public boolean getSynchronizedStorageSystem()
+{
+  return GameControllerConstants.ButtonB();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -99,12 +99,12 @@ public class VisionSubsystem extends Subsystem {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_OFF);
     }
 
-  public  boolean forceBlink()
+  public boolean forceBlink()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_BLINK);
     }
 
-  public  boolean forceOn()
+  public boolean forceOn()
     {
       return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_ON);
     }

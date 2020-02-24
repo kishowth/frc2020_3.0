@@ -8,11 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class StorageCommand extends Command {
   public StorageCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.storageSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -22,7 +23,28 @@ public class StorageCommand extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() 
+  {
+    boolean ballInput = Robot.m_oi.getHorizontalStorageSystem();
+    boolean momentum = Robot.m_oi.getVerticalStorageSystem();
+
+
+    if (ballInput)
+    {
+      Robot.storageSubsystem.storePowerCells(0.5);
+    }
+    else if (momentum)
+    {
+      Robot.storageSubsystem.feedPowerCellsIntoShooter(0.5);
+    }
+    else
+    {
+      Robot.storageSubsystem.storePowerCells(0.0);
+      Robot.storageSubsystem.feedPowerCellsIntoShooter(0.0);
+    }
+    
+
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
