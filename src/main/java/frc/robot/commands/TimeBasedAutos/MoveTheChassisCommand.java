@@ -5,36 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Autos;
+package frc.robot.commands.TimeBasedAutos;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootIntoPortCommand extends Command {
-  public ShootIntoPortCommand() {
+public class MoveTheChassisCommand extends Command {
+  public MoveTheChassisCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.shooterSubsystem);
+      requires(Robot.ChassisSubsystem);
+
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-    setTimeout(8);
+  protected void initialize() 
+  {
+    setTimeout(3);
   }
+
+
+
+
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-
-   Robot.shooterSubsystem.leftShooterActivate(1);
-   Robot.shooterSubsystem.rightShooterActivate(1);
-
+  protected void execute() 
+  {
+    Robot.ChassisSubsystem.leftside.set(0.2);
+    Robot.ChassisSubsystem.leftside.set(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true

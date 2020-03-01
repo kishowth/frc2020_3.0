@@ -5,29 +5,33 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.Autos;
+package frc.robot.commands.TimeBasedAutos;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootIntoPortCommand extends Command {
-  public ShootIntoPortCommand() {
+public class ShooterSpinningCommand extends Command {
+  public ShooterSpinningCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.shooterSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-    setTimeout(8);
+  protected void initialize() 
+  {
+    setTimeout(14);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() 
+  {
+    Robot.shooterSubsystem.leftShooterActivate(1);
+    Robot.shooterSubsystem.rightShooterActivate(1);
+    
 
-   Robot.shooterSubsystem.leftShooterActivate(1);
-   Robot.shooterSubsystem.rightShooterActivate(1);
 
   }
 

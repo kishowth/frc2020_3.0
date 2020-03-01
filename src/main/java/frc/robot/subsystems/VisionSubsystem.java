@@ -38,12 +38,6 @@ public class VisionSubsystem extends Subsystem {
     final double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
     final double ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
     final double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
-
-    // SmartDashboard.putNumber("limelightX", tx);   
-    // SmartDashboard.putNumber("limelightY", ty);   
-    // SmartDashboard.putNumber("limelightv", tv);   
-    // SmartDashboard.putNumber("limelightArea", ta);   
-
     
 
     if (tv < 1.0)

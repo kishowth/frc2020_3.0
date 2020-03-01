@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -17,63 +18,28 @@ import frc.robot.commands.ShooterCommand;
  */
 public class ShooterSubsystem extends Subsystem {
   
-  private VictorSP LEFT_SHOOTER_1 = new VictorSP(RobotMap.leftBackShooterMotor);
-  private VictorSP LEFT_SHOOTER_2 = new VictorSP(RobotMap.leftFrontShooterMotor);
-  private VictorSP RIGHT_SHOOTER_1 = new VictorSP(RobotMap.rightFrontShooterMotor);
-  private VictorSP RIGHT_SHOOTER_2 = new VictorSP(RobotMap.rightBackShooterMotor);
+  private Spark leftShooter = new Spark(RobotMap.leftShooterMotor);
+  private Spark rightShooter = new Spark(RobotMap.rightShooterMotor);
+
 
   public ShooterSubsystem()
   {
-    LEFT_SHOOTER_1.setInverted(true);
-    LEFT_SHOOTER_2.setInverted(true);
-    RIGHT_SHOOTER_1.setInverted(true);
-    RIGHT_SHOOTER_2.setInverted(false);
-
+    leftShooter.setInverted(false);
+    rightShooter.setInverted(false);
   }
+
+
   public void leftShooterActivate(double speed)
   {
-    LEFT_SHOOTER_1.set(speed);
+    leftShooter.set(speed);
   }
 
   public void rightShooterActivate(double speed)
   {
-    LEFT_SHOOTER_2.set(speed);
+    rightShooter.set(speed);
   }
 
-  public void left2ShooterActivate(double speed)
-  {
-    RIGHT_SHOOTER_1.set(speed);
-  }
 
-  public void right2ShooterActivate(double speed)
-  {
-    RIGHT_SHOOTER_2.set(speed);
-  }
-
-  public void allShooterMotors(double speed)
-  {
-    LEFT_SHOOTER_1.set(speed);
-    LEFT_SHOOTER_2.set(speed);
-    RIGHT_SHOOTER_1.set(speed);
-    RIGHT_SHOOTER_2.set(speed);
-  }
-
-  public double shooterSpeed1()
-  {
-    return LEFT_SHOOTER_1.getSpeed();
-  }
-  public double shooterSpeed2()
-  {
-    return LEFT_SHOOTER_2.getSpeed();
-  }
-  public double shooterSpeed3()
-  {
-    return RIGHT_SHOOTER_1.getSpeed();
-  }
-  public double shooterSpeed4()
-  {
-    return RIGHT_SHOOTER_2.getSpeed();
-  }
 
 
 
