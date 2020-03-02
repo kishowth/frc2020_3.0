@@ -18,6 +18,8 @@ import frc.robot.commands.Autos.AutoCommand;
 import frc.robot.commands.Autos.Barrie_Autonomous1Command;
 import frc.robot.commands.Autos.Barrie_Autonomous2Command;
 import frc.robot.commands.Autos.NothingAutoCommand;
+import frc.robot.commands.TimeBasedAutos.Barrie1_moveAndShoot;
+import frc.robot.commands.TimeBasedAutos.Barrie2_moveAwayFromLineCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -47,6 +49,9 @@ public class Robot extends TimedRobot {
   Command barrie_autonomous2Command = new Barrie_Autonomous2Command();
   Command autoCommand = new AutoCommand();
   Command nothingCommand = new NothingAutoCommand();
+
+  Command defAuto = new Barrie1_moveAndShoot();
+  Command moveAuto = new Barrie2_moveAwayFromLineCommand();
   SendableChooser<Command> m_chooser = new SendableChooser<>();  
 
   
@@ -80,6 +85,9 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("AUTO 1", new Barrie_Autonomous1Command());
     m_chooser.addOption("AUTO 2", new Barrie_Autonomous2Command());
     m_chooser.addOption("Auto 3", new AutoCommand());
+
+    m_chooser.addOption("Def auto",new Barrie1_moveAndShoot());
+    m_chooser.addOption("Simple auto", new Barrie2_moveAwayFromLineCommand());
 
     SmartDashboard.putData("Auto Mode", m_chooser);
 

@@ -24,7 +24,7 @@ public class ShooterSubsystem extends Subsystem {
 
   public ShooterSubsystem()
   {
-    leftShooter.setInverted(false);
+    leftShooter.setInverted(true);
     rightShooter.setInverted(false);
   }
 

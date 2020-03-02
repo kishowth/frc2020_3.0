@@ -62,16 +62,6 @@ public double getShooterOuttake()
   return GameControllerConstants.oprRightTrigger();
 }
 
-//climb
-public boolean getClimbDeploy()
-{
-  return GameControllerConstants.oprRightBumper();
-}
-
-public boolean getClimbLift()
-{
-  return GameControllerConstants.oprLeftBumper();
-}
 
 //Limelight Auto-align
 public boolean getShooterAutoAlign()
@@ -90,10 +80,15 @@ public boolean getVerticalStorageSystem()
   return GameControllerConstants.oprButtonY();
 }
 
-public boolean getSynchronizedStorageSystem()
+public boolean getHorizontalStorageSystem2()
 {
-  return GameControllerConstants.ButtonB();
+  return GameControllerConstants.oprLeftBumper();
 }
+public boolean getVerticalStorageSystem2()
+{
+  return GameControllerConstants.oprRightBumper();
+}
+
 
 
 

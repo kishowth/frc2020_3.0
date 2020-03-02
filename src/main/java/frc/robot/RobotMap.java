@@ -48,8 +48,8 @@ public class RobotMap {
 
 
   //shooter Motors
-  public static int leftShooterMotor = 6;
-  public static int rightShooterMotor = 7;
+  public static int leftShooterMotor = 7;
+  public static int rightShooterMotor = 8;
 
 
   //Colour wheel mech
