@@ -17,9 +17,9 @@ public class Barrie_Autonomous1Command extends CommandGroup {
 
     //For this auto, shoot 3 balls into the goal, and move back. 
 
-    addSequential(new ShootIntoPortCommand());
-    addSequential(new StraightLineAuto(10));
-    addSequential(new TurnCommand(180));
+    // addSequential(new ShootIntoPortCommand());
+    // addSequential(new StraightLineAuto(10));
+    // addSequential(new TurnCommand(180));
 
     
    

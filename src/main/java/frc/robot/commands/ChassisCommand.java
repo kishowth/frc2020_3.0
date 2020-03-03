@@ -35,11 +35,11 @@ public class ChassisCommand extends Command {
   protected void execute() {
 
     //constantly run these functions
-    Robot.ChassisSubsystem.periodicCommands(); 
-    Robot.ChassisSubsystem.chassisSystemDashboard(); 
+    // Robot.ChassisSubsystem.periodicCommands(); 
+    // Robot.ChassisSubsystem.chassisSystemDashboard(); 
 
-    boolean chassisShift = Robot.m_oi.getBallShift1();
-    boolean chassisShift2 = Robot.m_oi.getBallShift2();
+    // boolean chassisShift = Robot.m_oi.getBallShift1();
+    // boolean chassisShift2 = Robot.m_oi.getBallShift2();
 
     double leftMotorControl = Robot.m_oi.getLeftDriveSpeed();
     double rightMotorControl = Robot.m_oi.getRightDriveSpeed();
@@ -49,18 +49,18 @@ public class ChassisCommand extends Command {
     Robot.ChassisSubsystem.rightside.set(-rightMotorControl);
 
     
-    if(chassisShift)
-    {
-      Robot.ChassisSubsystem.shiftToFast();
-    }
-    else if (chassisShift2)
-    {
-      Robot.ChassisSubsystem.shiftToSlow();
-    }
-    else 
-    {
-      Robot.ChassisSubsystem.leaveShifterState();
-    }
+    // if(chassisShift)
+    // {
+    //   Robot.ChassisSubsystem.shiftToFast();
+    // }
+    // else if (chassisShift2)
+    // {
+    //   Robot.ChassisSubsystem.shiftToSlow();
+    // }
+    // else 
+    // {
+    //   Robot.ChassisSubsystem.leaveShifterState();
+    // }
 
 
     //message to drivers about various autons 
@@ -106,13 +106,13 @@ public class ChassisCommand extends Command {
   //   /*-----------------------------------------------------------------------------------------------------*/
 
 
-     if (Robot.ChassisSubsystem.ultValues() == 4.0) {
-      desiredValue = true;
-    }
-    else {
-      desiredValue = false;
-    }
-    SmartDashboard.putBoolean("desired", desiredValue);
+    //  if (Robot.ChassisSubsystem.ultValues() == 4.0) {
+    //   desiredValue = true;
+    // }
+    // else {
+    //   desiredValue = false;
+    // }
+    // SmartDashboard.putBoolean("desired", desiredValue);
 
   //   /*-----------------------------------------------------------------------------------------------------*/
 

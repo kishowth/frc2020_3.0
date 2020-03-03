@@ -52,22 +52,10 @@ public class RobotMap {
   public static int rightShooterMotor = 8;
 
 
-  //Colour wheel mech
-  public static int colourMech = 10;
-
-  //Climb
-  public static int leftClimbArm = 11;
-  public static int rightClimbArm = 12;
   
 
   //---Analog and digital ports----
-  public static int ultrasonicSensor = 0;
-  public static int leftDtEncoderA = 2;
-  public static int leftDtEncoderB = 3;
-  public static int rightDtEncoderA = 0;
-  public static int rightDtEncoderB = 1;
-  public static int colourWheelEncoderA = 5;
-  public static int colourWheelEncoderB = 6;
+
 
   //other ports 
   public static I2C.Port colourSensor = I2C.Port.kOnboard; 

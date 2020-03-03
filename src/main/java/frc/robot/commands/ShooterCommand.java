@@ -38,7 +38,7 @@ public class ShooterCommand extends Command {
     if(shoot > 0)
     {
       Robot.shooterSubsystem.leftShooterActivate(1);
-     // Robot.shooterSubsystem.rightShooterActivate(1);
+      Robot.shooterSubsystem.rightShooterActivate(1);
      
     } 
     else 

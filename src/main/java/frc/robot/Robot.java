@@ -64,17 +64,17 @@ public class Robot extends TimedRobot {
   
 
     //start Compressor
-    Robot.ChassisSubsystem.compressor.start();
+    //Robot.ChassisSubsystem.compressor.start();
 
     //reset gyro
-    Robot.ChassisSubsystem.resetGyro();
+    //Robot.ChassisSubsystem.resetGyro();
 
-    //reset encoders
-    Robot.ChassisSubsystem.leftSideEncoder.reset();
-    Robot.ChassisSubsystem.rightSideEncoder.reset(); 
+    // //reset encoders
+    // Robot.ChassisSubsystem.leftSideEncoder.reset();
+    // Robot.ChassisSubsystem.rightSideEncoder.reset(); 
 
     //initialize pixy
-    Pixy2Camera.init();
+    //Pixy2Camera.init();
 
     //instantiate OI
     m_oi = new OI();
@@ -101,9 +101,9 @@ public class Robot extends TimedRobot {
   
   @Override
   public void disabledInit() {
-    Robot.ChassisSubsystem.leftSideEncoder.reset();
-    Robot.ChassisSubsystem.rightSideEncoder.reset(); 
-    Robot.ChassisSubsystem.resetGyro();
+    // Robot.ChassisSubsystem.leftSideEncoder.reset();
+    // Robot.ChassisSubsystem.rightSideEncoder.reset(); 
+    //Robot.ChassisSubsystem.resetGyro();
   }
 
   @Override

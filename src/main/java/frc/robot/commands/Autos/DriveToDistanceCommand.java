@@ -18,14 +18,14 @@ public class DriveToDistanceCommand extends Command {
 
 
   // Called just before this Command runs the first time
-  @Override
-  protected void initialize() 
-  {
-    Robot.ChassisSubsystem.leftSideEncoder.reset();
-    Robot.ChassisSubsystem.rightSideEncoder.reset();
+  //@Override
+  // protected void initialize() 
+  // {
+  //   Robot.ChassisSubsystem.leftSideEncoder.reset();
+  //   Robot.ChassisSubsystem.rightSideEncoder.reset();
 
-    encoderCountOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
-  } 
+  //   encoderCountOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
+  // } 
 
   double requiredDistance = 30; //inches
   double encoderCountOnStart;
@@ -38,13 +38,13 @@ public class DriveToDistanceCommand extends Command {
     Robot.ChassisSubsystem.chassisSystemDashboard();
     Robot.ChassisSubsystem.periodicCommands();
 
-    double totalDistanceCovered = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - encoderCountOnStart;
+    //double totalDistanceCovered = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - encoderCountOnStart;
 
-    if (totalDistanceCovered < requiredDistance)
-    {
-      Robot.ChassisSubsystem.leftside.set(0.2);
-      Robot.ChassisSubsystem.rightside.set(0.2);
-    }
+    // if (totalDistanceCovered < requiredDistance)
+    // {
+    //   Robot.ChassisSubsystem.leftside.set(0.2);
+    //   Robot.ChassisSubsystem.rightside.set(0.2);
+    // }
 
 
 

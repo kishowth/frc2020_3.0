@@ -9,12 +9,12 @@ package frc.robot.commands.Autos;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.GyroPIDController;
+//import frc.robot.GyroPIDController;
 import frc.robot.Robot;
 
 public class StraightLineAuto extends Command {
 
-  GyroPIDController pidController = new GyroPIDController();
+  //GyroPIDController pidController = new GyroPIDController();
 
   public StraightLineAuto(double driveToDistance) {
     // Use requires() here to declare subsystem dependencies
@@ -32,14 +32,14 @@ public class StraightLineAuto extends Command {
   @Override
   protected void initialize() 
   {
-    //reset encoders 
-    Robot.ChassisSubsystem.leftSideEncoder.reset();
-    Robot.ChassisSubsystem.rightSideEncoder.reset();
+    // //reset encoders 
+    // Robot.ChassisSubsystem.leftSideEncoder.reset();
+    // Robot.ChassisSubsystem.rightSideEncoder.reset();
 
-    //stating variables to use in autonomous
-    odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
+    // //stating variables to use in autonomous
+    // odometerOnStart = Robot.ChassisSubsystem.leftSideEncoderValueInInches();
 
-    pidController.setDesiredAngle(Robot.ChassisSubsystem.getrobotAngle());
+    //pidController.setDesiredAngle(Robot.ChassisSubsystem.getrobotAngle());
   }
   
 
@@ -57,28 +57,28 @@ public class StraightLineAuto extends Command {
     Robot.ChassisSubsystem.chassisSystemDashboard();
     
     //Function for the total distance the robot has travelled so far
-    double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
+    //double totalDistanceTravelled = Robot.ChassisSubsystem.leftSideEncoderValueInInches() - odometerOnStart;
 
 
     //until the total distance covered by the robot is not met, run the chassis at this speed, when it reaches target value, stop all motors.
-    if (totalDistanceTravelled < targetinInches)
-    {
-      Robot.ChassisSubsystem.leftside.set(-0.5);
-      Robot.ChassisSubsystem.rightside.set(0.5);
-    }
+    // if (totalDistanceTravelled < targetinInches)
+    // {
+    //   Robot.ChassisSubsystem.leftside.set(-0.5);
+    //   Robot.ChassisSubsystem.rightside.set(0.5);
+    // }
     
-    else
-    {
-      Robot.ChassisSubsystem.leftside.set(0.0);
-      Robot.ChassisSubsystem.rightside.set(0.0);
-    }
+    // else
+    // {
+    //   Robot.ChassisSubsystem.leftside.set(0.0);
+    //   Robot.ChassisSubsystem.rightside.set(0.0);
+    // }
 
     //update the robot's total distance travelled on the dashboard
-    SmartDashboard.putNumber("total distance travelled", totalDistanceTravelled);
+   // SmartDashboard.putNumber("total distance travelled", totalDistanceTravelled);
 
     
     //auto adjust the Robot Chassis using the gyro controller so the robot is going in a straight line 
-    pidController.adjustDirectionStep();
+    //pidController.adjustDirectionStep();
   }
 
   // Make this return true when this Command no longer needs to run execute()

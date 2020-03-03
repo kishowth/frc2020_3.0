@@ -27,7 +27,7 @@ public class VisionCommand extends Command {
   @Override
   protected void execute() {
 
-    Robot.VisionSubsystem.Update_Limelight_Tracking();
+    //Robot.VisionSubsystem.Update_Limelight_Tracking();
 
     boolean autoAlign = Robot.m_oi.getShooterAutoAlign();
     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
@@ -35,7 +35,7 @@ public class VisionCommand extends Command {
 
 
     //Vision alignment
-
+    /*
     if (autoAlign) 
     {
 
@@ -49,12 +49,7 @@ public class VisionCommand extends Command {
         Robot.ChassisSubsystem.m_drive.arcadeDrive(0.0, 0.0);
         }
     }
-
-    
-    else {
-      Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed, -rightDriveSpeed);
-         }
-
+*/
 
   }
 

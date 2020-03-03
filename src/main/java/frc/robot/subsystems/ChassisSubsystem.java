@@ -29,12 +29,7 @@ import frc.robot.commands.ChassisCommand;
 /**/
 public class ChassisSubsystem extends Subsystem {
   
-  //rangefinder ultrasonic sensr
-  public AnalogInput ultraSonicSensor = new AnalogInput(RobotMap.ultrasonicSensor);
 
-  //chassis encoders
-  public Encoder leftSideEncoder = new Encoder(RobotMap.leftDtEncoderA, RobotMap.leftDtEncoderB, false);
-  public Encoder rightSideEncoder = new Encoder(RobotMap.rightDtEncoderA, RobotMap.rightDtEncoderB, false);
 
   //gyro Instantiation
   private AHRS gyro = new AHRS(RobotMap.gyro);
@@ -54,21 +49,22 @@ public class ChassisSubsystem extends Subsystem {
     right2.setInverted(false);
   }
 
-  //Ball shifters
-  DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
-  DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.rightDriveShifterA, RobotMap.rightDriveShifterB);
+  // shifters
+  // DoubleSolenoid leftshifter = new DoubleSolenoid(RobotMap.leftDriveShifterA, RobotMap.leftDriveShifterB);
+  // DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.rightDriveShifterA, RobotMap.rightDriveShifterB);
 
 
   //grouping motor controllers
   public SpeedControllerGroup leftside = new SpeedControllerGroup(left1, left2);
   public SpeedControllerGroup rightside = new SpeedControllerGroup(right1, right2); 
-
+  
+  /*
   public DifferentialDrive m_drive = new DifferentialDrive(leftside, rightside);
-  //compressor
+  compressor
   public Compressor compressor = new Compressor();
   
-  // when piston is pushed out, robot is on low gear
-  // when piston is retracted, robot is on high gear
+  when piston is pushed out, robot is on low gear
+  when piston is retracted, robot is on high gear
 
   public void shiftToSlow()
   {
@@ -88,20 +84,14 @@ public class ChassisSubsystem extends Subsystem {
     rightShifter.set(Value.kOff);
     
   }
+*/
 
 
-  //getting original encoder values from both chassis encoders 
-  public double leftSideEncoderValueInInches(){
-    return leftSideEncoder.getRaw() / RobotConstants.ENCODER_TICKS_IN_INCHES;
-  }
-
-  public double rightSideEncoderValueInInches(){
-    return rightSideEncoder.getRaw() / RobotConstants.ENCODER_TICKS_IN_INCHES;
-  } 
 
 
-  //read the robot's current angle
-  public double getrobotAngle(){
+  //read the robots current angle
+  public double getrobotAngle()
+  {
     return gyro.getAngle();
   }
   
@@ -110,28 +100,18 @@ public class ChassisSubsystem extends Subsystem {
   {
     gyro.reset();
   } 
-  //get the average range of ultrasonic values 
-  public double ultValues(){
-    return ultraSonicSensor.getAverageValue();
-  }
+
 
   //all functions in this class that need to run periodically so values can be constantly updated. Call this in chassis command class
   public void periodicCommands()
   {
-    leftSideEncoderValueInInches();
-    rightSideEncoderValueInInches();
     getrobotAngle();
-    ultValues();
   }
   
   //Function to put all sensor values from this subsystem on the dashboard
   public void chassisSystemDashboard()
   {
-    SmartDashboard.putNumber("Ultrasonic Values", ultValues());
-    SmartDashboard.putNumber("Left Encoder Value (inches)", leftSideEncoderValueInInches());
-    SmartDashboard.putNumber("Right Encoder Value (inches)", rightSideEncoderValueInInches());  
-
-    SmartDashboard.putNumber("Gyro", getrobotAngle());
+   SmartDashboard.putNumber("Gyro", getrobotAngle());
   }
 
 
