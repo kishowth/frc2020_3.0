@@ -10,28 +10,28 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.StorageCommand;
+import frc.robot.commands.ShooterWheelUptakeCommand;
 
 /**
  * Add your docs here.
  */
-public class StorageSubsystem extends Subsystem {
+public class ShooterWheelUptakeSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private VictorSP horizontalPulleySystem = new VictorSP(RobotMap.horizontalStorageMotor);
   private VictorSP storageWheelUptake = new VictorSP(RobotMap.driverWheelMotor);
 
-  public void storePowerCells(double speed)
+
+
+
+
+  public void feedPowerCellsIntoShooter(double speed)
   {
-    horizontalPulleySystem.set(-speed);
+    storageWheelUptake.set(-speed);
   }
-
- 
-
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new StorageCommand());
+    setDefaultCommand(new ShooterWheelUptakeCommand());
   }
 }

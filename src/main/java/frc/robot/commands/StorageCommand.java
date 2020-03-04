@@ -42,18 +42,9 @@ public class StorageCommand extends Command {
     {
       Robot.storageSubsystem.storePowerCells(-0.3);
     }
-    else if (momentumUp)
-    {
-      Robot.storageSubsystem.feedPowerCellsIntoShooter(1);
-    }
-    else if (momentumDown)
-    {
-      Robot.storageSubsystem.feedPowerCellsIntoShooter(-1);
-    }
     else
     {
       Robot.storageSubsystem.storePowerCells(0.0);
-      Robot.storageSubsystem.feedPowerCellsIntoShooter(0.0);
     }
     
 

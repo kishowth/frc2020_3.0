@@ -5,36 +5,45 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.TimeBasedAutos;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class FeedBallsIntoShooterCommand extends Command {
-  public FeedBallsIntoShooterCommand() {
+public class ShooterWheelUptakeCommand extends Command {
+  public ShooterWheelUptakeCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.storageSubsystem);
-
+    requires(Robot.shooterUptakeSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
-  {
-    Robot.storageSubsystem.storePowerCells(0.25);
-    Robot.shooterUptakeSubsystem.feedPowerCellsIntoShooter(0.5);
+  protected void execute() {
+
+    boolean momentumUp = Robot.m_oi.getleadingShooterWheelINPUT();
+    boolean momentumDown = Robot.m_oi.getleadingShooterWheelOUTPUT();
+    
+  //  if(momentumUp) 
+    
+    if (momentumUp)
+    {
+      Robot.shooterUptakeSubsystem.feedPowerCellsIntoShooter(1);
+    }
+    else if (momentumDown)
+    {
+      Robot.shooterUptakeSubsystem.feedPowerCellsIntoShooter(-1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true

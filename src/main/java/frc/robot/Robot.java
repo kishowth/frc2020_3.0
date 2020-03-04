@@ -14,6 +14,7 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.cscore.CameraServerCvJNI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.ShooterWheelUptakeCommand;
 import frc.robot.commands.Autos.AutoCommand;
 import frc.robot.commands.Autos.Barrie_Autonomous1Command;
 import frc.robot.commands.Autos.Barrie_Autonomous2Command;
@@ -27,6 +28,7 @@ import frc.robot.subsystems.ChassisSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 //import frc.robot.subsystems.ColourWheelArmSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.ShooterWheelUptakeSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
@@ -38,10 +40,10 @@ public class Robot extends TimedRobot {
   
   public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
   public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
-  //public static ColourWheelArmSubsystem colourWheelArmSubsystem = new ColourWheelArmSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static StorageSubsystem storageSubsystem = new StorageSubsystem();
+  public static ShooterWheelUptakeSubsystem shooterUptakeSubsystem = new ShooterWheelUptakeSubsystem();
   public static OI m_oi;
 
   Command selected_autonomous;
