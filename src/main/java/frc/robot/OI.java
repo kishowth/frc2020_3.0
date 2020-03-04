@@ -45,6 +45,8 @@ public double getIntakeOutput()
   return GameControllerConstants.LeftTrigger();
 }
 
+
+
 //Pixy Ball Tracking
 
 public boolean getPixyTracking()
@@ -70,26 +72,20 @@ public boolean getShooterAutoAlign()
 } 
 
 //Storage
-public boolean getHorizontalStorageSystem()
-{
-  return GameControllerConstants.oprButtonX();
-}
 
-public boolean getVerticalStorageSystem()
-{
-  return GameControllerConstants.oprButtonY();
-}
-
-public boolean getHorizontalStorageSystem2()
-{
+public boolean getStorageSystemInward(){
   return GameControllerConstants.oprLeftBumper();
 }
-public boolean getVerticalStorageSystem2()
-{
+public boolean getStorageSystemOutward(){
   return GameControllerConstants.oprRightBumper();
 }
 
-
+public boolean getleadingShooterWheelINPUT(){
+  return GameControllerConstants.oprButtonX();
+}
+public boolean getleadingShooterWheelOUTPUT(){
+  return GameControllerConstants.oprButtonA();
+}
 
 
 

@@ -20,7 +20,7 @@ public class ShooterSpinningCommand extends Command {
   @Override
   protected void initialize() 
   {
-    setTimeout(14);
+    setTimeout(13);
 
   }
 

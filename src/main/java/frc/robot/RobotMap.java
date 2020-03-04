@@ -40,7 +40,7 @@ public class RobotMap {
   public static int rightFrontMotor = 3;
 
   //Intake 
-  public static int intakeMotor = 4;
+  public static int intakeMotor = 9;      
 
   //Storage 
   public static int horizontalStorageMotor = 5;
@@ -52,18 +52,11 @@ public class RobotMap {
   public static int rightShooterMotor = 8;
 
 
-  
-
-  //---Analog and digital ports----
-
+  //---Analog and digital ports----\\
 
   //other ports 
   public static I2C.Port colourSensor = I2C.Port.kOnboard; 
   public static Port gyro = SerialPort.Port.kMXP;
-
-
-
-
 
 
 }

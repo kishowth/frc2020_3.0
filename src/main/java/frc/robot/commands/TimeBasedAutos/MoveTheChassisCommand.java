@@ -15,6 +15,7 @@ public class MoveTheChassisCommand extends Command {
     // Use requires() here to declare subsystem dependencies
       requires(Robot.ChassisSubsystem);
 
+
   }
 
   // Called just before this Command runs the first time
@@ -23,10 +24,6 @@ public class MoveTheChassisCommand extends Command {
   {
     setTimeout(3);
   }
-
-
-
-
 
   // Called repeatedly when this Command is scheduled to run
   @Override

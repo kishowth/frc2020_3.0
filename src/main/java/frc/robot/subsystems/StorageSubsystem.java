@@ -24,12 +24,12 @@ public class StorageSubsystem extends Subsystem {
 
   public void storePowerCells(double speed)
   {
-    horizontalPulleySystem.set(speed);
+    horizontalPulleySystem.set(-speed);
   }
 
   public void feedPowerCellsIntoShooter(double speed)
   {
-    storageWheelUptake.set(speed);
+    storageWheelUptake.set(-speed);
   }
 
   @Override

@@ -25,28 +25,30 @@ public class StorageCommand extends Command {
   @Override
   protected void execute() 
   {
-    boolean ballInput = Robot.m_oi.getHorizontalStorageSystem();
-    boolean ballOutput = Robot.m_oi.getHorizontalStorageSystem2();
-    boolean momentumUp = Robot.m_oi.getVerticalStorageSystem();
-    boolean momentumDown = Robot.m_oi.getVerticalStorageSystem2();
+    
+    boolean ballInput = Robot.m_oi.getStorageSystemInward();
+    boolean ballOutput = Robot.m_oi.getStorageSystemOutward();
+
+    boolean momentumUp = Robot.m_oi.getleadingShooterWheelINPUT();
+    boolean momentumDown = Robot.m_oi.getleadingShooterWheelOUTPUT();
     
 
 
     if (ballInput)
     {
-      Robot.storageSubsystem.storePowerCells(0.5);
+      Robot.storageSubsystem.storePowerCells(0.3);
     }
     else if(ballOutput)
     {
-      Robot.storageSubsystem.storePowerCells(-0.5);
+      Robot.storageSubsystem.storePowerCells(-0.3);
     }
     else if (momentumUp)
     {
-      Robot.storageSubsystem.feedPowerCellsIntoShooter(0.5);
+      Robot.storageSubsystem.feedPowerCellsIntoShooter(1);
     }
     else if (momentumDown)
     {
-      Robot.storageSubsystem.feedPowerCellsIntoShooter(-0.5);
+      Robot.storageSubsystem.feedPowerCellsIntoShooter(-1);
     }
     else
     {

@@ -28,12 +28,12 @@ public class IntakeCommand extends Command {
     double getBall = Robot.m_oi.getIntakeInput();
     double outakeBall = Robot.m_oi.getIntakeOutput();
 
-    if (getBall > 1)
+    if (getBall > 0)
     {
       Robot.intakeSubsystem.ballIntake(1);
     }
 
-    else if (outakeBall > 1)
+    else if (outakeBall > 0)
     {
       Robot.intakeSubsystem.ballIntake(-1);
     }
