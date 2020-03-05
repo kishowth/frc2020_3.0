@@ -20,7 +20,6 @@ public class StorageSubsystem extends Subsystem {
   // here. Call these from Commands.
 
   private VictorSP horizontalPulleySystem = new VictorSP(RobotMap.horizontalStorageMotor);
-  private VictorSP storageWheelUptake = new VictorSP(RobotMap.driverWheelMotor);
 
   public void storePowerCells(double speed)
   {
