@@ -14,7 +14,6 @@ public class FeedBallsIntoShooterCommand extends Command {
   public FeedBallsIntoShooterCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.storageSubsystem);
-
   }
 
   // Called just before this Command runs the first time
