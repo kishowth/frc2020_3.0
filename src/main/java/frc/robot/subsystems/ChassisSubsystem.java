@@ -43,10 +43,10 @@ public class ChassisSubsystem extends Subsystem {
   //inversions
   public ChassisSubsystem()
   {
-    left1.setInverted(false);
-    left2.setInverted(false);
-    right1.setInverted(false);
-    right2.setInverted(false);
+    left1.setInverted(true);
+    left2.setInverted(true);
+    right1.setInverted(true);
+    right2.setInverted(true);
   }
 
   // shifters

@@ -17,7 +17,7 @@ public class Barrie1_moveAndShoot extends CommandGroup {
 
     addParallel(new ShooterSpinningCommand());        //spin the shooter 
     addSequential(new FeedBallsIntoShooterCommand()); //shoot 3 balls
-  //  addSequential(new MoveTheChassisCommand());       //move away from line
+    addSequential(new MoveTheChassisCommand());       //move away from line
 
 
 

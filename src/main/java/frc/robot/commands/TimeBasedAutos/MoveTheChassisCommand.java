@@ -22,15 +22,15 @@ public class MoveTheChassisCommand extends Command {
   @Override
   protected void initialize() 
   {
-    setTimeout(3);
+    setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-    Robot.ChassisSubsystem.leftside.set(0.2);
-    Robot.ChassisSubsystem.leftside.set(0.2);
+    Robot.ChassisSubsystem.leftside.set(-0.2);
+    Robot.ChassisSubsystem.rightside.set(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,6 +42,8 @@ public class MoveTheChassisCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.ChassisSubsystem.leftside.set(0);
+    Robot.ChassisSubsystem.rightside.set(0);
   }
 
   // Called when another command which requires one or more of the same
