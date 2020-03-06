@@ -29,8 +29,7 @@ public class StorageCommand extends Command {
     boolean ballInput = Robot.m_oi.getStorageSystemInward();
     boolean ballOutput = Robot.m_oi.getStorageSystemOutward();
 
-    boolean momentumUp = Robot.m_oi.getleadingShooterWheelINPUT();
-    boolean momentumDown = Robot.m_oi.getleadingShooterWheelOUTPUT();
+
     
 
 

@@ -28,7 +28,7 @@ public class ShooterWheelUptakeCommand extends Command {
     boolean momentumUp = Robot.m_oi.getleadingShooterWheelINPUT();
     boolean momentumDown = Robot.m_oi.getleadingShooterWheelOUTPUT();
     
-  //  if(momentumUp) 
+ 
     
     if (momentumUp)
     {
@@ -37,6 +37,10 @@ public class ShooterWheelUptakeCommand extends Command {
     else if (momentumDown)
     {
       Robot.shooterUptakeSubsystem.feedPowerCellsIntoShooter(-1);
+    }
+    else
+    {
+      Robot.shooterUptakeSubsystem.feedPowerCellsIntoShooter(0);
     }
   }
 

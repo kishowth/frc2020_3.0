@@ -30,7 +30,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShooterWheelUptakeSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
+//import frc.robot.subsystems.VisionSubsystem;
 
 
 public class Robot extends TimedRobot {
@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
 
 
   
-  public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
+  //public static VisionSubsystem VisionSubsystem = new VisionSubsystem();
   public static ChassisSubsystem ChassisSubsystem = new ChassisSubsystem();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
@@ -66,10 +66,10 @@ public class Robot extends TimedRobot {
   
 
     //start Compressor
-    //Robot.ChassisSubsystem.compressor.start();
+    Robot.ChassisSubsystem.compressor.start();
 
     //reset gyro
-    //Robot.ChassisSubsystem.resetGyro();
+    Robot.ChassisSubsystem.resetGyro();
 
     // //reset encoders
     // Robot.ChassisSubsystem.leftSideEncoder.reset();

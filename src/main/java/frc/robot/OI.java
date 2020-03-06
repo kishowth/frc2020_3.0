@@ -68,7 +68,7 @@ public double getShooterOuttake()
 //Limelight Auto-align
 public boolean getShooterAutoAlign()
 {
-  return GameControllerConstants.oprButtonA();
+  return GameControllerConstants.oprButtonY();
 } 
 
 //Storage

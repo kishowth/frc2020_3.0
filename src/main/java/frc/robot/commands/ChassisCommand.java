@@ -34,33 +34,57 @@ public class ChassisCommand extends Command {
   @Override
   protected void execute() {
 
+    boolean autoAlign = Robot.m_oi.getShooterAutoAlign();
+  
+    double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
+    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
+
+    Robot.ChassisSubsystem.Update_Limelight_Tracking();
+
+    if (autoAlign) 
+    {
+
+      if (Robot.ChassisSubsystem.m_LimelightHasValidTarget) 
+        {
+       // Robot.VisionSubsystem.forceOn();
+        Robot.ChassisSubsystem.m_drive.arcadeDrive(Robot.ChassisSubsystem.m_LimelightDriveCommand, Robot.ChassisSubsystem.m_LimelightSteerCommand);
+        } 
+      else {
+        Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed / 1.25, -rightDriveSpeed /1.25);
+      }
+
+      }
+      else {
+        Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed / 1.25, -rightDriveSpeed / 1.25);
+      }
+
+
+    
+
+
     //constantly run these functions
     // Robot.ChassisSubsystem.periodicCommands(); 
     // Robot.ChassisSubsystem.chassisSystemDashboard(); 
 
-    // boolean chassisShift = Robot.m_oi.getBallShift1();
-    // boolean chassisShift2 = Robot.m_oi.getBallShift2();
+     boolean chassisShift = Robot.m_oi.getBallShift1();
+     boolean chassisShift2 = Robot.m_oi.getBallShift2();
 
-    double leftMotorControl = Robot.m_oi.getLeftDriveSpeed();
-    double rightMotorControl = Robot.m_oi.getRightDriveSpeed();
+    // double leftMotorControl = Robot.m_oi.getLeftDriveSpeed();
+    // double rightMotorControl = Robot.m_oi.getRightDriveSpeed();
     
-    //set up tank Drive, half speed due to fast chassis
-    Robot.ChassisSubsystem.leftside.set(leftMotorControl);
-    Robot.ChassisSubsystem.rightside.set(-rightMotorControl);
-
     
-    // if(chassisShift)
-    // {
-    //   Robot.ChassisSubsystem.shiftToFast();
-    // }
-    // else if (chassisShift2)
-    // {
-    //   Robot.ChassisSubsystem.shiftToSlow();
-    // }
-    // else 
-    // {
-    //   Robot.ChassisSubsystem.leaveShifterState();
-    // }
+    if(chassisShift)
+    {
+      Robot.ChassisSubsystem.shiftToFast();
+    }
+    else if (chassisShift2)
+    {
+      Robot.ChassisSubsystem.shiftToSlow();
+    }
+    else 
+    {
+      Robot.ChassisSubsystem.leaveShifterState();
+    }
 
 
     //message to drivers about various autons 

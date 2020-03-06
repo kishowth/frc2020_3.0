@@ -24,8 +24,22 @@ public class FeedBallsIntoShooterCommand extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
+  protected void execute(){
+
+  Robot.ChassisSubsystem.Update_Limelight_Tracking();
+
+
+  double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
+  double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
   {
+    if (Robot.ChassisSubsystem.m_LimelightHasValidTarget) 
+    {
+   // Robot.VisionSubsystem.forceOn();
+    Robot.ChassisSubsystem.m_drive.arcadeDrive(Robot.ChassisSubsystem.m_LimelightDriveCommand, Robot.ChassisSubsystem.m_LimelightSteerCommand);
+    } 
+
+    Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed / 1.25, -rightDriveSpeed / 1.25);
+  }
     Robot.storageSubsystem.storePowerCells(0.25);
     Robot.shooterUptakeSubsystem.feedPowerCellsIntoShooter(0.5);
   }
