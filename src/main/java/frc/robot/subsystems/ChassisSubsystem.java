@@ -183,7 +183,7 @@ public class ChassisSubsystem extends Subsystem {
     return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(PIPELINE_DEFAULT);
   }
 
-public  boolean forceOff()
+public boolean forceOff()
   {
     return NetworkTableInstance.getDefault().getTable(TABLE_KEY).getEntry(VAR_NAME_LED_MODE).setNumber(FORCE_OFF);
   }

@@ -30,6 +30,8 @@ public class RobotMap {
   public static int leftDriveShifterB = 1;
   public static int rightDriveShifterA = 2;
   public static int rightDriveShifterB = 3;
+  public static int climbA = 4;
+  public static int climbB = 5;
 
   //---PWM Ports---
 
@@ -50,6 +52,9 @@ public class RobotMap {
   //shooter Motors
   public static int leftShooterMotor = 7;
   public static int rightShooterMotor = 8;
+
+  //climb motors
+  public static int climb = 4;
 
 
   //---Analog and digital ports----\\

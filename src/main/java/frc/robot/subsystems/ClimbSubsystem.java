@@ -7,53 +7,42 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.ClimbCommand;
 
 /**
  * Add your docs here.
  */
-public class ShooterSubsystem extends Subsystem {
-  
-  private Spark leftShooter = new Spark(RobotMap.leftShooterMotor);
-  private Spark rightShooter = new Spark(RobotMap.rightShooterMotor);
+public class ClimbSubsystem extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  DoubleSolenoid climbRelease = new DoubleSolenoid(RobotMap.climbA, RobotMap.climbB);
 
+  private VictorSP winchMotor = new VictorSP(RobotMap.climb);
 
-  public ShooterSubsystem()
-  {
-    leftShooter.setInverted(true);
-    rightShooter.setInverted(false);
+  public void pushClimbPiston(){
+    climbRelease.set(Value.kForward);
+  }
+  public void retractClimbPiston(){
+    climbRelease.set(Value.kReverse);
+  }
+  public void leaveClimbState(){
+    climbRelease.set(Value.kOff);
   }
 
-
-  public void leftShooterActivate(double speed)
-  {
-    leftShooter.set(speed);
+  public void winchControl(double speed){
+    winchMotor.set(speed);
   }
-
-  public void rightShooterActivate(double speed)
-  {
-    rightShooter.set(speed);
-  }
-  
-  public double shooterSpeedA(){
-    return rightShooter.getSpeed();
-  }
-  public double shooterSpeedB(){
-    return leftShooter.getSpeed();
-  }
-
-
-
-
 
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new ShooterCommand());
+    setDefaultCommand(new ClimbCommand());
   }
 }

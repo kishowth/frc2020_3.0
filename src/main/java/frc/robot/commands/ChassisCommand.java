@@ -40,13 +40,14 @@ public class ChassisCommand extends Command {
     double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
 
     Robot.ChassisSubsystem.Update_Limelight_Tracking();
+    
 
     if (autoAlign) 
     {
 
       if (Robot.ChassisSubsystem.m_LimelightHasValidTarget) 
         {
-       // Robot.VisionSubsystem.forceOn();
+        Robot.ChassisSubsystem.forceOn();
         Robot.ChassisSubsystem.m_drive.arcadeDrive(Robot.ChassisSubsystem.m_LimelightDriveCommand, Robot.ChassisSubsystem.m_LimelightSteerCommand);
         } 
       else {

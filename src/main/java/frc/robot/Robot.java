@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.ChassisSubsystem;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 //import frc.robot.subsystems.ColourWheelArmSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -44,6 +45,7 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static StorageSubsystem storageSubsystem = new StorageSubsystem();
   public static ShooterWheelUptakeSubsystem shooterUptakeSubsystem = new ShooterWheelUptakeSubsystem();
+  public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
   public static OI m_oi;
 
   Command selected_autonomous;
@@ -63,6 +65,8 @@ public class Robot extends TimedRobot {
   //robot's initialization
   @Override
   public void robotInit() {
+    
+    //Robot.ChassisSubsystem.forceOff();
   
 
     //start Compressor

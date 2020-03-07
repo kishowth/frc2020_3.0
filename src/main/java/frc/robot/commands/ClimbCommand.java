@@ -8,14 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-
-public class ShooterCommand extends Command {
-  public ShooterCommand() {
+public class ClimbCommand extends Command {
+  public ClimbCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.shooterSubsystem);
+    requires(Robot.climbSubsystem);
   }
 
   // Called just before this Command runs the first time
@@ -27,35 +25,46 @@ public class ShooterCommand extends Command {
   @Override
   protected void execute() {
 
-    Robot.shooterSubsystem.shooterSpeedA();
-    Robot.shooterSubsystem.shooterSpeedB();
+    //piston control
+    boolean pistonPull = Robot.m_oi.getPistonPull();
+    boolean pistonPush = Robot.m_oi.getPistonPush();
 
-    double totalSpeed = Robot.shooterSubsystem.shooterSpeedA() + Robot.shooterSubsystem.shooterSpeedB();
-
-    SmartDashboard.putNumber("SHOOTER SPEED VALUE", totalSpeed);
-
-
+    //winch
+    boolean winchIn = Robot.m_oi.getwinchIn();
+    boolean winchOut = Robot.m_oi.getwinchOut();
     
-
-    double shoot = Robot.m_oi.getShooterOuttake();
-
-    if(shoot > 0)
+    //piston control
+    if(pistonPull)
     {
-      Robot.shooterSubsystem.leftShooterActivate(1);
-      Robot.shooterSubsystem.rightShooterActivate(1);
-     
-    } 
+      Robot.climbSubsystem.retractClimbPiston();
+    }
+    else if(pistonPush)
+    {
+      Robot.climbSubsystem.pushClimbPiston();
+    }
+    else
+    {
+      Robot.climbSubsystem.leaveClimbState();
+    }
+
+
+    //winch control
+    if (winchIn)
+    {
+      Robot.climbSubsystem.winchControl(1);
+    }
+    else if (winchOut)
+    {
+      Robot.climbSubsystem.winchControl(-1);
+    }
     else 
     {
-      Robot.shooterSubsystem.leftShooterActivate(0);
-      Robot.shooterSubsystem.rightShooterActivate(0);
-    } 
+      Robot.climbSubsystem.winchControl(0.0);
+
+    }
+
 
     
-
-
-
-
   }
 
   // Make this return true when this Command no longer needs to run execute()

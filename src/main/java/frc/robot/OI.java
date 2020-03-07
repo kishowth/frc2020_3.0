@@ -35,24 +35,50 @@ public boolean getBallShift2()
 }
 
 //Intake 
-public double getIntakeInput()
+public boolean getIntakeInput()
 {
   return GameControllerConstants.RightTrigger();
 }
 
-public double getIntakeOutput()
+public boolean getIntakeOutput()
 {
   return GameControllerConstants.LeftTrigger();
 }
 
 
 
-//Pixy Ball Tracking
+//climb 
+public boolean getClimbUp()
+{
+  return GameControllerConstants.LeftBumper();
+}
 
-public boolean getPixyTracking()
+public boolean getClimbRelease()
 {
   return GameControllerConstants.RightBumper();
 }
+
+public boolean getPistonPull()
+{
+  return GameControllerConstants.ButtonX();
+}
+public boolean getPistonPush(){
+  return GameControllerConstants.ButtonA();
+}
+
+public boolean getwinchOut()
+{
+  return GameControllerConstants.ButtonB();
+}
+
+public boolean getwinchIn()
+{
+  return GameControllerConstants.ButtonY();
+}
+
+
+
+
 
 
 

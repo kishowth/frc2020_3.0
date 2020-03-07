@@ -25,15 +25,15 @@ public class IntakeCommand extends Command {
   @Override
   protected void execute() 
   {
-    double getBall = Robot.m_oi.getIntakeInput();
-    double outakeBall = Robot.m_oi.getIntakeOutput();
+    boolean getBall = Robot.m_oi.getIntakeInput();
+    boolean outakeBall = Robot.m_oi.getIntakeOutput();
 
-    if (getBall > 0)
+    if (getBall)
     {
       Robot.intakeSubsystem.ballIntake(1);
     }
 
-    else if (outakeBall > 0)
+    else if (outakeBall)
     {
       Robot.intakeSubsystem.ballIntake(-1);
     }

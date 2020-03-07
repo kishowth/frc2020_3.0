@@ -14,6 +14,27 @@ opr for operator commands
 */
 public class GameControllerConstants {
 
+
+    private static int GRN_BUTTON_A = 3;
+    private static int GRN_BUTTON_B = 2;
+    private static int GRN_BUTTON_X = 4;
+    private static int GRN_BUTTON_Y = 1;
+    private static int GRN_LT = 7;
+    private static int GRN_RT = 8;
+    private static int GRN_LB = 5;
+    private static int GRN_RB = 6;
+
+    private static int GRN_LEFTJOY_BUTTON = 11;
+    private static int GRN_RIGHTJOY_BUTTON = 12;
+
+
+
+    private static int GRN_LEFTJOY_Y = 1;
+    private static int GRN_RIGHTJOY_Y = 3;
+
+
+
+
     /*-----variables for button parameters-----*/
     private static int BUTTON_A = 1; 
     private static int BUTTON_B = 2;
@@ -44,71 +65,69 @@ public class GameControllerConstants {
     
     public static double LEFT_JOYSTICK_Y()
     {
-        return driverController.getRawAxis(LEFT_JOY_Y);
+        return driverController.getRawAxis(GRN_LEFTJOY_Y);
     }
 
     public static double RIGHT_JOYSTICK_Y()
     {
-        return driverController.getRawAxis(RIGHT_JOY_Y);
+        return driverController.getRawAxis(GRN_RIGHTJOY_Y);
     }
 
-    public static double LEFT_JOYSTICK_X(){
-        return driverController.getRawAxis(LEFT_JOY_X);
-    }
+    // public static double LEFT_JOYSTICK_X(){
+    //     return driverController.getRawAxis(LEFT_JOY_X);
+    // }
 
-    public static double RIGHT_JOYSTICK_X(){
-        return driverController.getRawAxis(RIGHT_JOY_X);
-    }
-
-    public static double RightTrigger(){
-        return driverController.getRawAxis(RIGHT_TRIGGER);
-    }
-
-    public static double LeftTrigger(){
-        return driverController.getRawAxis(LEFT_TRIGGER);
-    }
-
+    // public static double RIGHT_JOYSTICK_X(){
+    //     return driverController.getRawAxis(RIGHT_JOY_X);
+    // }
 
     /*------------BUTTON METHODS--------------- */
+    public static boolean RightTrigger(){
+        return driverController.getRawButton(GRN_RT);
+    }
+
+    public static boolean LeftTrigger(){
+        return driverController.getRawButton(GRN_LT);
+    }
 
     public static boolean ButtonA()
     {
-        return driverController.getRawButton(BUTTON_A);
+        return driverController.getRawButton(GRN_BUTTON_A);
     }
 
     public static boolean ButtonB() 
     {
-        return driverController.getRawButton(BUTTON_B);
+        return driverController.getRawButton(GRN_BUTTON_B);
     }
 
     public static boolean ButtonX()
     {
-        return driverController.getRawButton(BUTTON_X);
+        return driverController.getRawButton(GRN_BUTTON_X);
     } 
 
     public static boolean ButtonY()
     {
-        return driverController.getRawButton(BUTTON_Y);
+        return driverController.getRawButton(GRN_BUTTON_Y);
     }
 
     public static boolean LeftBumper()
     {
-        return driverController.getRawButton(LEFT_BUMPER);
+        return driverController.getRawButton(GRN_LB);
     }
 
     public static boolean RightBumper()
     {
-        return driverController.getRawButton(RIGHT_BUMPER);
+        return driverController.getRawButton(GRN_RB);
     }
 
     public static boolean LeftJoystickButton()
     {
-        return driverController.getRawButton(LEFT_JOYSTICK_BUTTON);
+        return driverController.getRawButton(GRN_LEFTJOY_BUTTON);
     }
 
     public static boolean RightJoystickButton()
     {
-        return driverController.getRawButton(RIGHT_JOYSTICK_BUTTON);
+        return driverController.getRawButton(GRN_RIGHTJOY_BUTTON);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                      OPERATOR CONTROLLER METHODS                                                  //
