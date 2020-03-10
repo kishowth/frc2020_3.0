@@ -25,28 +25,12 @@ public class ClimbCommand extends Command {
   @Override
   protected void execute() {
 
-    //piston control
-    boolean pistonPull = Robot.m_oi.getPistonPull();
-    boolean pistonPush = Robot.m_oi.getPistonPush();
+   
 
     //winch
     boolean winchIn = Robot.m_oi.getwinchIn();
     boolean winchOut = Robot.m_oi.getwinchOut();
     
-    //piston control
-    if(pistonPull)
-    {
-      Robot.climbSubsystem.retractClimbPiston();
-    }
-    else if(pistonPush)
-    {
-      Robot.climbSubsystem.pushClimbPiston();
-    }
-    else
-    {
-      Robot.climbSubsystem.leaveClimbState();
-    }
-
 
     //winch control
     if (winchIn)
@@ -60,7 +44,6 @@ public class ClimbCommand extends Command {
     else 
     {
       Robot.climbSubsystem.winchControl(0.0);
-
     }
 
 

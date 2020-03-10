@@ -21,19 +21,9 @@ import frc.robot.commands.ClimbCommand;
 public class ClimbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  DoubleSolenoid climbRelease = new DoubleSolenoid(RobotMap.climbA, RobotMap.climbB);
 
   private VictorSP winchMotor = new VictorSP(RobotMap.climb);
 
-  public void pushClimbPiston(){
-    climbRelease.set(Value.kForward);
-  }
-  public void retractClimbPiston(){
-    climbRelease.set(Value.kReverse);
-  }
-  public void leaveClimbState(){
-    climbRelease.set(Value.kOff);
-  }
 
   public void winchControl(double speed){
     winchMotor.set(speed);

@@ -29,6 +29,8 @@ public class ChassisCommand extends Command {
   String autoInfo2 = "Auto 2 : Move the Robot away from starting line";
   String autoInfo3 = "Auto 3 : Just don't use it, it is a testing interface";
 
+  boolean HIGH_SHIFT;
+
 
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -37,7 +39,8 @@ public class ChassisCommand extends Command {
     boolean autoAlign = Robot.m_oi.getShooterAutoAlign();
   
     double leftDriveSpeed = Robot.m_oi.getLeftDriveSpeed();
-    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed(); 
+    double rightDriveSpeed = Robot.m_oi.getRightDriveSpeed();  
+    boolean slowMode = Robot.m_oi.getSlowSpeed();
 
     Robot.ChassisSubsystem.Update_Limelight_Tracking();
     
@@ -55,7 +58,11 @@ public class ChassisCommand extends Command {
       }
 
       }
-      else {
+    else if (slowMode){
+      Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed / 3, -rightDriveSpeed / 3);
+
+    }
+    else{
         Robot.ChassisSubsystem.m_drive.tankDrive(-leftDriveSpeed / 1.25, -rightDriveSpeed / 1.25);
       }
 
@@ -77,10 +84,14 @@ public class ChassisCommand extends Command {
     if(chassisShift)
     {
       Robot.ChassisSubsystem.shiftToFast();
+      HIGH_SHIFT = true;
+
     }
     else if (chassisShift2)
     {
       Robot.ChassisSubsystem.shiftToSlow();
+      HIGH_SHIFT = false;;
+
     }
     else 
     {
@@ -93,6 +104,8 @@ public class ChassisCommand extends Command {
     SmartDashboard.putString("AUTON INFORMATION: ", autoInfo1);
     SmartDashboard.putString("AUTON INFORMATION: ", autoInfo2);
     SmartDashboard.putString("AUTON INFORMATION: ", autoInfo3);
+
+    SmartDashboard.putBoolean("SHIFTER STATE", HIGH_SHIFT);
 
 
     

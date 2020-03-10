@@ -22,6 +22,9 @@ public double getRightDriveSpeed()
 {
   return GameControllerConstants.RIGHT_JOYSTICK_Y();
 }
+public boolean getSlowSpeed(){
+  return GameControllerConstants.RightBumper();
+}
 
 //shifters
 public boolean getBallShift1()
@@ -48,33 +51,18 @@ public boolean getIntakeOutput()
 
 
 //climb 
-public boolean getClimbUp()
-{
-  return GameControllerConstants.LeftBumper();
-}
-
-public boolean getClimbRelease()
-{
-  return GameControllerConstants.RightBumper();
-}
-
-public boolean getPistonPull()
-{
-  return GameControllerConstants.ButtonX();
-}
-public boolean getPistonPush(){
-  return GameControllerConstants.ButtonA();
-}
 
 public boolean getwinchOut()
 {
-  return GameControllerConstants.ButtonB();
+  return GameControllerConstants.ButtonB() ;
 }
 
 public boolean getwinchIn()
 {
   return GameControllerConstants.ButtonY();
 }
+
+
 
 
 
