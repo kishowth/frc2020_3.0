@@ -122,11 +122,11 @@ public class ChassisSubsystem extends Subsystem {
     //These numbers must be tuned!!!!
     //steer is between 0.01-0.02
     //steerK is final
-    //0.025
-    final double STEER_K = 0.0170;                     // how hard to turn toward the target
-    final double DRIVE_K = 0.00;                     // how hard to drive fwd toward the target
-    final double DESIRED_TARGET_AREA = 18.0;         // Area of the target when the robot reaches the wall
-    final double MAX_DRIVE = 0.1;                     // Simple speed limit so we don't drive too fast
+    //0.0170
+    final double STEER_K = 0.018;                     // how hard to turn toward the target
+    final double DRIVE_K = 0.02;                     // how hard to drive fwd toward the target
+    final double DESIRED_TARGET_AREA = -17.0;         // Area of the target when the robot reaches the wall
+    final double MAX_DRIVE = 0.02;                     // Simple speed limit so we don't drive too fast
 
     final double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
     final double tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
